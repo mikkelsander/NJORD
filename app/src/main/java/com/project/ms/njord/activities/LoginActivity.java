@@ -1,7 +1,9 @@
-package com.project.ms.njord;
+package com.project.ms.njord.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.project.ms.njord.R;
 
 public class LoginActivity extends AppCompatActivity {
 

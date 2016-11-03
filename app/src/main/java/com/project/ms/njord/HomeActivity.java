@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.project.ms.njord.activities.TestLungsActivity;
+
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button beginTestBtn;
@@ -18,6 +20,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         beginTestBtn = (Button) findViewById(R.id.beginTestBtn);
         beginTestBtn.setOnClickListener(this);
         getSupportActionBar().setTitle("Home");
+
 
 
 
