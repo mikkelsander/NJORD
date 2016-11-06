@@ -11,7 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.project.ms.njord.R;
+import com.project.ms.njord.fragments.DeviceFragment;
 import com.project.ms.njord.fragments.HomeFragment;
+import com.project.ms.njord.fragments.ProfileFragment;
+import com.project.ms.njord.fragments.ProgressFragment;
+import com.project.ms.njord.fragments.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -42,6 +46,8 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
     }
 
     @Override
@@ -87,15 +93,36 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, homeFragment);
             fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Home");
 
         } else if (id == R.id.nav_profile) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Profile");
+
 
         } else if (id == R.id.nav_device) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Device");
 
         } else if (id == R.id.nav_settings) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Settings");
 
         } else if (id == R.id.nav_progress) {
-
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Progress");
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

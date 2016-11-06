@@ -11,7 +11,7 @@ import android.widget.Button;
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.TestLungsActivity;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button beginTestBtn;
 
@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
 
         // Inflates the layout for this fragment
         beginTestBtn = (Button) v.findViewById(R.id.beginTestBtn);
-        beginTestBtn.setOnClickListener((View.OnClickListener) this);
+        beginTestBtn.setOnClickListener(this);
 
         return v;
     }

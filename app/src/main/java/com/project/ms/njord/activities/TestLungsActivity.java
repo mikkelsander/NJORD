@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.archive.ResultsActivity;
 
 public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
 

@@ -20,6 +20,7 @@ public class DeviceFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_device, container, false);
 
         // Inflate the layout for this fragment
+
         return v;
     }
 
