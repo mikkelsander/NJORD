@@ -1,6 +1,9 @@
 package com.project.ms.njord.activities;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,19 +23,32 @@ import com.project.ms.njord.fragments.SettingsFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    HomeFragment homeFragment = new HomeFragment();
     NavigationView navigationView = null;
     Toolbar toolbar = null;
 
+    SharedPreferences prefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+
+
+        // Launches login activity if not logged in
+        if( !prefs.getBoolean("isLoggedIn", false) ){
+          Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+        }
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         // Setting initial fragment
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, homeFragment);
+        fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
         fragmentTransaction.commit();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -91,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, homeFragment);
+            fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Home");
 
@@ -123,6 +139,11 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Progress");
+        }else if (id == R.id.nav_logOut){
+            prefs.edit().putBoolean("isLoggedIn", false);
+            Intent i = new Intent(this, LoginActivity.class);
+            startActivity(i);
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

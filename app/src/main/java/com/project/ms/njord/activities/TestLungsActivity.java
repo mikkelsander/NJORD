@@ -26,7 +26,7 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         if(v == doneBtn){
             Intent i = new Intent(this, ResultsActivity.class);
             startActivity(i);
-
+            finish();
         }
     }
 }
