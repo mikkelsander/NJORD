@@ -352,7 +352,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
                 }
             }
 
-            // TODO: register the new account here.
+            // TODO: register the new account here
 
             //newAccount = true;
             //con.createProfile(mEmail, mPassword);
