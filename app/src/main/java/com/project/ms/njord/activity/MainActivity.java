@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Progress");
         }else if (id == R.id.nav_logOut){
-            prefs.edit().putBoolean("isLoggedIn", false);
+            prefs.edit().putBoolean("isLoggedIn", false).commit();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
 
