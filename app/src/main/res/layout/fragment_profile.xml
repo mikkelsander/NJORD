@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.ms.njord.fragments.ProfileFragment"
+    tools:context="com.project.ms.njord.fragment.ProfileFragment"
     android:background="@color/dark_gray">
 
 

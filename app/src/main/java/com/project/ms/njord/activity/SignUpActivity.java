@@ -1,4 +1,4 @@
-package com.project.ms.njord.activities;
+package com.project.ms.njord.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

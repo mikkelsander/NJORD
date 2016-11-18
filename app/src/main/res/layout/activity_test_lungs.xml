@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.project.ms.njord.activities.TestLungsActivity"
+    tools:context="com.project.ms.njord.activity.TestLungsActivity"
     android:background="@color/dark_gray"
     android:layout_height="match_parent">
 
@@ -17,7 +17,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="32dp"
         android:id="@+id/doneBtn"
-        android:background="@drawable/button"
+        android:background="@drawable/button_blue"
         android:textColor="@color/white"
 
         android:layout_alignParentBottom="true"

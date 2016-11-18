@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragments;
+package com.project.ms.njord.fragment;
 
 
 import android.os.Bundle;

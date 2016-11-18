@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragments;
+package com.project.ms.njord.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activities.TestLungsActivity;
+import com.project.ms.njord.activity.TestLungsActivity;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 

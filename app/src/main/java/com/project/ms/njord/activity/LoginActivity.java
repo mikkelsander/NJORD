@@ -1,8 +1,9 @@
-package com.project.ms.njord.activities;
+package com.project.ms.njord.activity;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.preference.PreferenceManager;
@@ -35,6 +36,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.project.ms.njord.R;
+import com.project.ms.njord.controller.EntityController;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -58,7 +60,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
-    private UserLoginTask mAuthTask = null;
+    private UserLoginTask loginTask = null;
 
     // UI references.
     private AutoCompleteTextView mEmailView;
@@ -67,12 +69,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
     private View mLoginFormView;
 
     SharedPreferences prefs;
+    EntityController con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        con = new EntityController();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Set up the login form.
@@ -84,18 +88,25 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             @Override
             public boolean onEditorAction(TextView textView, int id, KeyEvent keyEvent) {
                 if (id == R.id.login || id == EditorInfo.IME_NULL) {
-                    attemptLogin();
+                    attemptLoginOrSignUp(true);
                     return true;
                 }
                 return false;
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.email_sign_in_button);
-        mEmailSignInButton.setOnClickListener(new OnClickListener() {
+        Button mEmailLoginButton = (Button) findViewById(R.id.login_login_button);
+        mEmailLoginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                attemptLogin();
+
+                if(view == findViewById(R.id.login_login_button)){
+                    attemptLoginOrSignUp(true);
+                }
+
+                if(view == findViewById(R.id.login_sign_up_button)){
+                    attemptLoginOrSignUp(false);
+                }
             }
         });
 
@@ -152,8 +163,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
-    private void attemptLogin() {
-        if (mAuthTask != null) {
+    private void attemptLoginOrSignUp(boolean login) {
+        if (loginTask != null) {
             return;
         }
 
@@ -168,14 +179,14 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a valid password, if the user entered one.
+        // Check for a invalid password, if the user entered one.
         if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
         }
 
-        // Check for a valid email address.
+        // Check for a invalid email address.
         if (TextUtils.isEmpty(email)) {
             mEmailView.setError(getString(R.string.error_field_required));
             focusView = mEmailView;
@@ -194,8 +205,16 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             // Show a progress spinner, and kick off a background task to
             // perform the user login attempt.
             showProgress(true);
-            mAuthTask = new UserLoginTask(email, password);
-            mAuthTask.execute((Void) null);
+
+            // login was chosen
+            if(login){
+                loginTask = new UserLoginTask(email, password);
+                loginTask.execute((Void) null);
+            }
+            // sign up was chosen
+            else;
+                // TODO: choose what happens when user presses sign up
+
         }
     }
 
@@ -206,7 +225,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
     private boolean isPasswordValid(String password) {
         //TODO: Replace this with your own logic
-        return password.length() > 6 && password.contains("a");
+        return password.length() > 6;
     }
 
     /**
@@ -307,6 +326,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
+        private boolean newAccount;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -333,15 +353,23 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             // TODO: register the new account here.
+
+            //newAccount = true;
+            //con.createProfile(mEmail, mPassword);
             return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            mAuthTask = null;
+            loginTask = null;
             showProgress(false);
 
-            if (success) {
+            if(newAccount){
+                // TODO: continue to sign up
+                // Intent i = new Intent(UserLoginTask.this, SignUpActivity.class);
+                // startActivity(i);
+            }
+            else if (success) {
                 prefs.edit().putBoolean("isLoggedIn", true).commit();
                 finish();
             } else {
@@ -352,7 +380,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected void onCancelled() {
-            mAuthTask = null;
+            loginTask = null;
             showProgress(false);
         }
     }

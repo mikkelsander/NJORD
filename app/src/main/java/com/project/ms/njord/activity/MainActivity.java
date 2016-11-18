@@ -1,4 +1,4 @@
-package com.project.ms.njord.activities;
+package com.project.ms.njord.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,11 +14,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragments.DeviceFragment;
-import com.project.ms.njord.fragments.HomeFragment;
-import com.project.ms.njord.fragments.ProfileFragment;
-import com.project.ms.njord.fragments.ProgressFragment;
-import com.project.ms.njord.fragments.SettingsFragment;
+import com.project.ms.njord.fragment.DeviceFragment;
+import com.project.ms.njord.fragment.HomeFragment;
+import com.project.ms.njord.fragment.ProfileFragment;
+import com.project.ms.njord.fragment.ProgressFragment;
+import com.project.ms.njord.fragment.SettingsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the Home/Up button_blue, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
