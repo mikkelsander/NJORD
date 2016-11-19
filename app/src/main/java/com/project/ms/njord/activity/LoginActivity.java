@@ -87,8 +87,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         emailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
 
+        // Initializing views
+        loginFormView = findViewById(R.id.login_form);
+        progressView = findViewById(R.id.login_progress);
 
-        // Initializing password view
         passwordView = (EditText) findViewById(R.id.password);
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -101,33 +103,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
 
-
         // Initializing buttons
         loginButton = (Button) findViewById(R.id.login_login_button);
         loginButton.setOnClickListener(this);
 
         signUpButton = (Button) findViewById(R.id.login_sign_up_button);
         signUpButton.setOnClickListener(this);
-
-
-       /*
-        Button mEmailLoginButton = (Button) findViewById(R.id.login_login_button);
-        mEmailLoginButton.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if(view == findViewById(R.id.login_login_button)){
-                    attemptLoginOrSignUp(true);
-                }
-
-                if(view == findViewById(R.id.login_sign_up_button)){
-                    attemptLoginOrSignUp(false);
-                }
-            }
-        });*/
-
-        loginFormView = findViewById(R.id.login_form);
-        progressView = findViewById(R.id.login_progress);
     }
 
     @Override
@@ -187,12 +168,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If the login boolean is true login was chosen, if false singUp was chosen.
+     * Attempts to login or register the profile specified by the login form.
+     * If the login boolean is true login was chosen, if false sing up was chosen.
      * If there are form errors (invalid email, missing fields, etc.), the
      * errors are presented and no actual login attempt is made.
      */
     private void attemptLoginOrSignUp(boolean login) {
+        // TODO: could be split in two, one for login and one for sign up
 
         // Terminates the method if a sign up or login task is already running
         if (loginTask != null || signUpTask != null) return;
@@ -259,7 +241,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //TODO: Add more stuff to verify password
         return password.length() > 6;
     }
-
 
 
     /**
@@ -333,7 +314,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =
@@ -353,7 +333,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         int IS_PRIMARY = 1;
     }
 
-    // Start a second thread thread attempts to login
+
+    // Start a second thread that attempts to login
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String email;
