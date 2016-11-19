@@ -6,7 +6,7 @@ import com.project.ms.njord.entity.Profile;
  * Created by Oliver on 14-Nov-16.
  */
 
-public class EntityController {
+public class ProfileController {
 
     Profile profile;
 
