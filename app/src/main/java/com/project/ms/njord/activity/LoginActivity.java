@@ -70,9 +70,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private Button loginButton;
     private Button signUpButton;
 
-
-    SharedPreferences prefs;
-    ProfileController con;
+    // Controller references
+    private SharedPreferences prefs;
+    private ProfileController con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
