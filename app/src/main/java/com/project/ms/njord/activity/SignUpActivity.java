@@ -26,6 +26,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().setTitle("Sign up");
 
+        // Initializa controller
+        con = new ProfileController();
+
+
         // Initialize views
         titleView = (TextView) findViewById(R.id.signUp_title_textView);
 
@@ -50,10 +54,15 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void attemptConfirm() {
-        // TODO: validate all user input
-
         // TODO: save all user input
-       con.getProfile().setName(birthdayView.getText().toString());
+        if(userInputValid()) {
+            con.getProfile().setName(nameView.getText().toString());
+            finish();
+        }
+    }
 
+    private boolean userInputValid() {
+        // TODO: validate all user input
+        return true;
     }
 }
