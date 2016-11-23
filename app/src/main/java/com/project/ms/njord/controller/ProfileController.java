@@ -8,6 +8,9 @@ import com.project.ms.njord.entity.Profile;
 
 public class ProfileController {
 
+    public static ProfileController profileController;
+
+
     Profile profile;
 
     public void createProfile(String email, String password){

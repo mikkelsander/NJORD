@@ -234,12 +234,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     private boolean isEmailValid(String email) {
         //TODO: Add more stuff to verify email
-        return email.contains("@");
+        //return email.contains("@");
+        return true;
+
     }
 
     private boolean isPasswordValid(String password) {
         //TODO: Add more stuff to verify password
-        return password.length() > 6;
+        //password.length() >= 6;
+        return true;
     }
 
 
