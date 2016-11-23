@@ -13,9 +13,9 @@
             android:paddingTop="6dip"
             android:textColor="@color/white"
             android:textSize="20dp"
-            android:textStyle="bold"
-            android:text="Historic results" />
+            android:background="@color/colorPrimary">
 
+        </TextView>
 
 
 </LinearLayout>
