@@ -56,7 +56,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void attemptConfirm() {
         // TODO: save all user input
         if(userInputValid()) {
-            con.getProfile().setName(nameView.getText().toString());
+            //con.getProfile().setName(nameView.getText().toString());
             finish();
         }
     }
