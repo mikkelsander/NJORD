@@ -1,11 +1,27 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/LinearLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.project.ms.njord.fragment.ProgressFragment"
-    android:background="@color/dark_gray">
+    android:orientation="vertical"
+    android:weightSum="1">
+
+    <ImageView
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_width="match_parent"
+        android:layout_height="255dp"
+        app:srcCompat="@drawable/temp_image_progress"
+        android:background="@color/dark_gray"
+        android:id="@+id/progress_tempImage_imageView" />
 
 
-<!-- TODO: Update blank fragment layout -->
+    <ExpandableListView
+        android:id="@+id/expListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_gray"
+        android:layout_weight="2.25">
 
-</FrameLayout>
+    </ExpandableListView>
+
+</LinearLayout>

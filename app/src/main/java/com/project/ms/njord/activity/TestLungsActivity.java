@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.project.ms.njord.R;
+import com.project.ms.njord.fragment.HomeFragment;
 
 public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -16,7 +17,7 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_lungs);
-        doneBtn = (Button)findViewById(R.id.doneBtn);
+        doneBtn = (Button)findViewById(R.id.activity_testLungs_doneBtn);
         doneBtn.setOnClickListener(this);
         getSupportActionBar().setTitle("Test lungs");
     }
@@ -24,9 +25,13 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if(v == doneBtn){
+
             Intent i = new Intent(this, ResultsActivity.class);
             startActivity(i);
             finish();
+
+
+
         }
     }
 }

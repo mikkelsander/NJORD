@@ -21,7 +21,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         // Inflates the layout for this fragment
-        beginTestBtn = (Button) v.findViewById(R.id.beginTestBtn);
+        beginTestBtn = (Button) v.findViewById(R.id.home_beginTest_button);
         beginTestBtn.setOnClickListener(this);
 
         return v;
@@ -32,6 +32,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Intent i = new Intent(getActivity(), TestLungsActivity.class);
             startActivity(i);
         }
-    }
 
+    }
 }

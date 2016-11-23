@@ -1,15 +1,33 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.project.ms.njord.fragment.ResultsFragment"
     android:background="@color/dark_gray">
 
 
-<!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/temp_image_results"
+        android:background="@color/dark_gray"
+        android:id="@+id/progress_tempImage_imageView" />
 
-</FrameLayout>
+    <Button
+        android:text="Done"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginBottom="25dp"
+        android:id="@+id/fragment_results_doneBtn"
+        android:background="@drawable/button_blue"
+        android:textColor="@color/white"
+
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+
+
+        />
+
+
+</RelativeLayout>

@@ -10,7 +10,7 @@
             android:title="Home" />
         <item
             android:id="@+id/nav_progress"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_progress"
             android:title="Progress" />
         <item
             android:id="@+id/nav_profile"

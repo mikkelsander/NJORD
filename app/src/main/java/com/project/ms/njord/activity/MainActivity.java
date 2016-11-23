@@ -44,7 +44,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         // Setting initial fragment
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
@@ -83,7 +82,9 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    @Override
+
+
+  /*  @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button_blue, so long
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Progress");
+
         }else if (id == R.id.nav_logOut){
             prefs.edit().putBoolean("isLoggedIn", false).commit();
             Intent i = new Intent(this, LoginActivity.class);
@@ -149,5 +151,8 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+
+
+
     }
 }
