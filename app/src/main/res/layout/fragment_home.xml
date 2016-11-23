@@ -9,7 +9,7 @@
 
     <Button
         android:text="Begin Lung Test"
-        android:id="@+id/beginTestBtn"
+        android:id="@+id/home_beginTest_button"
         android:elevation="2dp"
         android:textSize="24sp"
         android:textColor="@color/white"
