@@ -28,6 +28,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     Boolean isEditing = false;
 
+    Button button;
+
     public ProfileFragment() {
         // Required empty public constructor
     }
@@ -75,23 +77,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
 
         if (isEditing) { //is editing, therefore save info
-/*
-            //Set values from the editTexts into the views
-            String newName = nameEdit.getText().toString();
-            nameView.setText(newName);
-            String newEmail = emailEdit.getText().toString();
-            emailView.setText(newEmail);
-            String newBirthday = birthdayEdit.getText().toString();
-            birthdayView.setText(newBirthday);
-
-            //Set visibility of editTexts and Views
-            nameView.setVisibility(View.VISIBLE);
-            nameEdit.setVisibility(View.GONE);
-            emailView.setVisibility(View.VISIBLE);
-            emailEdit.setVisibility(View.GONE);
-            birthdayView.setVisibility(View.VISIBLE);
-            birthdayEdit.setVisibility(View.GONE);
-*/
 
             setEditable(nameEdit, false);
             setEditable(emailEdit, false);
@@ -113,22 +98,6 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             setEditable(weightEdit, true);
 
             changeInfo.setText("Save");
-/*
-            nameView.setVisibility(View.GONE);
-            nameEdit.setVisibility(View.VISIBLE);
-
-            nameEdit.setText(nameView.getText());
-
-            emailView.setVisibility(View.GONE);
-            emailEdit.setVisibility(View.VISIBLE);
-
-            emailView.setText(emailView.getText());
-
-            birthdayView.setVisibility(View.GONE);
-            birthdayEdit.setVisibility(View.VISIBLE);
-
-            birthdayView.setText(birthdayView.getText());
-*/
         }
 
         isEditing = !isEditing;
