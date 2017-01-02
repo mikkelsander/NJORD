@@ -22,6 +22,10 @@ import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
 import io.fabric.sdk.android.Fabric;
 
+
+
+//testtest
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
