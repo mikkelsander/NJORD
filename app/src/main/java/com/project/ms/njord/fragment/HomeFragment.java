@@ -15,7 +15,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button beginTestBtn;
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
@@ -32,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Intent i = new Intent(getActivity(), TestLungsActivity.class);
             startActivity(i);
         }
+
 
     }
 }

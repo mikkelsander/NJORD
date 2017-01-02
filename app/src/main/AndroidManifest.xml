@@ -33,6 +33,10 @@
             android:label="@string/title_activity_login">
         </activity>
 
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="3a24b7bd45a162466982e94a9a93deaf8442ca76" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
