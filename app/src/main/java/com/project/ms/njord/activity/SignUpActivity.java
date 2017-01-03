@@ -8,12 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.controller.ProfileController;
+import com.project.ms.njord.entity.DataManager;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     // Controller references
-    private ProfileController con;
+    private DataManager con;
 
     // UI references
     private TextView titleView;
@@ -26,8 +26,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         setContentView(R.layout.activity_sign_up);
         getSupportActionBar().setTitle("Sign up");
 
-        // Initializa controller
-        con = new ProfileController();
+
 
 
         // Initialize views

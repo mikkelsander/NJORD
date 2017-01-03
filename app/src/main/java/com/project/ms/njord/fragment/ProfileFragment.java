@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.project.ms.njord.entity.DataManager;
+
 import com.project.ms.njord.R;
 
 /**
@@ -41,15 +43,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         nameEdit = (EditText) v.findViewById(R.id.profile_name_editText);
-        nameEdit.setText("Mads Werner");
+        nameEdit.setText(DataManager.dataManager.getProfile().getName());
         setEditable(nameEdit, false);
 
         emailEdit = (EditText) v.findViewById(R.id.profile_mail_editText);
-        emailEdit.setText("Mads@gmail.com");
+        emailEdit.setText(DataManager.dataManager.getProfile().getEmail());
         setEditable(emailEdit, false);
 
         birthdayEdit = (EditText) v.findViewById(R.id.profile_birthday_editText);
-        birthdayEdit.setText("19/08/1993");
+        birthdayEdit.setText(DataManager.dataManager.getProfile().getBirthday());
         setEditable(birthdayEdit, false);
 
         genderEdit = (EditText) v.findViewById(R.id.profile_gender_editText);

@@ -15,6 +15,7 @@ import android.view.MenuItem;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
+import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
@@ -32,6 +33,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        DataManager.init();
+
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 

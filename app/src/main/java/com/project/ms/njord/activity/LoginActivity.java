@@ -35,7 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.controller.ProfileController;
+import com.project.ms.njord.entity.DataManager;
 
 import static android.Manifest.permission.READ_CONTACTS;
 
@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // Controller references
     private SharedPreferences prefs;
-    private ProfileController con;
+    private DataManager con;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
 
         // Initializing controller objects
-        con = new ProfileController();
+
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Set up the login form.
