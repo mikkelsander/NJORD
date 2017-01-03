@@ -59,11 +59,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         setEditable(genderEdit, false);
 
         heightEdit = (EditText) v.findViewById(R.id.profile_height_EditText);
-        heightEdit.setText(DataManager.dataManager.getProfile().getHeight());
+        heightEdit.setText(Integer.toString(DataManager.dataManager.getProfile().getHeight()));
         setEditable(heightEdit, false);
 
         weightEdit = (EditText) v.findViewById(R.id.profile_weight_editText);
-        weightEdit.setText(DataManager.dataManager.getProfile().getWeight());
+        weightEdit.setText(Integer.toString(DataManager.dataManager.getProfile().getWeight()));
         setEditable(weightEdit, false);
 
 
