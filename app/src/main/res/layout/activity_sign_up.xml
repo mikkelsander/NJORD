@@ -55,21 +55,21 @@
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent" />
 
-    <EditText
+    <Spinner
         android:hint="Gender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="217dp"
+        android:layout_height="40dp"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/signUp_gender_editText"
+        android:id="@+id/signUp_gender_spinner"
         android:layout_marginEnd="16dp"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:textColorHint="@color/white"
         android:textSize="18sp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_birthday_editText" />
+        app:layout_constraintTop_toBottomOf="@+id/signUp_birthday_editText"
+        android:layout_marginTop="8dp" />
 
     <EditText
         android:hint="Height"
@@ -79,12 +79,12 @@
         android:inputType="number"
         android:ems="10"
         android:id="@+id/signUp_height_editText"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/signUp_gender_editText"
         android:layout_marginStart="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginEnd="16dp"
-        app:layout_constraintRight_toRightOf="parent" />
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/signUp_gender_spinner" />
 
     <EditText
         android:hint="Weigth"
@@ -116,7 +116,8 @@
         android:layout_marginTop="40dp"
         app:layout_constraintTop_toBottomOf="@+id/signUp_weight_editText"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -6,9 +6,8 @@ package com.project.ms.njord.entity;
 
 public class Profile {
 
-    private String name, email, password;
-    private int birthday, height, weight;
-    private enum Gender{MALE, FEMALE};
+    private String name, email, password, birthday;
+    private int height, weight;
     private String gender;
 
 
@@ -17,15 +16,14 @@ public class Profile {
         this.password=password;
     }
 
-    public Profile(String name, String email, String password, int birthday, int height, int weight, boolean male) {
+    public Profile(String name, String email, String password, String birthday, int height, int weight, String gender) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.birthday = birthday;
         this.height = height;
         this.weight = weight;
-        if(male) this.gender = "Male";
-        else gender = "Female";
+        this.gender = gender;
     }
 
     public String getName() {
@@ -52,11 +50,11 @@ public class Profile {
         this.password = password;
     }
 
-    public int getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(int birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -80,10 +78,9 @@ public class Profile {
         return gender;
     }
 
-    public void setGender(boolean male) {
-        if(male) {
-            this.gender = "Male";
-        }else this.gender = "Female";
+    public void setGender(String gender) {
+        this.gender = gender;
+
     }
 
 }
