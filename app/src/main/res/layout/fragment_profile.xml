@@ -36,9 +36,8 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/profile_changeinfo_button"
-        android:layout_marginBottom="38dp" />
+        android:layout_marginBottom="50dp" />
 
     <TextView
         android:id="@+id/view5"
@@ -105,13 +104,12 @@
         android:id="@+id/profile_name_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintLeft_toRightOf="@+id/view"
-        tools:layout_constraintBottom_creator="1"
         app:layout_constraintBottom_toTopOf="@+id/profile_mail_editText"
-        android:layout_marginBottom="11dp" />
+        android:layout_marginBottom="11dp"
+        android:layout_marginStart="24dp"
+        app:layout_constraintLeft_toRightOf="@+id/view" />
 
 
     <EditText
@@ -171,10 +169,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintLeft_toRightOf="@+id/view"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
-        app:layout_constraintTop_toBottomOf="@+id/view" />
+        app:layout_constraintBottom_toBottomOf="@+id/view" />
 
     <Button
         android:id="@+id/profile_changeinfo_button"
@@ -185,7 +180,7 @@
         android:layout_marginStart="61dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="27dp"
+        android:layout_marginBottom="32dp"
         app:layout_constraintLeft_toLeftOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
