@@ -6,9 +6,12 @@ package com.project.ms.njord.entity;
 
 public class Profile {
 
-    private String name, email, password, birthday;
-    private int height, weight;
-    private String gender;
+    private String name = "";
+    private String email = "";
+    private String password = "";
+    private Sting birthday = "";
+    private int height, weight = 0;
+    private String gender = "";
 
 
     public Profile(String email, String password){
