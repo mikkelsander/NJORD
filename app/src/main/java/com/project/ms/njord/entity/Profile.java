@@ -9,7 +9,7 @@ public class Profile {
     private String name, email, password;
     private int birthday, height, weight;
     private enum Gender{MALE, FEMALE};
-    private Gender gender;
+    private String gender;
 
 
     public Profile(String email, String password){
@@ -24,8 +24,8 @@ public class Profile {
         this.birthday = birthday;
         this.height = height;
         this.weight = weight;
-        if(male) this.gender = Gender.MALE;
-        else gender = Gender.FEMALE;
+        if(male) this.gender = "Male";
+        else gender = "Female";
     }
 
     public String getName() {
@@ -76,12 +76,14 @@ public class Profile {
         this.weight = weight;
     }
 
-    public Gender getGender() {
+    public String getGender() {
         return gender;
     }
 
-    public void setGender(Gender gender) {
-        this.gender = gender;
+    public void setGender(boolean male) {
+        if(male) {
+            this.gender = "Male";
+        }else this.gender = "Female";
     }
 
 }

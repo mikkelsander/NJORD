@@ -55,7 +55,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         setEditable(birthdayEdit, false);
 
         genderEdit = (EditText) v.findViewById(R.id.profile_gender_editText);
-        genderEdit.setText("Male");
+        genderEdit.setText(DataManager.dataManager.getProfile().getGender());
         setEditable(genderEdit, false);
 
         heightEdit = (EditText) v.findViewById(R.id.profile_height_EditText);
