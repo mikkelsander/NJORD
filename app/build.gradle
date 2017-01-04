@@ -47,4 +47,5 @@ dependencies {
     compile('com.crashlytics.sdk.android:crashlytics:2.6.5@aar') {
         transitive = true;
     }
+    compile files('libs/GraphView-4.2.1.jar')
 }
