@@ -10,7 +10,7 @@ public class Profile {
     private String email = "";
     private String password = "";
     private String birthday = "";
-    private int height, weight = 0;
+    private int height, weight;
     private String gender = "";
 
 
@@ -46,7 +46,7 @@ public class Profile {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -54,7 +54,7 @@ public class Profile {
     }
 
     public String getBirthday() {
-        return birthday;
+        return this.birthday;
     }
 
     public void setBirthday(String birthday) {
@@ -62,7 +62,7 @@ public class Profile {
     }
 
     public int getHeight() {
-        return height;
+        return this.height;
     }
 
     public void setHeight(int height) {
