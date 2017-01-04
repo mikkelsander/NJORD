@@ -33,12 +33,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        //TODO: overfør ikke crashrapport ved emulatorcrash
+        if(true){ Fabric.with(this, new Crashlytics());}
         DataManager.init();
 
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
 
         // Launches login activity if not logged in
         if( !prefs.getBoolean("isLoggedIn", false) ){
@@ -47,8 +46,8 @@ public class MainActivity extends AppCompatActivity
         }
 
 
+
         super.onCreate(savedInstanceState);
-        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_main);
 
         // Setting initial fragment
