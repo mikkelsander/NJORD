@@ -20,7 +20,6 @@ import com.project.ms.njord.fragment.DatePickerFragment;
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
 
-
     // Controller references
     private DataManager con;
 
@@ -43,7 +42,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         nameView = (EditText) findViewById(R.id.signUp_name_editText);
 
-        birthdayView = (TextView) findViewById(R.id.signUp_birthday_editText);
+        birthdayView = (TextView) findViewById(R.id.signUp_birthday_textView);
         birthdayView.setOnClickListener(this);
 
 
@@ -105,6 +104,5 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         DialogFragment newFragment = new DatePickerFragment();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
-
 
 }
