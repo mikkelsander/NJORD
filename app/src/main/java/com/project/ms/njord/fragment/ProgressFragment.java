@@ -1,14 +1,17 @@
 package com.project.ms.njord.fragment;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import android.support.v4.app.Fragment;
 
+import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
 import com.project.ms.njord.R;
 
 public class ProgressFragment extends Fragment {
@@ -17,14 +20,15 @@ public class ProgressFragment extends Fragment {
     ExpandableListView lv;
     private String[] groups;
     private String[][] children;
-
+    LineGraphSeries<DataPoint> series;
 
     public ProgressFragment() {
 
     }
 
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_progress, container, false);
 
         groups = new String[]{"Date: 21-01-2015", "Date: 27-01-2015", "Date: 14-02-2015", "Date: 20-02-2015"};
 
@@ -34,11 +38,39 @@ public class ProgressFragment extends Fragment {
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
         };
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_progress, container, false);
+
+
+        GraphView graph = (GraphView) rootView.findViewById(R.id.fragment_progress_graph);
+        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
+                new DataPoint(0, 1),
+                new DataPoint(1, 5),
+                new DataPoint(2, 3),
+                new DataPoint(3, 2),
+                new DataPoint(4, 6)
+        });
+
+        // activate horizontal zooming and scrolling
+        graph.getViewport().setScalable(true);
+
+        // activate horizontal scrolling
+        graph.getViewport().setScrollable(true);
+
+        // activate horizontal and vertical zooming and scrolling
+        graph.getViewport().setScalableY(true);
+
+        // activate vertical scrolling
+        graph.getViewport().setScrollableY(true);
+
+        // set manual X bounds
+        graph.getViewport().setXAxisBoundsManual(true);
+        graph.getViewport().setMinX(0.5);
+        graph.getViewport().setMaxX(3.5);graph.addSeries(series);
+
+        // set manual Y bounds
+        graph.getViewport().setYAxisBoundsManual(true);
+        graph.getViewport().setMinY(3.5);
+        graph.getViewport().setMaxY(8);
 
         return rootView;
     }
