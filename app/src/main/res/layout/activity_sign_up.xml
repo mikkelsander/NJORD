@@ -75,7 +75,7 @@
         android:hint="Height"
         android:textColorHint="@color/white"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:inputType="number"
         android:ems="10"
         android:id="@+id/signUp_height_editText"

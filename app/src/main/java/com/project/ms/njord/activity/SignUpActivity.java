@@ -48,8 +48,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         spinner.setOnItemSelectedListener(this);
 
 
-
-
         heigtView = (EditText) findViewById(R.id.signUp_height_editText);
         weigthView = (EditText) findViewById(R.id.signUp_weight_editText);
 
@@ -72,8 +70,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             DataManager.dataManager.getProfile().setBirthday(birthdayView.getText().toString());
             DataManager.dataManager.getProfile().setGender(gender);
           //  DataManager.dataManager.getProfile().setHeight(heigtView.getText().toString()));
-
-
             finish();
         }
     }

@@ -9,7 +9,7 @@ public class Profile {
     private String name = "";
     private String email = "";
     private String password = "";
-    private Sting birthday = "";
+    private String birthday = "";
     private int height, weight = 0;
     private String gender = "";
 
