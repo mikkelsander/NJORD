@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.fragment.HomeFragment;
+import com.project.ms.njord.fragment.ResultsFragment;
 
 public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -35,9 +36,15 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         if(v == doneBtn){
 
-            Intent i = new Intent(this, ResultsActivity.class);
-            startActivity(i);
-            finish();
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new ResultsFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Results");
+
+            //Intent i = new Intent(this, ResultsActivity.class);
+            //startActivity(i);
+            //finish();
 
 
 
