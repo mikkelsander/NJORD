@@ -45,6 +45,6 @@ public class DatePickerFragment extends DialogFragment implements
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // do some stuff for example write on log and update TextField on activity
         Log.d(TAG, "Date ="+day+" "+(1+month)+" "+year);
-        ((TextView) getActivity().findViewById(R.id.signUp_birthday_editText)).setText(day +"/"+(1+month)+"/"+ year);
+        ((TextView) getActivity().findViewById(R.id.signUp_birthday_textView)).setText(day +"/"+(1+month)+"/"+ year);
     }
 }
