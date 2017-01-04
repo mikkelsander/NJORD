@@ -1,26 +1,32 @@
 package com.project.ms.njord.activity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.fragment.DatePickerFragment;
 
-public class SignUpActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemSelectedListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
+        AdapterView.OnItemSelectedListener {
+
 
     // Controller references
     private DataManager con;
 
     // UI references
-    private TextView titleView;
-    private EditText nameView, birthdayView, heigtView, weigthView;
+    private TextView titleView, birthdayView;
+    private EditText nameView, heigtView, weigthView;
     private Spinner genderView;
     private Button confirmButton;
     private String gender;
@@ -32,12 +38,13 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         getSupportActionBar().setTitle("Sign up");
 
 
-
         // Initialize views
         titleView = (TextView) findViewById(R.id.signUp_title_textView);
 
         nameView = (EditText) findViewById(R.id.signUp_name_editText);
-        birthdayView = (EditText) findViewById(R.id.signUp_birthday_editText);
+
+        birthdayView = (TextView) findViewById(R.id.signUp_birthday_editText);
+        birthdayView.setOnClickListener(this);
 
 
         Spinner spinner = (Spinner) findViewById(R.id.signUp_gender_spinner);
@@ -46,8 +53,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-
-
 
 
         heigtView = (EditText) findViewById(R.id.signUp_height_editText);
@@ -60,18 +65,21 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v == confirmButton){
+        if (v == confirmButton) {
             attemptConfirm();
+        }
+        if (v == birthdayView) {
+            showDatePickerDialog(v);
         }
     }
 
     private void attemptConfirm() {
         // TODO: save all user input
-        if(userInputValid()) {
+        if (userInputValid()) {
             DataManager.dataManager.getProfile().setName(nameView.getText().toString());
             DataManager.dataManager.getProfile().setBirthday(birthdayView.getText().toString());
             DataManager.dataManager.getProfile().setGender(gender);
-          //  DataManager.dataManager.getProfile().setHeight(heigtView.getText().toString()));
+            //  DataManager.dataManager.getProfile().setHeight(heigtView.getText().toString()));
 
 
             finish();
@@ -91,8 +99,12 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public void onNothingSelected(AdapterView<?> parent) {
         // Another interface callback
     }
+
+
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+
 }
-
-
-
-

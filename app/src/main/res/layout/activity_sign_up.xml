@@ -39,8 +39,9 @@
         android:textSize="18sp"
         />
 
-    <EditText
+    <TextView
         android:hint="Birthday"
+        android:style="@android:style/Widget.DeviceDefault.Light.Spinner"
         android:textColorHint="@color/white"
         android:textSize="18sp"
         android:layout_width="wrap_content"
