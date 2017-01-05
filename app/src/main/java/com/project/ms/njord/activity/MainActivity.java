@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         //TODO: overfør ikke crashrapport ved emulatorcrash
         if(true){ Fabric.with(this, new Crashlytics());}
+
         DataManager.init();
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);

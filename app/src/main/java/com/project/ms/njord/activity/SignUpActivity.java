@@ -64,7 +64,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     @Override
     public void onClick(View v) {
-        if (v == confirmButton) {
+        if (v == confirmButton){
             attemptConfirm();
         }
         if (v == birthdayView) {
@@ -78,9 +78,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             DataManager.dataManager.getProfile().setName(nameView.getText().toString());
             DataManager.dataManager.getProfile().setBirthday(birthdayView.getText().toString());
             DataManager.dataManager.getProfile().setGender(gender);
-            //  DataManager.dataManager.getProfile().setHeight(heigtView.getText().toString()));
-
-
+            DataManager.dataManager.getProfile().setHeight(Integer.parseInt(heigtView.getText().toString()));
+            DataManager.dataManager.getProfile().setWeight(Integer.parseInt(weigthView.getText().toString()));
             finish();
         }
     }
