@@ -78,6 +78,11 @@ public class ProgressFragment extends Fragment {
         // activate horizontal scrolling
         graph.getViewport().setScrollable(true);
 
+        graph.getViewport().setScalableY(true);
+
+        graph.getViewport().setScrollableY(true);
+
+
 
 
         // set manual X bounds
