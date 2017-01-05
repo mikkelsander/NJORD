@@ -18,6 +18,8 @@ import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 import com.project.ms.njord.R;
 
+import java.util.ArrayList;
+
 public class ProgressFragment extends Fragment {
 
     View rootView;
@@ -25,6 +27,7 @@ public class ProgressFragment extends Fragment {
     private String[] groups;
     private String[][] children;
     LineGraphSeries<DataPoint> series;
+    ArrayList<String> data = new ArrayList<String>();
 
     public ProgressFragment() {
 
@@ -43,8 +46,9 @@ public class ProgressFragment extends Fragment {
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
         };
 
-
+//lav array som indeholder tryk og dato
         GraphView graph = (GraphView) rootView.findViewById(R.id.fragment_progress_graph);
+
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[]{
                 new DataPoint(0, 1),
                 new DataPoint(1, 5),
@@ -53,7 +57,6 @@ public class ProgressFragment extends Fragment {
                 new DataPoint(4, 6),
                 new DataPoint(10, 12),
                 new DataPoint(15, 16)
-
         });
 
         series.setOnDataPointTapListener(new OnDataPointTapListener() {

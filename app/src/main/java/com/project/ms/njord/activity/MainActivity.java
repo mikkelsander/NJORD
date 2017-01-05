@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
@@ -21,6 +22,7 @@ import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar = null;
 
     SharedPreferences prefs;
+    TextView nameView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +49,10 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
         }
 
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         // Setting initial fragment
         android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -68,6 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        
 
 
     }
@@ -86,9 +90,16 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+        nameView = (TextView) findViewById(R.id.menu_header_name);
+        if (DataManager.dataManager.getProfile() != null) {
+            nameView.setText(DataManager.dataManager.getProfile().getName());
+        }
+
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
 
 
 
@@ -110,6 +121,7 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 

@@ -1,6 +1,5 @@
 package com.project.ms.njord.activity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -55,6 +53,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
         heigtView = (EditText) findViewById(R.id.signUp_height_editText);
+        
+
         weigthView = (EditText) findViewById(R.id.signUp_weight_editText);
 
         confirmButton = (Button) findViewById(R.id.signUp_confirm_button);
