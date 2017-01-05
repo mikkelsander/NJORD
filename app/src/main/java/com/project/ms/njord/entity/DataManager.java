@@ -13,7 +13,7 @@ public class DataManager {
     private TestResult[] testResult;
 
     private DataManager(){
-
+        createProfile("guest@mail.com","12345");
     }
 
     public static void init(){

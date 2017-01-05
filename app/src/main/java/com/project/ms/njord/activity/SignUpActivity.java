@@ -86,6 +86,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private boolean userInputValid() {
         // TODO: validate all user input
+
+        if(heigtView.getText().toString().equals("")) return false;
+        if(weigthView.getText().toString().equals("")) return false;
+
+
         return true;
     }
 

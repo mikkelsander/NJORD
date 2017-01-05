@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
+import com.project.ms.njord.controller.DataSimulator;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HomeFragment;
@@ -36,8 +37,9 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //TODO: overfør ikke crashrapport ved emulatorcrash
-        if(true){ Fabric.with(this, new Crashlytics());}
+        Fabric.with(this, new Crashlytics());
 
         DataManager.init();
 
@@ -93,7 +95,7 @@ public class MainActivity extends AppCompatActivity
 
         nameView = (TextView) findViewById(R.id.menu_header_name);
         if (DataManager.dataManager.getProfile() != null) {
-            nameView.setText(DataManager.dataManager.getProfile().getName());
+           // nameView.setText(DataManager.dataManager.getProfile().getName());
         }
 
         getMenuInflater().inflate(R.menu.menu, menu);
