@@ -35,19 +35,9 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         if(v == doneBtn){
-
-            android.support.v4.app.FragmentTransaction fragmentTransaction =
-                    getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ResultsFragment());
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Results");
-
-            //Intent i = new Intent(this, ResultsActivity.class);
-            //startActivity(i);
-            //finish();
-
-
-
+            Intent i = new Intent(this, ResultsActivity.class);
+            startActivity(i);
+            finish();
         }
     }
 }
