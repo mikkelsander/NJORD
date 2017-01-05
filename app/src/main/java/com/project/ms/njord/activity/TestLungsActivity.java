@@ -1,15 +1,13 @@
 package com.project.ms.njord.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragment.HomeFragment;
-import com.project.ms.njord.fragment.ResultsFragment;
 
 public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -34,10 +32,15 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        if(v == doneBtn){
+        if (v == doneBtn) {
             Intent i = new Intent(this, ResultsActivity.class);
             startActivity(i);
             finish();
         }
     }
+
+
+
+
+
 }
