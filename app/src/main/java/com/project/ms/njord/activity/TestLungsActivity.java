@@ -27,8 +27,7 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         doneBtn = (Button)findViewById(R.id.testLungs_done_button);
         doneBtn.setOnClickListener(this);
 
-        instrucTxt = (TextView) findViewById(R.id.testLungs_instructions_textView);
-        lungLevelTxt = (TextView) findViewById(R.id.testLungs_lungLevel_textView);
+
 
 
     }
