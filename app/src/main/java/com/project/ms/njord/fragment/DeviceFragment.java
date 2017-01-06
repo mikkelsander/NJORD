@@ -16,6 +16,7 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     // UI references
     private Button changeDeviceBtn;
     private TextView deviceID;
+    private boolean connected = true;
 
     public DeviceFragment() {
         // Required empty public constructor
@@ -38,8 +39,19 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == changeDeviceBtn){
-            searchForDevice();
-            deviceID.setText("No spirometer connected");
+            if(connected) {
+
+                deviceID.setText("No spirometer connected");
+                changeDeviceBtn.setText("Connect Spirometer");
+                connected = false;
+            }
+            else if(!connected){
+
+                deviceID.setText("abcd-12345");
+                changeDeviceBtn.setText("Forget Spirometer");
+                connected = true;
+            }
+
         }
     }
 
