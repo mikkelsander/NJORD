@@ -26,6 +26,10 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
 
         doneBtn = (Button)findViewById(R.id.testLungs_done_button);
         doneBtn.setOnClickListener(this);
+
+
+
+
     }
 
     @Override
