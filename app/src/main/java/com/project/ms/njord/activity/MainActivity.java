@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
-import com.project.ms.njord.controller.DataSimulator;
+//import com.project.ms.njord.controller.DataSimulator;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HomeFragment;
@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity
 
     SharedPreferences prefs;
     TextView nameView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,8 +75,6 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        
-
 
     }
 
@@ -120,12 +120,16 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }*/
 
+
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+
 
         if (id == R.id.nav_home) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =

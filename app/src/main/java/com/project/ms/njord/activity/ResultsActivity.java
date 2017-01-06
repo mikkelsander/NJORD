@@ -26,7 +26,6 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View v) {
         if (v == doneBtn) {
             Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
             finish();
 
         }
