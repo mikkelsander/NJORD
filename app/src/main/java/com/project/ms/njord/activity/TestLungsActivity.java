@@ -9,7 +9,10 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 
-public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.Observable;
+import java.util.Observer;
+
+public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener, Observer {
 
     private Button doneBtn;
     private TextView instrucTxt, lungLevelTxt;
@@ -24,6 +27,8 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         doneBtn = (Button)findViewById(R.id.testLungs_done_button);
         doneBtn.setOnClickListener(this);
 
+        instrucTxt = (TextView) findViewById(R.id.testLungs_instructions_textView);
+        lungLevelTxt = (TextView) findViewById(R.id.testLungs_lungLevel_textView);
 
 
     }
@@ -38,7 +43,8 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     }
 
 
+    @Override
+    public void update(Observable o, Object arg) {
 
-
-
+    }
 }
