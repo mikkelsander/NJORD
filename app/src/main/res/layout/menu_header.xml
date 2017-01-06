@@ -13,7 +13,7 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <TextView
-        android:text="name"
+        android:text="User Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/menu_header_name"
@@ -24,7 +24,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/ic_launcher"
+        app:srcCompat="@mipmap/ic_ironman"
         android:id="@+id/imageView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />

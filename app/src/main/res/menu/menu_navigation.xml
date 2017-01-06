@@ -6,19 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@mipmap/ic_home"
             android:title="Home" />
         <item
             android:id="@+id/nav_progress"
-            android:icon="@drawable/ic_menu_progress"
+            android:icon="@mipmap/ic_progress"
             android:title="Progress" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@mipmap/ic_profile"
             android:title="Profile" />
         <item
             android:id="@+id/nav_device"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@mipmap/ic_device"
             android:title="Device" />
         <item
             android:id="@+id/nav_settings"
@@ -30,7 +30,7 @@
         <menu>
             <item
                 android:id="@+id/nav_help"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@mipmap/ic_help"
                 android:title="Help" />
             <item
                 android:id="@+id/nav_logOut"
