@@ -3,6 +3,8 @@ package com.project.ms.njord.activity;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -61,6 +63,28 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         confirmButton.setOnClickListener(this);
 
     }
+
+
+    // create an action bar button
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.skip_button, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    // handle button activities
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.mybutton) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
 
     @Override
     public void onClick(View v) {
