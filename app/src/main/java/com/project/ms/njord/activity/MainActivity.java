@@ -58,11 +58,12 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        // Setting initial fragment
+        // Setting initial fragment to Home
         android.support.v4.app.FragmentTransaction fragmentTransaction =
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
         fragmentTransaction.commit();
+        getSupportActionBar().setTitle("Home");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
