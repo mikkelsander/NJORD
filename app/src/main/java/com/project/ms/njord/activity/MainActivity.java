@@ -33,9 +33,6 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar = null;
 
     SharedPreferences prefs;
-    TextView nameView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +60,8 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
         fragmentTransaction.commit();
-        getSupportActionBar().setTitle("Home");
+
+        setTitle("Home");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -89,39 +86,6 @@ public class MainActivity extends AppCompatActivity
             super.onBackPressed();
         }
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-
-        nameView = (TextView) findViewById(R.id.menu_header_name);
-        if (DataManager.dataManager.getProfile() != null) {
-           // nameView.setText(DataManager.dataManager.getProfile().getName());
-        }
-
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-
-
-
-  /*  @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button_blue, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }*/
-
-
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -152,7 +116,7 @@ public class MainActivity extends AppCompatActivity
                     getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment());
             fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Device");
+            getSupportActionBar().setTitle("Spirometer");
 
         } else if (id == R.id.nav_settings) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
@@ -178,8 +142,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-
-
-
     }
 }
