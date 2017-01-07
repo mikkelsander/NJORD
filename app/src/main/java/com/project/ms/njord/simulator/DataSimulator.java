@@ -2,6 +2,9 @@ package com.project.ms.njord.simulator;
 
 import android.util.Log;
 
+import com.project.ms.njord.activity.TestLungsActivity;
+import com.project.ms.njord.entity.DataManager;
+
 import java.util.Observable;
 
 /**
@@ -11,7 +14,7 @@ import java.util.Observable;
 
 
 
-public class DataSimulator extends Observable {
+public class DataSimulator {
 
 
     private int inhalePressure = 60;
