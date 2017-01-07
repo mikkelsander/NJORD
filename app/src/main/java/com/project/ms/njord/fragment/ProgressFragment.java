@@ -40,7 +40,7 @@ public class ProgressFragment extends Fragment {
         groups = new String[]{"Date: 21-01-2015", "Date: 27-01-2015", "Date: 14-02-2015", "Date: 20-02-2015"};
 
         children = new String[][]{
-                {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
+                {"Calculated lung le vel:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
                 {"Calculated lung level:", "Max Exp.:", "Min Exp.:", "Max Insp.", "Min Insp:", "Time:" },
