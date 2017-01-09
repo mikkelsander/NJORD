@@ -76,7 +76,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         return super.onCreateOptionsMenu(menu);
     }
 
-    // handle button activities
+    // handles what happens when skip button is pressed
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
