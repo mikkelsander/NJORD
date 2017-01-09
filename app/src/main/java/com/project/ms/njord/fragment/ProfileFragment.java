@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
+        View v = inflater.inflate(R.layout.fragment_profile_fragment2, container, false);
 
         nameEdit = (EditText) v.findViewById(R.id.profile_name_editText);
         nameEdit.setText(DataManager.dataManager.getProfile().getName());
