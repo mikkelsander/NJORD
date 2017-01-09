@@ -1,8 +1,10 @@
 package com.project.ms.njord.fragment;
 
-
+import android.support.v4.app.DialogFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,9 +49,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_profile_fragment2, container, false);
 
 
+
+
+
         emailView = (TextView) v.findViewById(R.id.profile_email_textView);
         emailLayout = (LinearLayout) v.findViewById(R.id.profile_email_layout);
-        nameLayout.setOnClickListener(this);
+        emailLayout.setOnClickListener(this);
 
         nameView = (TextView) v.findViewById(R.id.profile_name_textView);
         nameLayout = (LinearLayout) v.findViewById(R.id.profile_name_layout);
@@ -91,8 +96,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         setEditable(weightEdit, false);*/
 
 
-        changeInfo = (Button) v.findViewById(R.id.profile_changeinfo_button);
-        changeInfo.setOnClickListener(this);
+
 
         return v;
 
@@ -100,6 +104,35 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onClick(View v) {
+        if (v == emailLayout) {
+
+        }
+
+        if(v == nameLayout) {
+
+        }
+
+        if (v == birthdayLayout) {
+            DialogFragment newFragment = new DatePickerFragment();
+            newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
+        }
+
+        if (v == heightLayout) {
+
+        }
+
+        if (v == weightLayout) {
+
+
+        }
+
+    }
+
+
+
+
+   /* @Override
     public void onClick(View v) {
 
         if (isEditing) { //is editing, therefore save info
@@ -143,7 +176,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             editText.setClickable(true);
 
         }
-    }
+    }*/
 
 }
 
