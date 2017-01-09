@@ -52,7 +52,7 @@ public class ProgressFragment extends Fragment {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
 
-                replaceFragment(new ResultsFragment());
+            //    replaceFragment(new ResultsFragment());
             }
         });
 
