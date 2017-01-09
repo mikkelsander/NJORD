@@ -1,5 +1,6 @@
 package com.project.ms.njord.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -14,14 +15,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
+import com.project.ms.njord.dialogFragments.DateRequestDialog;
 import com.project.ms.njord.entity.DataManager;
-import com.project.ms.njord.fragment.DatePickerFragment;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
-
-    // Controller references
-    private DataManager con;
 
     // UI references
     private TextView titleView, birthdayView;
@@ -96,7 +94,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             attemptConfirm();
         }
         if (v == birthdayView) {
-            showDatePickerDialog(v);
+            birthdayView.setText("22/01/1991");
         }
     }
 
@@ -133,8 +131,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
 
     public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
+        DialogFragment newFragment = new DateRequestDialog();
         newFragment.show(getSupportFragmentManager(), "datePicker");
     }
+
+
 
 }
