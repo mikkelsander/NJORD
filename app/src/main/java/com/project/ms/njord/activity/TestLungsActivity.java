@@ -21,7 +21,6 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
 
     private Button doneBtn, startBtn;
     private FrameLayout fragmentContainer;
-    private DataSimulator dataSimulator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +49,7 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
             finish();
 
         if (v == startBtn) {
-            dataSimulator.generateInhale();
+
         }
         }
     }
@@ -58,7 +57,8 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void update(Observable o, Object arg) {
-        TextView testNumber = (TextView) findViewById(R.id.testNumberTextView);
-        testNumber.setText(dataSimulator.);
+        TextView inhaleView = (TextView) findViewById(R.id.testNumberTextView);
+        TextView exhaleView = (TextView) findViewById(R.id.testNumberTextView2);
+
     }
 }

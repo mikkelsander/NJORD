@@ -14,7 +14,7 @@ import java.util.Observable;
 
 
 
-public class DataSimulator {
+public class DataSimulator extends Observable {
 
 
     private int inhalePressure = 60;
@@ -47,6 +47,17 @@ public class DataSimulator {
         }
     }
 
+    public int getInhalePressure () {
+        return this.inhalePressure;
+    }
 
+    public int getExhalePressure() {
+        return this.exhalePressure;
+    }
+
+    public void changeMe() {
+        setChanged();
+        notifyObservers(this);
+    }
 }
 
