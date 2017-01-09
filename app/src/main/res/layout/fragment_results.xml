@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,27 +7,4 @@
     android:background="@color/dark_gray">
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/temp_image_results"
-        android:background="@color/dark_gray"
-        android:id="@+id/progress_tempImage_imageView" />
-
-    <Button
-        android:text="Done"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="25dp"
-        android:id="@+id/fragment_results_doneBtn"
-        android:background="@drawable/button_blue"
-        android:textColor="@color/white"
-
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-
-
-        />
-
-
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>
