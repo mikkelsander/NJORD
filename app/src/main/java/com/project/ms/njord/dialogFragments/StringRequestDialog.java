@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.dialogFragments;
 
 
 import android.app.Activity;
@@ -9,22 +9,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
-
-import com.project.ms.njord.R;
-import com.project.ms.njord.dialogsFragments.DialogCallback;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class StringPickerFragment extends DialogFragment implements DialogInterface.OnClickListener, DialogCallback {
+public class StringRequestDialog extends DialogFragment {
 
     EditText e;
-    public StringPickerFragment() {
+    public StringRequestDialog() {
         // Required empty public constructor
     }
 
@@ -36,7 +29,6 @@ public class StringPickerFragment extends DialogFragment implements DialogInterf
         String title = args.getString("title", "");
         String message = args.getString("message", "");
         final int viewId = args.getInt("viewId");
-        DialogCallback mHost = (DialogCallback)getTargetFragment();
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle(title)
@@ -46,8 +38,8 @@ public class StringPickerFragment extends DialogFragment implements DialogInterf
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent()
-                                .putExtra("userInput", e.getText())
-                                .putExtra("viewId", viewId);
+                                  .putExtra("userInput", e.getText());
+                             //   .putExtra("viewId", viewId);
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
                         dismiss();
                     }

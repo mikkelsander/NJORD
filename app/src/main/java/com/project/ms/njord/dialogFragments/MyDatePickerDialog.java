@@ -1,29 +1,23 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.dialogFragments;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.SignUpActivity;
 
 import java.util.Calendar;
 
 
-public class DatePickerFragment extends DialogFragment implements
-        DatePickerDialog.OnDateSetListener {
+public class MyDatePickerDialog extends DialogFragment implements
+        android.app.DatePickerDialog.OnDateSetListener {
 
     final String TAG = "DatePicker";
 
-    public DatePickerFragment() {
+    public MyDatePickerDialog() {
 
     }
 
@@ -35,10 +29,10 @@ public class DatePickerFragment extends DialogFragment implements
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        // Create a new instance of DatePickerDialog and return it
+        // Create a new instance of MyDatePickerDialog and return it
 
 
-        return new DatePickerDialog(getActivity(), this, year, month, day);
+        return new android.app.DatePickerDialog(getActivity(), this, year, month, day);
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
