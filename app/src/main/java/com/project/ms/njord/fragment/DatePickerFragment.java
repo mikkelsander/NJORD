@@ -1,6 +1,5 @@
 package com.project.ms.njord.fragment;
 
-
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;

@@ -1,5 +1,7 @@
 package com.project.ms.njord.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.project.ms.njord.dialogsFragments.DialogCallback;
 import com.project.ms.njord.entity.DataManager;
 
 import com.project.ms.njord.R;
@@ -20,7 +23,7 @@ import com.project.ms.njord.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileFragment extends Fragment implements View.OnClickListener{
 
     TextView nameView, birthdayView, emailView, heightView, weightView;
     LinearLayout nameLayout, birthdayLayout, emailLayout, heightLayout, weightLayout;
@@ -103,10 +106,37 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        switch (requestCode) {
+            case 0:
+
+                if (resultCode == Activity.RESULT_OK) {
+                    String s = data.getExtras().getString("userResponse");
+                    int id = data.getExtras().getInt("viewId");
+
+                    if (id == emailView.getId()) {
+                        emailView.setText(s);
+                    }
+                    if (id == nameView.getId()) {
+                        nameView.setText(s);
+                    }
+                }
+                break;
+        }
+    }
+
     @Override
     public void onClick(View v) {
         if (v == emailLayout) {
-
+            DialogFragment newFragment = new StringPickerFragment();
+            Bundle args = new Bundle();
+            args.putInt("viewId", v.getId());
+            newFragment.setArguments(args);
+            newFragment.setTargetFragment(this, 0);
+            newFragment.show(getActivity().getSupportFragmentManager(), "emailPicker");
         }
 
         if(v == nameLayout) {
@@ -115,6 +145,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         if (v == birthdayLayout) {
             DialogFragment newFragment = new DatePickerFragment();
+            newFragment.setTargetFragment(this, 0);
             newFragment.show(getActivity().getSupportFragmentManager(), "datePicker");
         }
 
