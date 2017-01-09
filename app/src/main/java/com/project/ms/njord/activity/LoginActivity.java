@@ -434,7 +434,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           if (success) {
               Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
               startActivity(i);
-              finish();
+
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
                 passwordView.requestFocus();
