@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.project.ms.njord.entity.DataManager;
 
@@ -18,6 +20,8 @@ import com.project.ms.njord.R;
  */
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
+    TextView nameView, birthdayView, emailView, heightView, weightView;
+    LinearLayout nameLayout, birthdayLayout, emailLayout, heightLayout, weightLayout;
 
     EditText nameEdit;
     EditText emailEdit;
@@ -42,8 +46,28 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile_fragment2, container, false);
 
-        nameEdit = (EditText) v.findViewById(R.id.profile_name_editText);
-        nameEdit.setText(DataManager.dataManager.getProfile().getName());
+
+        emailView = (TextView) v.findViewById(R.id.profile_email_textView);
+        emailLayout = (LinearLayout) v.findViewById(R.id.profile_email_layout);
+        nameLayout.setOnClickListener(this);
+
+        nameView = (TextView) v.findViewById(R.id.profile_name_textView);
+        nameLayout = (LinearLayout) v.findViewById(R.id.profile_name_layout);
+        nameLayout.setOnClickListener(this);
+
+        birthdayView = (TextView) v.findViewById(R.id.profile_birthday_textView);
+        birthdayLayout = (LinearLayout) v.findViewById(R.id.profile_birthday_layout);
+        birthdayLayout.setOnClickListener(this);
+
+        heightView = (TextView) v.findViewById(R.id.profile_height_textView);
+        heightLayout = (LinearLayout) v.findViewById(R.id.profile_height_layout);
+        heightLayout.setOnClickListener(this);
+
+        weightView = (TextView) v.findViewById(R.id.profile_weight_textView);
+        weightLayout = (LinearLayout) v.findViewById(R.id.profile_weight_layout);
+        weightLayout.setOnClickListener(this);
+
+      /*  nameEdit.setText(DataManager.dataManager.getProfile().getName());
         setEditable(nameEdit, false);
 
         emailEdit = (EditText) v.findViewById(R.id.profile_mail_editText);
@@ -64,7 +88,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         weightEdit = (EditText) v.findViewById(R.id.profile_weight_editText);
         weightEdit.setText(Integer.toString(DataManager.dataManager.getProfile().getWeight()));
-        setEditable(weightEdit, false);
+        setEditable(weightEdit, false);*/
 
 
         changeInfo = (Button) v.findViewById(R.id.profile_changeinfo_button);
