@@ -16,7 +16,6 @@ import android.widget.EditText;
  */
 public class StringRequestDialog extends DialogFragment {
 
-    EditText e;
     public StringRequestDialog() {
         // Required empty public constructor
     }
@@ -28,7 +27,7 @@ public class StringRequestDialog extends DialogFragment {
         Bundle args = getArguments();
         String title = args.getString("title", "");
         String message = args.getString("message", "");
-        final int viewId = args.getInt("viewId");
+        final EditText e = new EditText(getActivity());
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle(title)
@@ -38,7 +37,7 @@ public class StringRequestDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent i = new Intent()
-                                  .putExtra("userInput", e.getText());
+                                  .putExtra("userInput", e.getText().toString());
                              //   .putExtra("viewId", viewId);
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
                         dismiss();
@@ -48,6 +47,7 @@ public class StringRequestDialog extends DialogFragment {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_CANCELED, null);
+                        dismiss();
                     }
                 })
                 .create();

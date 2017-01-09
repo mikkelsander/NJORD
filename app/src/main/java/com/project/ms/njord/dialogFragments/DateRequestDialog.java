@@ -1,6 +1,8 @@
 package com.project.ms.njord.dialogFragments;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
@@ -12,12 +14,12 @@ import com.project.ms.njord.R;
 import java.util.Calendar;
 
 
-public class MyDatePickerDialog extends DialogFragment implements
+public class DateRequestDialog extends DialogFragment implements
         android.app.DatePickerDialog.OnDateSetListener {
 
     final String TAG = "DatePicker";
 
-    public MyDatePickerDialog() {
+    public DateRequestDialog() {
 
     }
 
@@ -29,15 +31,21 @@ public class MyDatePickerDialog extends DialogFragment implements
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
-        // Create a new instance of MyDatePickerDialog and return it
+        Bundle args = getArguments();
 
+        CharSequence title = args.getString("title", "");
+        CharSequence message = args.getString("message", "");
 
         return new android.app.DatePickerDialog(getActivity(), this, year, month, day);
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // do some stuff for example write on log and update TextField on activity
-        Log.d(TAG, "Date ="+day+" "+(1+month)+" "+year);
-        ((TextView) getActivity().findViewById(R.id.signUp_birthday_textView)).setText(day +"/"+(1+month)+"/"+ year);
+
+        String date = day +"/"+(1+month)+"/"+ year;
+
+        Intent i = new Intent()
+                .putExtra("userInput", date);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
+        dismiss();
     }
 }
