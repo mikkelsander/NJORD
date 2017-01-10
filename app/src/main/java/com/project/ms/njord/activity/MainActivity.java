@@ -41,8 +41,6 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView = null;
     Toolbar toolbar = null;
 
-    DataManager data = DataManager.dataManager;
-
     SharedPreferences prefs;
 
     @Override
@@ -50,14 +48,8 @@ public class MainActivity extends AppCompatActivity
         //TODO: overfør ikke crashrapport ved emulatorcrash
         //Fabric.with(this, new Crashlytics());
 
-        DataManager.init();
-        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        // Launches login activity if not logged in
-        if( !prefs.getBoolean("isLoggedIn", false) ){
-          Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-        }
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -80,6 +72,11 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Setting the user name in the navigation drawer
+        View headerView = navigationView.getHeaderView(0);
+        TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
+        menuUserName.setText(DataManager.dataManager.getProfile().getName());
 
         // Adding activity as obser to profile
         DataManager.dataManager.getProfile().addObserver(this);

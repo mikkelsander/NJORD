@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -18,16 +19,16 @@
             android:name=".activity.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
+            </intent-filter></activity>
         <activity android:name=".activity.TestLungsActivity" />
         <activity android:name=".activity.SignUpActivity" />
         <activity android:name=".activity.ResultsActivity" />
-
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login">
@@ -36,7 +37,7 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="3a24b7bd45a162466982e94a9a93deaf8442ca76" />
+
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

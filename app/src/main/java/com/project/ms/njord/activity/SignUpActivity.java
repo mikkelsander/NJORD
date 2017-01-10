@@ -107,7 +107,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             DataManager.dataManager.getProfile().setHeight(Integer.parseInt(heigtView.getText().toString()));
             DataManager.dataManager.getProfile().setWeight(Integer.parseInt(weigthView.getText().toString()));
 
-
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
             finish();
         }
     }
