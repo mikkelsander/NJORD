@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment())
                     .addToBackStack(null)
                     .commit();
-            getSupportActionBar().setTitle("Settings");
+            getSupportActionBar().setTitle("Preferences");
 
         } else if (id == R.id.nav_progress) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
