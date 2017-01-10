@@ -101,37 +101,42 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new HomeFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Home");
 
         } else if (id == R.id.nav_profile) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Profile");
 
 
         } else if (id == R.id.nav_device) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Spirometer");
 
         } else if (id == R.id.nav_settings) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Settings");
 
         } else if (id == R.id.nav_progress) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Progress");
 
         }else if (id == R.id.nav_logOut){
