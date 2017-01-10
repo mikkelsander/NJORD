@@ -40,7 +40,7 @@ public class DateRequestDialog extends DialogFragment implements
         String date = day +"/"+(1+month)+"/"+ year;
 
         Intent i = new Intent()
-                .putExtra("userInput", date);
+                .putExtra("userString", date);
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, i);
         dismiss();
     }
