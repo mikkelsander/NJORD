@@ -106,6 +106,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             DataManager.dataManager.getProfile().setGender(gender);
             DataManager.dataManager.getProfile().setHeight(Integer.parseInt(heigtView.getText().toString()));
             DataManager.dataManager.getProfile().setWeight(Integer.parseInt(weigthView.getText().toString()));
+
+
             finish();
         }
     }

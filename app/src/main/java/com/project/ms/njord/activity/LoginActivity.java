@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -42,9 +43,7 @@ import static android.Manifest.permission.READ_CONTACTS;
  */
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener, LoaderCallbacks<Cursor> {
 
-    /**
-     * Id to identity READ_CONTACTS permission request.
-     */
+    // Id to identity READ_CONTACTS permission request.
     private static final int REQUEST_READ_CONTACTS = 0;
 
     /**
@@ -54,9 +53,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private static final String[] DUMMY_CREDENTIALS = new String[]{
             "foo@example.com:hello", "bar@example.com:world"
     };
-    /**
-     * Keep track of the login and sign up task, to ensure we can cancel it if requested.
-     */
+
+    // Keep track of the login and sign up task, to ensure we can cancel it if requested.
     private UserLoginTask loginTask = null;
     private UserSignUpTask signUpTask = null;
 
@@ -70,6 +68,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // Controller references
     private SharedPreferences prefs;
+    DataManager data = DataManager.dataManager;
 
 
     @Override
@@ -189,8 +188,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         boolean cancel = false;
         View focusView = null;
 
-        // Check for a invalid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        // Check for a invalid password
+        if (TextUtils.isEmpty(password)) {
+            passwordView.setError(getString(R.string.error_field_required));
+            focusView = passwordView;
+            cancel = true;
+        } else if(!isPasswordValid(password)){
             passwordView.setError(getString(R.string.error_invalid_password));
             focusView = passwordView;
             cancel = true;
@@ -216,13 +219,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             // perform the user login attempt.
             showProgress(true);
 
-            // login was chosen
+            // login was chosen - starting a new
             if(login){
                 loginTask = new UserLoginTask(email, password);
                 loginTask.execute((Void) null);
             }
 
-            // sign up was chosen
+            // sign up was chosen - starting a new thread to create profile
             else {
                 signUpTask = new UserSignUpTask(email, password);
                 signUpTask.execute((Void) null);
@@ -407,7 +410,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             try {
                 // Simulate network access.
-                Thread.sleep(2000);
+                Thread.sleep(1500);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -420,7 +423,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             // A new Profile is created
-            DataManager.dataManager.createProfile(email, password);
+            data.createProfile(email, password);
             prefs.edit().putBoolean("isLoggedIn", true).commit();
             // TODO: register the new profile online
             return true;
