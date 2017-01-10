@@ -11,14 +11,18 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
 //import com.project.ms.njord.controller.DataSimulator;
 import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Profile;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
@@ -26,24 +30,27 @@ import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
 import com.project.ms.njord.simulator.DataSimulator;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Observer {
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+
+    DataManager data = DataManager.dataManager;
 
     SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         //TODO: overfør ikke crashrapport ved emulatorcrash
-       // Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
 
         DataManager.init();
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // Launches login activity if not logged in
@@ -60,23 +67,22 @@ public class MainActivity extends AppCompatActivity
                 getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
         fragmentTransaction.commit();
-
-
-
         setTitle("Home");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initializing Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Adding activity as obser to profile
+        DataManager.dataManager.getProfile().addObserver(this);
     }
 
     @Override
@@ -149,5 +155,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        // Updates the user name in the navigation drawer when changed
+        View headerView = navigationView.getHeaderView(0);
+        TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
+        menuUserName.setText(DataManager.dataManager.getProfile().getName());
     }
 }
