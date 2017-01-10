@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
@@ -26,6 +27,7 @@ public class ProgressFragment extends Fragment {
     private String[][] children;
     LineGraphSeries<DataPoint> series;
     ArrayList<String> data = new ArrayList<String>();
+    TextView date, title, data1, data2, data3, average;
 
     public ProgressFragment() {
 
@@ -51,6 +53,7 @@ public class ProgressFragment extends Fragment {
         series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
             public void onTap(Series series, DataPointInterface dataPoint) {
+
 
             //    replaceFragment(new ResultsFragment());
             }
@@ -82,10 +85,27 @@ public class ProgressFragment extends Fragment {
 
         graph.addSeries(series);
 
+        date = (TextView) rootView.findViewById(R.id.progress_date_textview);
+        date.setText("fe");
+
+        title = (TextView) rootView.findViewById(R.id.progress_title_textview);
+
+        data1 = (TextView) rootView.findViewById(R.id.progress_data1_textview);
+
+        data2 = (TextView) rootView.findViewById(R.id.progress_data2_textview);
+
+        data3 = (TextView) rootView.findViewById(R.id.progress_data3_textview);
+
+        average = (TextView) rootView.findViewById(R.id.progress_average_textview);
+
         return rootView;
+
     }
 
-
+    private String getColoredSpanned(String text, String color) {
+        String input = "<font color=" + color + ">" + text + "</font>";
+        return input;
+    }
 
     private void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -93,7 +113,6 @@ public class ProgressFragment extends Fragment {
         transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
         transaction.commit();
     }
-
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
