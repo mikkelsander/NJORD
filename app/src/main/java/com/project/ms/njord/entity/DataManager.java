@@ -22,8 +22,6 @@ public class DataManager {
         }
     }
 
-
-
     public void createProfile(String email, String password){
         profile = new Profile(email, password);
     }

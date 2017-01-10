@@ -16,6 +16,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 import com.project.ms.njord.R;
+import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.TestResult;
 
 import java.util.ArrayList;
 
@@ -86,7 +88,7 @@ public class ProgressFragment extends Fragment {
         graph.addSeries(series);
 
         date = (TextView) rootView.findViewById(R.id.progress_date_textview);
-        date.setText("fe");
+        date.setText(TestResult.);
 
         title = (TextView) rootView.findViewById(R.id.progress_title_textview);
 
@@ -101,12 +103,6 @@ public class ProgressFragment extends Fragment {
         return rootView;
 
     }
-
-    private String getColoredSpanned(String text, String color) {
-        String input = "<font color=" + color + ">" + text + "</font>";
-        return input;
-    }
-
     private void replaceFragment(Fragment someFragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
