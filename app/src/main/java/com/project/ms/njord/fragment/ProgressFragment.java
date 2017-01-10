@@ -88,7 +88,7 @@ public class ProgressFragment extends Fragment {
         graph.addSeries(series);
 
         date = (TextView) rootView.findViewById(R.id.progress_date_textview);
-        date.setText(TestResult.);
+       // date.setText(TestResult.);
 
         title = (TextView) rootView.findViewById(R.id.progress_title_textview);
 

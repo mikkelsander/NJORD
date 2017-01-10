@@ -36,8 +36,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View v) {
         if(v == beginTestBtn){
-            dataSimulator.generateExhale();
-            dataSimulator.generateInhale();
+            // dataSimulator.generateExhale();
+           //  dataSimulator.generateInhale();
             Intent i = new Intent(getActivity(), TestLungsActivity.class);
             startActivity(i);
         }
