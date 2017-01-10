@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.project.ms.njord.activity.SignUpActivity"
-    android:background="@color/dark_gray">
+    android:background="@color/gray_dark">
 
     <TextView
         android:text="Tell us more about you"

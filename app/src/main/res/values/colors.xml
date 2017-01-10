@@ -3,7 +3,9 @@
     <color name="colorPrimary">#275e77</color>
     <color name="colorPrimaryDark">#225369</color>
     <color name="colorAccent">#e68c2c</color>
-    <color name="dark_gray">#383838</color>
+    <color name="gray_dark">#383838</color>
+    <color name="gray_light">#706f6f</color>
+    <color name="gray">#4b4b4b</color>
     <color name="blue">#275e77</color>
     <color name="blueLight">#2E718F</color>
     <color name="orange">#e68c2c</color>

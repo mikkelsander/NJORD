@@ -5,9 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@color/dark_gray">
-
+    android:weightSum="1">
 
     <com.jjoe64.graphview.GraphView
         android:layout_width="0dp"

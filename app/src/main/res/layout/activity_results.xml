@@ -10,12 +10,12 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.project.ms.njord.activity.ResultsActivity"
-    android:background="@color/dark_gray">
+    android:background="@color/gray_dark">
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"
         app:srcCompat="@drawable/temp_image_results"
-        android:background="@color/dark_gray"
+        android:background="@color/gray_dark"
         android:id="@+id/progress_tempImage_imageView" />
 
     <Button
