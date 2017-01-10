@@ -2,6 +2,9 @@ package com.project.ms.njord.simulator;
 
 import android.util.Log;
 
+import com.project.ms.njord.activity.TestLungsActivity;
+import com.project.ms.njord.entity.DataManager;
+
 import java.util.Observable;
 
 /**
@@ -44,6 +47,17 @@ public class DataSimulator extends Observable {
         }
     }
 
+    public int getInhalePressure () {
+        return this.inhalePressure;
+    }
 
+    public int getExhalePressure() {
+        return this.exhalePressure;
+    }
+
+    public void changeMe() {
+        setChanged();
+        notifyObservers(this);
+    }
 }
 
