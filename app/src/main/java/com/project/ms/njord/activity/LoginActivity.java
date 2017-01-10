@@ -377,7 +377,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             if (success) {      // password and email was correct
                 prefs.edit().putBoolean("isLoggedIn", true).commit();
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 finish();
+                startActivity(i);
+
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
                 passwordView.requestFocus();
@@ -410,7 +413,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
             try {
                 // Simulate network access.
-                Thread.sleep(1500);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;
             }
@@ -423,7 +426,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             // A new Profile is created
-            data.createProfile(email, password);
+            DataManager.dataManager.createProfile(email, password);
             prefs.edit().putBoolean("isLoggedIn", true).commit();
             // TODO: register the new profile online
             return true;
@@ -437,6 +440,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
           if (success) {
               Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
               startActivity(i);
+              signUpTask = null;
 
             } else {
                 passwordView.setError(getString(R.string.error_incorrect_password));
