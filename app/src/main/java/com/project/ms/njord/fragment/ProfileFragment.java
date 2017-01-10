@@ -86,27 +86,33 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
             if (requestCode == CHANGE_EMAIL) {
                 emailView.setText(s);
+                DataManager.dataManager.getProfile().setEmail(s);
             }
 
             if (requestCode == CHANGE_NAME) {
                 nameView.setText(s);
+                DataManager.dataManager.getProfile().setName(s);
             }
 
             if (requestCode == CHANGE_BIRTHDAY) {
                 birthdayView.setText(s);
+                DataManager.dataManager.getProfile().setBirthday(s);
             }
 
             if (requestCode == CHANGE_GENDER) {
                 genderView.setText(s);
+                DataManager.dataManager.getProfile().setGender(s);
             }
 
             if (requestCode == CHANGE_HEIGHT) {
                 heightView.setText(s);
+                DataManager.dataManager.getProfile().setHeight(Integer.parseInt(s));
 
             }
 
             if (requestCode == CHANGE_WEIGHT) {
                 weightView.setText(s);
+                DataManager.dataManager.getProfile().setWeight(Integer.parseInt(s));
 
             }
         }
