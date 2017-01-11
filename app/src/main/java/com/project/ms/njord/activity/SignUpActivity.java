@@ -62,11 +62,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
-
-
-
-
     // creating skip button in the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

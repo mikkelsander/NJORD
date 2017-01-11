@@ -22,8 +22,6 @@ public class ManometerFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_manometer, container, false);
 
 
-
-
         return v;
     }
 
