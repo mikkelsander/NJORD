@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DataManager.init();
 
+
         // Launches login activity if not logged in
         if( !prefs.getBoolean("isLoggedIn", false) ){
             Intent i = new Intent(this, LoginActivity.class);
