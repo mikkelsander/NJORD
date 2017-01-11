@@ -11,14 +11,20 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
+import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
+
+import java.util.Observable;
+import java.util.Observer;
 
 //import com.project.ms.njord.controller.DataSimulator;
 //import com.project.ms.njord.controller.DataSimulator;
