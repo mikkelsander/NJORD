@@ -1,12 +1,15 @@
 package com.project.ms.njord.entity;
 
+
+import java.util.Observable;
+
 /**
  * Created by Oliver on 14-Nov-16.
  */
 
-public class Profile {
+public class Profile extends Observable {
 
-    private String name = "";
+    private String name = "Name";
     private String email = "";
     private String password = "";
     private String birthday = "";
@@ -29,12 +32,15 @@ public class Profile {
         this.gender = gender;
     }
 
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        setChanged();
+        notifyObservers();
     }
 
     public String getEmail() {
@@ -43,6 +49,8 @@ public class Profile {
 
     public void setEmail(String email) {
         this.email = email;
+        setChanged();
+        notifyObservers();
     }
 
     public String getPassword() {
@@ -51,6 +59,8 @@ public class Profile {
 
     public void setPassword(String password) {
         this.password = password;
+        setChanged();
+        notifyObservers();
     }
 
     public String getBirthday() {
@@ -59,6 +69,8 @@ public class Profile {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+        setChanged();
+        notifyObservers();
     }
 
     public int getHeight() {
@@ -67,6 +79,8 @@ public class Profile {
 
     public void setHeight(int height) {
         this.height = height;
+        setChanged();
+        notifyObservers();
     }
 
     public int getWeight() {
@@ -75,6 +89,8 @@ public class Profile {
 
     public void setWeight(int weight) {
         this.weight = weight;
+        setChanged();
+        notifyObservers();
     }
 
     public String getGender() {
@@ -83,6 +99,8 @@ public class Profile {
 
     public void setGender(String gender) {
         this.gender = gender;
+        setChanged();
+        notifyObservers();
 
     }
 

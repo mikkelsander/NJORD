@@ -34,7 +34,6 @@ public class ProgressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_progress, container, false);
 
-
 //lav array som indeholder tryk og dato
         GraphView graph = (GraphView) rootView.findViewById(R.id.fragment_progress_graph);
 
@@ -93,6 +92,7 @@ public class ProgressFragment extends Fragment {
 
         date = (TextView) rootView.findViewById(R.id.progress_date_textview);
       //  date.setText(DataManager.dataManager.getTestResult().getDate());
+       // date.setText(TestResult.);
 
         title = (TextView) rootView.findViewById(R.id.progress_title_textview);
 

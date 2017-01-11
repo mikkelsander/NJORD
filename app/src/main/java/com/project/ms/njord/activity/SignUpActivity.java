@@ -79,7 +79,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        // Closes SignUpActivity and starts MainActivity
         if (id == R.id.skip_button) {
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
             finish();
         }
         return super.onOptionsItemSelected(item);
@@ -106,6 +109,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             DataManager.dataManager.getProfile().setGender(gender);
             DataManager.dataManager.getProfile().setHeight(Integer.parseInt(heigtView.getText().toString()));
             DataManager.dataManager.getProfile().setWeight(Integer.parseInt(weigthView.getText().toString()));
+
+            Intent i = new Intent(this, MainActivity.class);
+            startActivity(i);
             finish();
         }
     }

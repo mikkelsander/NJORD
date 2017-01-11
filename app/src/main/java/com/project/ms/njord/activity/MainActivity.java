@@ -15,16 +15,16 @@ import android.view.MenuItem;
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
-import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
 
 //import com.project.ms.njord.controller.DataSimulator;
+//import com.project.ms.njord.controller.DataSimulator;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, Observer {
 
     NavigationView navigationView = null;
     Toolbar toolbar = null;
@@ -36,17 +36,10 @@ public class MainActivity extends AppCompatActivity
 
 
         //TODO: overfør ikke crashrapport ved emulatorcrash
-       // Fabric.with(this, new Crashlytics());
+        //Fabric.with(this, new Crashlytics());
 
-        DataManager.init();
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
-        // Launches login activity if not logged in
-        if( !prefs.getBoolean("isLoggedIn", false) ){
-          Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -63,16 +56,22 @@ public class MainActivity extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // Initializing Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Setting the user name in the navigation drawer
+        View headerView = navigationView.getHeaderView(0);
+        TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
+        menuUserName.setText(DataManager.dataManager.getProfile().getName());
 
+        // Adding activity as obser to profile
+        DataManager.dataManager.getProfile().addObserver(this);
     }
 
     @Override
@@ -97,37 +96,42 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_home) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new HomeFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Home");
 
         } else if (id == R.id.nav_profile) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new ProfileFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Profile");
 
 
         } else if (id == R.id.nav_device) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new DeviceFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Spirometer");
 
         } else if (id == R.id.nav_settings) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment());
-            fragmentTransaction.commit();
-            getSupportActionBar().setTitle("Settings");
+            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment())
+                    .addToBackStack(null)
+                    .commit();
+            getSupportActionBar().setTitle("Preferences");
 
         } else if (id == R.id.nav_progress) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
-            fragmentTransaction.commit();
+            fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment())
+                    .addToBackStack(null)
+                    .commit();
             getSupportActionBar().setTitle("Progress");
 
         } else if (id == R.id.nav_help) {
@@ -147,5 +151,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        // Updates the user name in the navigation drawer when changed
+        View headerView = navigationView.getHeaderView(0);
+        TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
+        menuUserName.setText(DataManager.dataManager.getProfile().getName());
     }
 }

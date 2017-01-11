@@ -16,7 +16,7 @@
         android:text="User Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/menu_header_name"
+        android:id="@+id/menuHeader_name_textView"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:textSize="20sp" />
@@ -25,7 +25,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@mipmap/ic_ironman"
-        android:id="@+id/menu_header_pic"
+        android:id="@+id/menuHeader_profilePic_imageView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>
