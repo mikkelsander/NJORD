@@ -8,6 +8,10 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
 import com.project.ms.njord.R;
 import com.project.ms.njord.fragment.LineChartFragment;
 import com.project.ms.njord.fragment.ObserverTestFragment;
@@ -15,6 +19,8 @@ import com.project.ms.njord.simulator.DataSimulator;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -23,6 +29,11 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     private Button doneBtn, startBtn;
     private FrameLayout fragmentContainer;
     private DataSimulator data;
+
+    LineChart chart;
+    LineData lineData;
+    LineDataSet set;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +49,10 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
 
         fragmentContainer = (FrameLayout) findViewById(R.id.testLungs_fragment_container);
 
+
+
         getSupportFragmentManager().beginTransaction().replace(R.id.testLungs_fragment_container,
-                new LineChartFragment()).commit();
+                new LineChartFragment()).addToBackStack(null).commit();
 
     }
 
