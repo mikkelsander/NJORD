@@ -14,7 +14,6 @@ import com.project.ms.njord.entity.DataManager;
  * depending on whether or not the user is logged in
  */
 
-
 public class SplashActivity extends AppCompatActivity {
 
     @Override

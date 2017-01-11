@@ -92,7 +92,6 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-
         if (id == R.id.nav_home) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();

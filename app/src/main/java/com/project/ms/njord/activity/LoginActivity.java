@@ -317,7 +317,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     }
 
-
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
         ArrayAdapter<String> adapter =

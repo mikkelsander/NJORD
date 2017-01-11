@@ -55,7 +55,6 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         }
     }
 
-
     @Override
     public void update(Observable o, Object arg) {
         TextView inhaleView = (TextView) findViewById(R.id.testNumberTextView);
