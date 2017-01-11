@@ -7,26 +7,21 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
-import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
-//import com.project.ms.njord.controller.DataSimulator;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
+import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
-import com.project.ms.njord.simulator.DataSimulator;
 
-import io.fabric.sdk.android.Fabric;
+//import com.project.ms.njord.controller.DataSimulator;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,6 +33,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
 
         //TODO: overfør ikke crashrapport ved emulatorcrash
        // Fabric.with(this, new Crashlytics());
@@ -62,7 +58,6 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.commit();
 
 
-
         setTitle("Home");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -76,6 +71,7 @@ public class MainActivity extends AppCompatActivity
 
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
 
     }
 
@@ -133,6 +129,13 @@ public class MainActivity extends AppCompatActivity
             fragmentTransaction.replace(R.id.fragment_container, new ProgressFragment());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Progress");
+
+        } else if (id == R.id.nav_help) {
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new HelpFragment());
+            fragmentTransaction.commit();
+            getSupportActionBar().setTitle("Help");
 
         }else if (id == R.id.nav_logOut){
             prefs.edit().putBoolean("isLoggedIn", false).commit();
