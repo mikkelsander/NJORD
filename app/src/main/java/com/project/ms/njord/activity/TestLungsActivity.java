@@ -61,14 +61,12 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         if (v == doneBtn) {
             Intent i = new Intent(this, ResultsActivity.class);
             startActivity(i);
-            finish();
-
-        if (v == startBtn) {
-
         }
+        if (v == startBtn) {
+            // TODO: Start receiving data from Spirometer
+
         }
     }
-
 
     @Override
     public void update(Observable o, Object arg) {

@@ -62,11 +62,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
-
-
-
-
-
     // creating skip button in the action bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -79,7 +74,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
+        // Closes SignUpActivity and starts MainActivity
         if (id == R.id.skip_button) {
+            Intent i = new Intent(this,MainActivity.class);
+            startActivity(i);
             finish();
         }
         return super.onOptionsItemSelected(item);
