@@ -12,11 +12,18 @@
         android:layout_height="match_parent">
 
 
+        <TextView
+            android:text="TextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/fragment_help_info" />
+
         <Button
-            android:text="Button"
+            android:text="Njord Vejledning"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/fragment_help_watch" />
+
     </LinearLayout>
 
 
