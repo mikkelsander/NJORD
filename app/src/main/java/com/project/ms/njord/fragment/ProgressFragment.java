@@ -24,7 +24,7 @@ public class ProgressFragment extends Fragment {
     private String[][] children;
     LineGraphSeries<DataPoint> inhale, exhale;
     ArrayList<String> data = new ArrayList<String>();
-    TextView date, title, data1, data2, data3, average;
+    TextView date, title, average;
 
     public ProgressFragment() {
 
@@ -95,12 +95,6 @@ public class ProgressFragment extends Fragment {
        // date.setText(TestResult.);
 
         title = (TextView) rootView.findViewById(R.id.progress_title_textview);
-
-        data1 = (TextView) rootView.findViewById(R.id.progress_data1_textview);
-
-        data2 = (TextView) rootView.findViewById(R.id.progress_data2_textview);
-
-        data3 = (TextView) rootView.findViewById(R.id.progress_data3_textview);
 
         average = (TextView) rootView.findViewById(R.id.progress_average_textview);
 
