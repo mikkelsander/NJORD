@@ -1,6 +1,7 @@
 package com.project.ms.njord.fragment;
 
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.github.mikephil.charting.animation.Easing;
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
@@ -29,12 +31,15 @@ import java.util.Observer;
  * A simple {@link Fragment} subclass.
  */
 public class LineChartFragment extends Fragment implements View.OnClickListener {
+    final String TAG = "LineChartFragment";
 
     LineChart chart;
     private Thread thread;
     LineData data;
     LineDataSet set;
     List<Entry> entries;
+    List<Entry> entries2;
+    Button startButton, doneButton;
 
     public LineChartFragment() {
         // Required empty public constructor
@@ -51,12 +56,30 @@ public class LineChartFragment extends Fragment implements View.OnClickListener 
 
         entries.add(new Entry (0,0));
 
+        entries2 = new ArrayList<Entry>();
+
+        for (int i = 0; i <= 100; i++) {
+
+            entries2.add(new Entry((float) i, (float) Math.random()*100));
+
+        }
+
         set = new LineDataSet(entries, "bob");
+        LineDataSet set2 = new LineDataSet(entries2, "bob2");
+
 
         data = new LineData(set);
+        LineData data2 = new LineData(set2);
 
         chart.setData(data);
-        chart.setScaleMinima(0,0);
+        chart.setLogEnabled(false);
+
+
+
+        //chart.animateY(3000, Easing.EasingOption.EaseInOutCirc);
+
+
+
         XAxis xAxis = chart.getXAxis();
         xAxis.setAxisMinimum(0);
         xAxis.setAxisMaximum(1000);
@@ -68,105 +91,114 @@ public class LineChartFragment extends Fragment implements View.OnClickListener 
         yAxis2.setAxisMaximum(1000);
 
 
-
-        Button b = (Button) getActivity().findViewById(R.id.testLungs_start_button);
-        b.setOnClickListener(this);
-
-     //   data = new DataSimulator();
-     //   data.addObserver(this);
-
-
-        // mock up lineData
-
-
-       /* List<Entry> entries = new ArrayList<Entry>();
-
-        for (int i = 0; i <= 100; i++) {
-
-            entries.add(new Entry((float) i, (float) (i+Math.random()*Math.random()*100)));
-        }*/
-
-
-      // data.generateExhale();
+        startButton = (Button) getActivity().findViewById(R.id.testLungs_start_button);
+        startButton.setOnClickListener(this);
+        doneButton = (Button) getActivity().findViewById(R.id.testLungs_done_button);
+        doneButton.setOnClickListener(this);
 
         return v;
     }
 
 
-
-
-
     private void addEntry() {
 
+        float f = ((float) set.getEntryCount() * set.getEntryCount() - set.getEntryCount()) * (float) 0.0005;
 
-
-       /* List<Entry> entries = new ArrayList<Entry>();
-
-        entries.add(new Entry (0,0));
-
-        LineDataSet set = new LineDataSet(entries, "bob");
-
-        LineData data = new LineData(set);
-        chart.setData(data);
-*/
-
-        Log.d("lol", entries.toString());
-        Log.d("lol", set.toString());
-
-        Log.d("lol", Integer.toString(set.getEntryCount()));
-
-        float f = ((float) set.getEntryCount()*set.getEntryCount()-set.getEntryCount())* (float) 0.001;
-
-        data.addEntry(new Entry(set.getEntryCount(), f ) ,0);
+        data.addEntry(new Entry(set.getEntryCount(), f), 0);
 
         //data.addEntry(new Entry(set.getEntryCount(), (float) (Math.random() * 40) + 30f),0);
 
-            // let the chart know it's lineData has changed
-            data.notifyDataChanged();
-            chart.notifyDataSetChanged();
-            chart.invalidate();
-
+        // let the chart know it's lineData has changed
+       /* data.notifyDataChanged();
+        chart.notifyDataSetChanged();
+        chart.invalidate();
+*/
     }
 
+    private  void updateUI() {
+        data.notifyDataChanged();
+        chart.notifyDataSetChanged();
+        chart.invalidate();
+    }
 
-        private void feedMultiple() {
+    public void test () {
+        new AsyncTask<Void, Void, Void>() {
 
-            if (thread != null)
-                thread.interrupt();
+            @Override
+            protected Void doInBackground(Void... params) {
 
-            final Runnable runnable = new Runnable() {
-
-                @Override
-                public void run() {
+                for (int i = 0; i < 10000; i++) {
                     addEntry();
+                    publishProgress();
+                    busySleep(1000000);
                 }
-            };
+                return null;
+            }
 
-            thread = new Thread(new Runnable() {
 
-                @Override
-                public void run() {
-                    for (int i = 0; i < 1000; i++) {
+            @Override
+            protected void onProgressUpdate(Void... values) {
+                super.onProgressUpdate(values);
+                updateUI();
 
-                        // Don't generate garbage runnables inside the loop.
-                        getActivity().runOnUiThread(runnable);
+            }
+        }.execute();
+    }
 
-                        try {
-                            Thread.sleep(5);
-                        } catch (InterruptedException e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                    }
+    private void feedMultiple() {
+
+
+        if (thread != null)
+            thread.interrupt();
+
+        final Runnable runnable = new Runnable() {
+
+            @Override
+            public void run() {
+                addEntry();
+                updateUI();
+            }
+        };
+
+        thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                for (int i = 0; i < 10000; i++) {
+
+                    // Don't generate garbage runnables inside the loop.
+                    getActivity().runOnUiThread(runnable);
+
+                   busySleep(1000000);
                 }
-            });
+            }
+        });
 
-            thread.start();
-        }
-
+        thread.start();
+    }
 
     @Override
     public void onClick(View v) {
-        feedMultiple();
+
+        if (v == startButton) {
+            Log.d(TAG, "startButton pushed");
+            test();
+        }
+        if (v == doneButton) {
+            Log.d(TAG, "doneButton pushed");
+            thread.interrupt();
+        }
     }
+
+
+    public static void busySleep(long nanos)
+    {
+        long elapsed;
+        final long startTime = System.nanoTime();
+        do {
+            elapsed = System.nanoTime() - startTime;
+        } while (elapsed < nanos);
+    }
+
+
 }
