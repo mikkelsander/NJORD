@@ -12,8 +12,6 @@ import com.project.ms.njord.R;
 import com.project.ms.njord.activity.TestLungsActivity;
 import com.project.ms.njord.simulator.DataSimulator;
 
-import junit.framework.Test;
-
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button beginTestBtn;
@@ -27,9 +25,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         beginTestBtn = (Button) v.findViewById(R.id.home_beginTest_button);
         beginTestBtn.setOnClickListener(this);
 
-
         dataSimulator = new DataSimulator();
-
 
         return v;
     }

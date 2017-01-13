@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.DatabaseManager;
 
 /**
  * This is the first activity that is started
@@ -23,6 +24,8 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         DataManager.init();
 
+        DatabaseManager databaseManager = new DatabaseManager();
+        databaseManager.startDatabase();
 
         // Launches login activity if not logged in
         if( !prefs.getBoolean("isLoggedIn", false) ){

@@ -39,7 +39,6 @@ public class YouTubeActivity extends YouTubeBaseActivity
     public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean wasRestored) {
         Log.d(TAG, "onInitializationSuccess: provider is" + provider.getClass().toString());
         Toast.makeText(this,"Initalized Youtube Player sucessfully",Toast.LENGTH_LONG).show();
-
         if(!wasRestored){
             youTubePlayer.cueVideo(YOUTUBE_VIDEO_ID);
         }

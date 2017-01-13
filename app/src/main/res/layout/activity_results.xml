@@ -47,7 +47,7 @@
         android:id="@+id/activity_results_exhale_avg"
         android:textSize="44sp"
         tools:layout_editor_absoluteY="116dp"
-        tools:layout_editor_absoluteX="109dp" />
+        tools:layout_editor_absoluteX="92dp" />
 
     <View
         android:id="@+id/view"
