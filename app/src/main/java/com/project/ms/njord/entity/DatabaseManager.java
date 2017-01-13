@@ -1,5 +1,6 @@
 package com.project.ms.njord.entity;
 
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.google.firebase.database.DataSnapshot;
@@ -10,12 +11,17 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseManager {
 
-    private DatabaseReference mDatabase;
+
+    private FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance();
+    private DatabaseReference profileDatabase = databaseInstance.getReference("Profiles");
+    private String profileId;
+
+
+
 
     public void startDatabase() {
 
         Profile profile = new Profile("", "");
-        profile.getName();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -25,7 +31,7 @@ public class DatabaseManager {
         // new user node would be /users/$userid/
         String userID = myRef.push().getKey();
 
-        myRef.child(userID).setValue(DataManager.dataManager);
+        myRef.child(userID).setValue(Profile.class);
         
 
         // Read from the database
@@ -45,9 +51,73 @@ public class DatabaseManager {
             }
         });
 
+    }
+
+    public void createProfile(Profile profile) {
+
+        if (TextUtils.isEmpty(profileId)) {
+
+            profileId = profileDatabase.push().getKey();
+        }
+
+        profileDatabase.child(profileId).setValue(profile);
+
+    }
+
+    private void updateProfile(Profile profile) {
+        // updating the user via child nodes
+
+        if (!TextUtils.isEmpty(profile.getEmail())) {
+
+            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+
+        }
+
+        if (!TextUtils.isEmpty(profile.getName())) {
+
+            profileDatabase.child(profileId).child("name").setValue(profile.getName());
+
+        }
+
+        if (!TextUtils.isEmpty(profile.getBirthday())) {
+
+            profileDatabase.child(profileId).child("birthday").setValue(profile.getBirthday());
+
+        }
+
+        if (!TextUtils.isEmpty(profile.getGender())) {
+
+            profileDatabase.child(profileId).child("gender").setValue(profile.getGender());
+        }
+
+        if (!TextUtils.isEmpty(profile.getHeight())) {
+
+            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+
+        }
+
+        if (!TextUtils.isEmpty(profile.getEmail())) {
+
+            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+
+        }
 
 
 
+
+            .child(userId).child("name").setValue(name);
+
+        profileDatabase.child(profileId).child("name")
+
+
+
+
+        if (!TextUtils.isEmpty(name))
+            mFirebaseDatabase.child(userId).child("name").setValue(name);
+
+        if (!TextUtils.isEmpty(email))
+            mFirebaseDatabase.child(userId).child("email").setValue(email);
+    }
 }
 
 }

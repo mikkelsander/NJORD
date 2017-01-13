@@ -9,12 +9,17 @@ import java.util.Observable;
 
 public class Profile extends Observable {
 
-    private String name = "Name";
     private String email = "";
     private String password = "";
+    private String name = "Name";
     private String birthday = "";
-    private int height, weight;
     private String gender = "";
+    private String height = "";
+    private String weight = "";
+
+    public Profile() {
+
+    };
 
 
     public Profile(String email, String password){
@@ -22,7 +27,7 @@ public class Profile extends Observable {
         this.password=password;
     }
 
-    public Profile(String name, String email, String password, String birthday, int height, int weight, String gender) {
+    public Profile(String name, String email, String password, String birthday, String gender, String height, String weight) {
         this.name = name;
         this.email = email;
         this.password = password;

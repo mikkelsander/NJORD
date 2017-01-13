@@ -11,6 +11,7 @@ public class DataManager {
     private Profile profile;
     private Progress progress;
     private TestResult[] testResult;
+    private DatabaseManager dbManager;
 
     private DataManager(){
         createProfile("guest@mail.com","12345");
@@ -24,6 +25,8 @@ public class DataManager {
 
     public void createProfile(String email, String password){
         profile = new Profile(email, password);
+
+        dbManager.pushProfile(profile);
     }
 
 
