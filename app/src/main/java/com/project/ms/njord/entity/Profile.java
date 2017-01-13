@@ -78,21 +78,21 @@ public class Profile extends Observable {
         notifyObservers();
     }
 
-    public int getHeight() {
+    public String getHeight() {
         return this.height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(String height) {
         this.height = height;
         setChanged();
         notifyObservers();
     }
 
-    public int getWeight() {
+    public String getWeight() {
         return weight;
     }
 
-    public void setWeight(int weight) {
+    public void setWeight(String weight) {
         this.weight = weight;
         setChanged();
         notifyObservers();
