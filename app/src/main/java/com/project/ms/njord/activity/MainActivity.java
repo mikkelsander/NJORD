@@ -14,6 +14,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.DataManager;
 import com.project.ms.njord.fragment.DeviceFragment;
@@ -58,6 +60,9 @@ public class MainActivity extends AppCompatActivity
 
 
         setTitle("Home");
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("");
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
