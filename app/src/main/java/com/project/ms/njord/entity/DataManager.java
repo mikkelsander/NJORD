@@ -15,6 +15,7 @@ public class DataManager {
 
     private DataManager(){
         createProfile("guest@mail.com","12345");
+        dbManager = new DatabaseManager();
     }
 
     public static void init(){
@@ -25,8 +26,7 @@ public class DataManager {
 
     public void createProfile(String email, String password){
         profile = new Profile(email, password);
-
-        dbManager.pushProfile(profile);
+        dbManager.createProfile(profile);
     }
 
 

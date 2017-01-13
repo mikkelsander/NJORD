@@ -92,35 +92,20 @@ public class DatabaseManager {
 
         if (!TextUtils.isEmpty(profile.getHeight())) {
 
-            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+            profileDatabase.child(profileId).child("height").setValue(profile.getHeight());
 
         }
 
-        if (!TextUtils.isEmpty(profile.getEmail())) {
+        if (!TextUtils.isEmpty(profile.getWeight())) {
 
-            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+            profileDatabase.child(profileId).child("weight").setValue(profile.getWeight());
 
         }
 
-
-
-
-            .child(userId).child("name").setValue(name);
-
-        profileDatabase.child(profileId).child("name")
-
-
-
-
-        if (!TextUtils.isEmpty(name))
-            mFirebaseDatabase.child(userId).child("name").setValue(name);
-
-        if (!TextUtils.isEmpty(email))
-            mFirebaseDatabase.child(userId).child("email").setValue(email);
     }
 }
 
-}
+
 
 
 
