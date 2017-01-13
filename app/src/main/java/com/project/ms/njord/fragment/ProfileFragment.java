@@ -66,12 +66,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         genderLayout.setOnClickListener(this);
 
         heightView = (TextView) v.findViewById(R.id.profile_height_textView);
-        heightView.setText(Integer.toString(DataManager.dataManager.getProfile().getHeight()));
+        heightView.setText(DataManager.dataManager.getProfile().getHeight());
         heightLayout = (LinearLayout) v.findViewById(R.id.profile_height_layout);
         heightLayout.setOnClickListener(this);
 
         weightView = (TextView) v.findViewById(R.id.profile_weight_textView);
-        weightView.setText(Integer.toString(DataManager.dataManager.getProfile().getWeight()));
+        weightView.setText(DataManager.dataManager.getProfile().getWeight());
         weightLayout = (LinearLayout) v.findViewById(R.id.profile_weight_layout);
         weightLayout.setOnClickListener(this);
 
@@ -116,15 +116,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             }
 
             if (requestCode == CHANGE_HEIGHT) {
-                heightView.setText(Integer.toString(userInt));
-                DataManager.dataManager.getProfile().setHeight(userInt);
+                heightView.setText(userString);
+                DataManager.dataManager.getProfile().setHeight(userString);
 
             }
 
             if (requestCode == CHANGE_WEIGHT) {
-                weightView.setText(Integer.toString(userInt));
-                DataManager.dataManager.getProfile().setWeight(userInt);
-
+                weightView.setText(userString);
+                DataManager.dataManager.getProfile().setWeight(userString);
             }
         }
     }
