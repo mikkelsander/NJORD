@@ -91,7 +91,7 @@ public class ProgressFragment extends Fragment {
         graph.getViewport().setMaxY(5);
 
         date = (TextView) rootView.findViewById(R.id.progress_date_textview);
-      //  date.setText(DataManager.dataManager.getTestResult().getDate());
+      //  date.setText(Singleton.instance.getTestResult().getDate());
        // date.setText(TestResult.);
 
         title = (TextView) rootView.findViewById(R.id.progress_title_textview);

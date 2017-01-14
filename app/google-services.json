@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "773629836397",
+    "firebase_url": "https://njord-8c05c.firebaseio.com",
+    "project_id": "njord-8c05c",
+    "storage_bucket": "njord-8c05c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:773629836397:android:52b080274c895061",
+        "android_client_info": {
+          "package_name": "com.project.ms.njord"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "773629836397-7otl824alc5m6q2k27lm9umr68m0sbpc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.ms.njord",
+            "certificate_hash": "188C6357E7E426BE500852DAAD216317A68D52DC"
+          }
+        },
+        {
+          "client_id": "773629836397-rlo2auemre5208mop74k76t6imq9vukd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD09SE1k9jhh8hyNsiG-ImKOMFXCmdgidI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "773629836397-rlo2auemre5208mop74k76t6imq9vukd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,6 +11,10 @@ public class TestResult {
     private int inhaleTest1, inhaleTest2, inhaleTest3, exhaleTest1, exhaleTest2, exhaleTest3;
     private int[] dataPoints;
 
+    public TestResult(){
+
+    }
+
     public TestResult(int date, int inhaleAverage, int exhaleAverage, int inhaleTest1, int inhaleTest2,
                       int inhaleTest3, int exhaleTest1, int exhaleTest2, int exhaleTest3, int[] dataPoints) {
         this.date = date;
