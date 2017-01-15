@@ -126,7 +126,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
                 Singleton.instance.getProfile().setWeight(userString);
             }
 
-            Singleton.instance.dbManager.saveProfile(Singleton.instance.getProfile());
+            Singleton.instance.getDataBaseManager().saveProfile(Singleton.instance.getProfile());
         }
     }
 

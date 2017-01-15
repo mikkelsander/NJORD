@@ -64,7 +64,7 @@ public class DatabaseManager {
                     return;
                 }
 
-                Singleton.instance.profile = newProfile;
+                Singleton.instance.updateProfile(newProfile);
 
                 Log.d(TAG, "Profile data is changed!");
 
