@@ -1,18 +1,11 @@
 package com.project.ms.njord.simulator;
 
 import android.util.Log;
-
-import com.project.ms.njord.activity.TestLungsActivity;
-import com.project.ms.njord.entity.DataManager;
-
 import java.util.Observable;
 
 /**
  * Created by Oliver on 05-Jan-17.
  */
-
-
-
 
 public class DataSimulator extends Observable{
 
