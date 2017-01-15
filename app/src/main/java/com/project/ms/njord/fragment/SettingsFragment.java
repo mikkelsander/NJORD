@@ -14,7 +14,7 @@ import android.widget.Switch;
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.MainActivity;
 
-public class SettingsFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -49,15 +49,8 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         }
 
         //Listeners
-        b1.setOnClickListener(this);
         switchNotification.setOnCheckedChangeListener(this);
         return v;
-    }
-    @Override
-    public void onClick(View v) {
-
-        com.project.ms.njord.notifications.AlarmStart.startAlarm(getContext());
-
     }
 
     @Override
