@@ -13,7 +13,7 @@ import android.content.pm.PackageManager;
 
 public class AlarmStart {
 
-    static void startAlarm(Context context) {
+    public static void startAlarm(Context context) {
 
         ComponentName receiver = new ComponentName(context, com.project.ms.njord.notifications.BootListener.class);
         PackageManager pm = context.getPackageManager();
