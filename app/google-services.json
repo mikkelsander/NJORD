@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "773629836397-4ngm61u2s4b0j21eq1l9gthaug7a126j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.ms.njord",
+            "certificate_hash": "15E84F8412725D2B14DEA9880BF67E3754048CEA"
+          }
+        },
+        {
           "client_id": "773629836397-7otl824alc5m6q2k27lm9umr68m0sbpc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

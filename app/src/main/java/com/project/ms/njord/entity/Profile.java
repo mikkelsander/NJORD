@@ -22,9 +22,8 @@ public class Profile extends Observable {
     private ArrayList<TestResult> testResults = new ArrayList<>();
 
     public Profile() {
-
+        // Required empty constructor
     };
-
 
     public Profile(String email, String password){
         this.email=email;
@@ -34,7 +33,6 @@ public class Profile extends Observable {
 
     public Profile(String email, String password, String name, String birthday, String gender,
                    String height, String weight, ArrayList<TestResult> testResults) {
-
         this.email = email;
         this.password = password;
         this.name = name;
@@ -44,6 +42,7 @@ public class Profile extends Observable {
         this.gender = gender;
         this.testResults = testResults;
     }
+
 
 
     public String getEmail() {

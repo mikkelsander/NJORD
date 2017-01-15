@@ -8,9 +8,7 @@ public class Singleton {
 
     public static Singleton instance;
     public DatabaseManager dbManager;
-
     public Profile profile;
-
 
     private Singleton(){
         dbManager = new DatabaseManager();
@@ -22,6 +20,11 @@ public class Singleton {
             instance = new Singleton();
         }
     }
+
+    public void changeProfile(Profile newProfile){
+        this.profile = newProfile;
+    }
+
 
     public void createGuestProfile() {
         profile = new Profile();
@@ -35,12 +38,7 @@ public class Singleton {
         dbManager.setProfileChangeListener();
     }
 
-
-    public Profile getProfile(){
-        return profile;
-    }
-
-
+    public Profile getProfile() {return profile;}
     public DatabaseManager getDataBaseManager() {return dbManager;}
 
 }
