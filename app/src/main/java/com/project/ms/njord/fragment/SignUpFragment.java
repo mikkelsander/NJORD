@@ -183,7 +183,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
             dialog.setTargetFragment(this, CHANGE_WEIGHT);
             dialog.setArguments(args);
             dialog.show(getActivity().getSupportFragmentManager(), "weight dialog");
-
         }
     }
 
