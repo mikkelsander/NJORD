@@ -7,8 +7,8 @@ package com.project.ms.njord.entity;
 public class Singleton {
 
     public static Singleton instance;
-    public DatabaseManager dbManager;
-    public Profile profile;
+    private DatabaseManager dbManager;
+    private Profile profile;
 
     private Singleton(){
         dbManager = new DatabaseManager();
@@ -21,7 +21,7 @@ public class Singleton {
         }
     }
 
-    public void changeProfile(Profile newProfile){
+    public void updateProfile(Profile newProfile){
         this.profile = newProfile;
     }
 
