@@ -16,7 +16,7 @@ import com.project.ms.njord.R;
 import com.project.ms.njord.dialogFragments.DateRequestDialog;
 import com.project.ms.njord.dialogFragments.NumberPickerDialog;
 import com.project.ms.njord.dialogFragments.StringRequestDialog;
-import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Singleton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -46,32 +46,32 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         emailView = (TextView) v.findViewById(R.id.profile_email_textView);
-        emailView.setText(DataManager.dataManager.getProfile().getEmail());
+        emailView.setText(Singleton.instance.getProfile().getEmail());
         emailLayout = (LinearLayout) v.findViewById(R.id.profile_email_layout);
         emailLayout.setOnClickListener(this);
 
         nameView = (TextView) v.findViewById(R.id.profile_name_textView);
-        nameView.setText(DataManager.dataManager.getProfile().getName());
+        nameView.setText(Singleton.instance.getProfile().getName());
         nameLayout = (LinearLayout) v.findViewById(R.id.profile_name_layout);
         nameLayout.setOnClickListener(this);
 
         birthdayView = (TextView) v.findViewById(R.id.profile_birthday_textView);
-        birthdayView.setText(DataManager.dataManager.getProfile().getBirthday());
+        birthdayView.setText(Singleton.instance.getProfile().getBirthday());
         birthdayLayout = (LinearLayout) v.findViewById(R.id.profile_birthday_layout);
         birthdayLayout.setOnClickListener(this);
 
         genderView = (TextView) v.findViewById(R.id.profile_gender_textView);
-        genderView.setText(DataManager.dataManager.getProfile().getGender());
+        genderView.setText(Singleton.instance.getProfile().getGender());
         genderLayout = (LinearLayout) v.findViewById(R.id.profile_gender_layout);
         genderLayout.setOnClickListener(this);
 
         heightView = (TextView) v.findViewById(R.id.profile_height_textView);
-        heightView.setText(DataManager.dataManager.getProfile().getHeight());
+        heightView.setText(Singleton.instance.getProfile().getHeight());
         heightLayout = (LinearLayout) v.findViewById(R.id.profile_height_layout);
         heightLayout.setOnClickListener(this);
 
         weightView = (TextView) v.findViewById(R.id.profile_weight_textView);
-        weightView.setText(DataManager.dataManager.getProfile().getWeight());
+        weightView.setText(Singleton.instance.getProfile().getWeight());
         weightLayout = (LinearLayout) v.findViewById(R.id.profile_weight_layout);
         weightLayout.setOnClickListener(this);
 
@@ -89,42 +89,44 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
             if (requestCode == CHANGE_EMAIL) {
                 emailView.setText(userString);
-                DataManager.dataManager.getProfile().setEmail(userString);
+                Singleton.instance.getProfile().setEmail(userString);
             }
 
             if (requestCode == CHANGE_NAME) {
                 nameView.setText(userString);
-                DataManager.dataManager.getProfile().setName(userString);
+                Singleton.instance.getProfile().setName(userString);
             }
 
             if (requestCode == CHANGE_BIRTHDAY) {
                 birthdayView.setText(userString);
-                DataManager.dataManager.getProfile().setBirthday(userString);
+                Singleton.instance.getProfile().setBirthday(userString);
             }
 
             if (requestCode == CHANGE_GENDER) {
 
                 if (userInt == 0) {
                     genderView.setText("Male");
-                    DataManager.dataManager.getProfile().setGender("Male");
+                    Singleton.instance.getProfile().setGender("Male");
                 }
 
                 if (userInt == 1) {
                     genderView.setText("Female");
-                    DataManager.dataManager.getProfile().setGender("Female");
+                    Singleton.instance.getProfile().setGender("Female");
                 }
             }
 
             if (requestCode == CHANGE_HEIGHT) {
-                heightView.setText(userString);
-                DataManager.dataManager.getProfile().setHeight(userString);
+                heightView.setText(Integer.toString(userInt));
+                Singleton.instance.getProfile().setHeight(userString);
 
             }
 
             if (requestCode == CHANGE_WEIGHT) {
-                weightView.setText(userString);
-                DataManager.dataManager.getProfile().setWeight(userString);
+                weightView.setText(Integer.toString(userInt));
+                Singleton.instance.getProfile().setWeight(userString);
             }
+
+            Singleton.instance.dbManager.saveProfile(Singleton.instance.getProfile());
         }
     }
 

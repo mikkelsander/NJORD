@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
-import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
@@ -31,7 +30,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Singleton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // Controller references
     private SharedPreferences prefs;
-    DataManager data = DataManager.dataManager;
+    Singleton data = Singleton.instance;
 
 
     @Override
@@ -425,7 +424,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
 
             // A new Profile is created
-            DataManager.dataManager.createProfile(email, password);
+            Singleton.instance.createProfile(email, password);
             prefs.edit().putBoolean("isLoggedIn", true).commit();
             // TODO: register the new profile online
             return true;

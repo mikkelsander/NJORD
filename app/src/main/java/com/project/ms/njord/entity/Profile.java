@@ -1,6 +1,9 @@
 package com.project.ms.njord.entity;
 
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 
 /**
@@ -11,42 +14,36 @@ public class Profile extends Observable {
 
     private String email = "";
     private String password = "";
-    private String name = "Name";
+    private String name = "Guest";
     private String birthday = "";
     private String gender = "";
     private String height = "";
     private String weight = "";
+    private ArrayList<TestResult> testResults = new ArrayList<>();
 
     public Profile() {
-
+        // Required empty constructor
     };
-
 
     public Profile(String email, String password){
         this.email=email;
         this.password=password;
+        this.name = "";
     }
 
-    public Profile(String name, String email, String password, String birthday, String gender, String height, String weight) {
-        this.name = name;
+    public Profile(String email, String password, String name, String birthday, String gender,
+                   String height, String weight, ArrayList<TestResult> testResults) {
         this.email = email;
         this.password = password;
+        this.name = name;
         this.birthday = birthday;
         this.height = height;
         this.weight = weight;
         this.gender = gender;
+        this.testResults = testResults;
     }
 
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-        setChanged();
-        notifyObservers();
-    }
 
     public String getEmail() {
         return email;
@@ -64,6 +61,16 @@ public class Profile extends Observable {
 
     public void setPassword(String password) {
         this.password = password;
+        setChanged();
+        notifyObservers();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
         setChanged();
         notifyObservers();
     }
@@ -107,6 +114,15 @@ public class Profile extends Observable {
         setChanged();
         notifyObservers();
 
+    }
+
+    public ArrayList<TestResult> getTestResults() {
+        return testResults;
+    }
+
+    public void createTetsResult(Date date, int insp, int exp){
+        TestResult result = new TestResult(date, insp, exp);
+        testResults.add(result);
     }
 
 }

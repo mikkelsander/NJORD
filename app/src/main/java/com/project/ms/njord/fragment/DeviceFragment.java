@@ -55,6 +55,8 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+
+
     private void searchForDevice() {
         // TODO: Search for at new device over bluetooth
         pressentUserWithDviceChoices();

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.dialogFragments.DateRequestDialog;
-import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Singleton;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener,
         AdapterView.OnItemSelectedListener {
@@ -99,11 +99,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     private void attemptConfirm() {
         // TODO: save all user input
         if (userInputValid()) {
-            DataManager.dataManager.getProfile().setName(nameView.getText().toString());
-            DataManager.dataManager.getProfile().setBirthday(birthdayView.getText().toString());
-            DataManager.dataManager.getProfile().setGender(gender);
-            DataManager.dataManager.getProfile().setHeight(heigtView.getText().toString());
-            DataManager.dataManager.getProfile().setWeight(weigthView.getText().toString());
+            Singleton.instance.getProfile().setName(nameView.getText().toString());
+            Singleton.instance.getProfile().setBirthday(birthdayView.getText().toString());
+            Singleton.instance.getProfile().setGender(gender);
+            Singleton.instance.getProfile().setHeight(heigtView.getText().toString());
+            Singleton.instance.getProfile().setWeight(weigthView.getText().toString());
 
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);

@@ -11,49 +11,34 @@ import com.google.firebase.database.ValueEventListener;
 
 public class DatabaseManager {
 
+    final private String TAG = "DatabaseManager";
 
-    private FirebaseDatabase databaseInstance = FirebaseDatabase.getInstance();
-    private DatabaseReference profileDatabase = databaseInstance.getReference("Profiles");
+    private FirebaseDatabase databaseInstance;
+    private DatabaseReference profileDatabase, database;
     private String profileId;
+    private String dataId;
 
-
-
-
-    public void startDatabase() {
-
-        Profile profile = new Profile("", "");
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-        DatabaseReference myRef = database.getReference("Users");
-
-        // Creating new user node, which returns the unique key value
-        // new user node would be /users/$userid/
-        String userID = myRef.push().getKey();
-
-        myRef.child(userID).setValue(Profile.class);
-        
-
-        // Read from the database
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                DataManager value = dataSnapshot.getValue(DataManager.class);
-                Log.d("database", "Value is: " + value);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                // Failed to read value
-                Log.w("database", "Failed to read value.", error.toException());
-            }
-        });
-
+    public DatabaseManager() {
+        databaseInstance = FirebaseDatabase.getInstance();
+        profileDatabase = databaseInstance.getReference("Profiles");
+        database = databaseInstance.getReference("Singleton");
     }
 
-    public void createProfile(Profile profile) {
+/*
+    public void saveDataTree (Singleton dataManager) {
+
+        if (TextUtils.isEmpty(dataId)) {
+
+            dataId = database.push().getKey();
+        }
+
+        database.child(dataId).setValue(dataManager);
+
+    }*/
+
+
+
+    public void saveProfile(Profile profile) {
 
         if (TextUtils.isEmpty(profileId)) {
 
@@ -63,6 +48,36 @@ public class DatabaseManager {
         profileDatabase.child(profileId).setValue(profile);
 
     }
+
+
+    public void setProfileChangeListener() {
+        // User data change listener
+        profileDatabase.child(profileId).addValueEventListener(new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Profile newProfile = dataSnapshot.getValue(Profile.class);
+
+                // Check for null
+                if (newProfile == null) {
+                    Log.d(TAG, "Profile data is null!");
+                    return;
+                }
+
+                Singleton.instance.profile = newProfile;
+
+                Log.d(TAG, "Profile data is changed!");
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.e(TAG, "Failed to read user", error.toException());
+            }
+        });
+    }
+
 
     private void updateProfile(Profile profile) {
         // updating the user via child nodes

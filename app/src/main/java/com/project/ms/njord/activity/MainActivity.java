@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.ms.njord.R;
-import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
@@ -58,9 +58,6 @@ public class MainActivity extends AppCompatActivity
         fragmentTransaction.replace(R.id.fragment_container, new HomeFragment());
         fragmentTransaction.commit();
 
-
-        setTitle("Home");
-
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("");
 
@@ -79,10 +76,17 @@ public class MainActivity extends AppCompatActivity
         // Setting the user name in the navigation drawer
         View headerView = navigationView.getHeaderView(0);
         TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
-        menuUserName.setText(DataManager.dataManager.getProfile().getName());
 
+
+        if (!(Singleton.instance.getProfile() == null)){
+            menuUserName.setText(Singleton.instance.getProfile().getName());
+            Singleton.instance.getProfile().addObserver(this);
+        }
+        else {
+            menuUserName.setText("Guest");
+        }
         // Adding activity as obser to profile
-        DataManager.dataManager.getProfile().addObserver(this);
+
     }
 
     @Override
@@ -168,6 +172,6 @@ public class MainActivity extends AppCompatActivity
         // Updates the user name in the navigation drawer when changed
         View headerView = navigationView.getHeaderView(0);
         TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
-        menuUserName.setText(DataManager.dataManager.getProfile().getName());
+        menuUserName.setText(Singleton.instance.getProfile().getName());
     }
 }

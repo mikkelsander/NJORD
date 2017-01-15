@@ -5,8 +5,9 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 
-import com.project.ms.njord.entity.DataManager;
+import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.entity.DatabaseManager;
 
 /**
@@ -22,10 +23,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        DataManager.init();
+        Singleton.init();
 
-        DatabaseManager databaseManager = new DatabaseManager();
-        databaseManager.startDatabase();
+        DatabaseManager dbManager = new DatabaseManager();
+
+
+        // DatabaseManager dbManager = Singleton.instance.getDataBaseManager();
 
         // Launches login activity if not logged in
         if( !prefs.getBoolean("isLoggedIn", false) ){
@@ -37,7 +40,5 @@ public class SplashActivity extends AppCompatActivity {
             startActivity(i);
             finish();
         }
-
-
     }
 }
