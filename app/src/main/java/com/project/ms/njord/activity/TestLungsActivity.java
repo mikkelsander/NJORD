@@ -1,34 +1,19 @@
 package com.project.ms.njord.activity;
 
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.TextView;
-
 import com.github.mikephil.charting.charts.LineChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
 import com.project.ms.njord.R;
-import com.project.ms.njord.entity.DataManager;
-import com.project.ms.njord.fragment.LineChartFragment;
 import com.project.ms.njord.fragment.ManometerFragment;
-import com.project.ms.njord.fragment.ObserverTestFragment;
-import com.project.ms.njord.simulator.DataSimulator;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
-public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener, Observer {
+public class TestLungsActivity extends AppCompatActivity implements View.OnClickListener {
 
     //UI references
     private Button doneBtn, startBtn;
@@ -38,8 +23,6 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     LineData lineData;
     LineDataSet set;
     ManometerFragment mano;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,13 +54,5 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         if (v == startBtn) {
             mano.StartReading(true);
         }
-    }
-
-
-
-
-    @Override
-    public void update(Observable o, Object arg) {
-
     }
 }

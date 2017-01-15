@@ -3,6 +3,7 @@ package com.project.ms.njord.entity;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Observable;
 
 /**
@@ -120,8 +121,9 @@ public class Profile extends Observable {
         return testResults;
     }
 
-    public void createTetsResult(){
-        // TODO: lav nyt test resultat til hver test session
+    public void createTetsResult(Date date, int insp, int exp){
+        TestResult result = new TestResult(date, insp, exp);
+        testResults.add(result);
     }
 
 }
