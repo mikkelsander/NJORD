@@ -6,6 +6,8 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import com.project.ms.njord.R;
@@ -20,13 +22,17 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class AlarmListener extends BroadcastReceiver {
 
     private NotificationManager notificationManager = null;
+    SharedPreferences sharedPref;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
+
         notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+
 
         Notification notification = new Notification.Builder(context)
                 .setContentTitle("Så er det tid til at blæse!")
