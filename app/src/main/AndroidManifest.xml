@@ -28,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.TestLungsActivity" />
-        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".fragment.SignUpFragment" />
         <activity android:name=".activity.ResultsActivity" />
         <activity
             android:name=".activity.LoginActivity"

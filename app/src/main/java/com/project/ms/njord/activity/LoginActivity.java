@@ -31,6 +31,7 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.Singleton;
+import com.project.ms.njord.fragment.SignUpFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private View loginFormView;
     private Button loginButton;
     private Button signUpButton;
-
     // Controller references
     private SharedPreferences prefs;
     Singleton data = Singleton.instance;
@@ -436,8 +436,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             showProgress(false);
 
           if (success) {
-              Intent i = new Intent(getApplicationContext(), SignUpActivity.class);
-              startActivity(i);
+
+              android.support.v4.app.FragmentTransaction fragmentTransaction =
+                      getSupportFragmentManager().beginTransaction();
+              fragmentTransaction.replace(R.id.login_frameLayout, new SignUpFragment());
+              fragmentTransaction.addToBackStack(null);
+              fragmentTransaction.commit();
+
               signUpTask = null;
 
             } else {
