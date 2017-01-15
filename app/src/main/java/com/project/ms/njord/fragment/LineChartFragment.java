@@ -90,11 +90,12 @@ public class LineChartFragment extends Fragment implements View.OnClickListener 
         yAxis2.setAxisMinimum(0);
         yAxis2.setAxisMaximum(1000);
 
-
+        /*
         startButton = (Button) getActivity().findViewById(R.id.testLungs_start_button);
         startButton.setOnClickListener(this);
         doneButton = (Button) getActivity().findViewById(R.id.testLungs_done_button);
         doneButton.setOnClickListener(this);
+        */
 
         return v;
     }
