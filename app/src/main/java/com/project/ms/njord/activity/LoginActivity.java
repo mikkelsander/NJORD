@@ -67,15 +67,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     // Controller references
     private SharedPreferences prefs;
-    Singleton data = Singleton.instance;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initializing controller objects
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
