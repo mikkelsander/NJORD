@@ -96,9 +96,6 @@ public class ProgressFragment extends Fragment {
       //  date.setText(Singleton.instance.getTestResult().getDate());
        // date.setText(TestResult.);
 
-        title = (TextView) rootView.findViewById(R.id.progress_title_textview);
-
-        average = (TextView) rootView.findViewById(R.id.progress_average_textview);
 
         return rootView;
 
