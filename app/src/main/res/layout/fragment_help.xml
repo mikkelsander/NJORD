@@ -6,26 +6,300 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-
-        <TextView
-            android:text="TextView"
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/fragment_help_info" />
+            android:layout_height="wrap_content">
 
-        <Button
-            android:text=""
-            android:background="@mipmap/ic_youtube"
-            android:layout_width="120dp"
-            android:layout_height="90dp"
-            android:id="@+id/fragment_help_watch" />
 
-    </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit training Athletics"
+                        android:id="@+id/help_title_textview" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView" />
+
+            </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube1"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout2"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit training Asthma and COPD"
+                        android:id="@+id/help_title_textview2" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView2" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube2"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout3"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit training de stressing"
+                        android:id="@+id/help_title_textview3" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView3" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube3"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch3" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout4"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit is for Athletics"
+                        android:id="@+id/help_title_textview4" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView4" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube41"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout5"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit"
+                        android:id="@+id/help_title_textview5" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView5" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch5" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout6"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit"
+                        android:id="@+id/help_title_textview6" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView6" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch6" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout7"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit"
+                        android:id="@+id/help_title_textview7" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView7" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch7" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:clickable="true"
+                android:elevation="4dp"
+                android:id="@+id/help_youtube_layout8"
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:layout_margin="2dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/youtubeTitle"
+                        android:text="Aerofit"
+                        android:id="@+id/help_title_textview8" />
+
+                    <TextView
+                        style="@style/youtubeDescription"
+                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:id="@+id/help_description_textView8" />
+
+                </LinearLayout>
+
+                <Button
+                    android:text=""
+                    android:background="@mipmap/ic_youtube"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_weight="1"
+                    android:id="@+id/help_watch8" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+    </ScrollView>
 
 
 </FrameLayout>

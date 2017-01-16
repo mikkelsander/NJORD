@@ -79,4 +79,18 @@
     </string>
     <string name="title_activity_maps">Map</string>
     <string name="title_activity_database_manager">DatabaseManager</string>
+
+    <!-- Strings related to Youtube Videos -->
+    <string name="Youtube_1">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_2">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_3">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_4">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_5">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_6">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_7">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+    <string name="Youtube_8">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
+
+
+
+
 </resources>
