@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.TestLungsActivity;
 import com.project.ms.njord.simulator.DataSimulator;
