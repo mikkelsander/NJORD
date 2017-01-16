@@ -3,6 +3,7 @@ package com.project.ms.njord.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -13,6 +14,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
     Button doneBtn;
     TextView inhale, exhale;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,15 +22,18 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_results);
         getSupportActionBar().setTitle("Results");
 
+        bundle = getIntent().getExtras();
+
         doneBtn = (Button) findViewById(R.id.activity_results_doneBtn);
         doneBtn.setOnClickListener(this);
 
         inhale = (TextView) findViewById(R.id.activity_results_inhale_avg);
-        inhale.setText("Inhale: 54!");
-
+        Log.d("inhale",Integer.toString(bundle.getInt("inhale")));
+        inhale.setText(Integer.toString(bundle.getInt("inhale")));
 
         exhale = (TextView) findViewById(R.id.activity_results_exhale_avg);
-        exhale.setText("Exhale: 65!");
+
+        exhale.setText(Integer.toString(bundle.getInt("exhale")));
 
     }
 
