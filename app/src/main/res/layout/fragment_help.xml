@@ -13,7 +13,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp">
 
 
 
@@ -52,6 +53,11 @@
                     android:id="@+id/help_watch1" />
             </LinearLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
+
             <LinearLayout
                 android:clickable="true"
                 android:elevation="4dp"
@@ -86,6 +92,12 @@
                     android:layout_weight="1"
                     android:id="@+id/help_watch2" />
             </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
+
 
             <LinearLayout
                 android:clickable="true"
@@ -122,6 +134,11 @@
                     android:id="@+id/help_watch3" />
             </LinearLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
+
             <LinearLayout
                 android:clickable="true"
                 android:elevation="4dp"
@@ -156,6 +173,11 @@
                     android:layout_weight="1"
                     android:id="@+id/help_watch4" />
             </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
 
             <LinearLayout
                 android:clickable="true"
@@ -192,6 +214,11 @@
                     android:id="@+id/help_watch5" />
             </LinearLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
+
             <LinearLayout
                 android:clickable="true"
                 android:elevation="4dp"
@@ -227,6 +254,11 @@
                     android:id="@+id/help_watch6" />
             </LinearLayout>
 
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
+
             <LinearLayout
                 android:clickable="true"
                 android:elevation="4dp"
@@ -261,6 +293,11 @@
                     android:layout_weight="1"
                     android:id="@+id/help_watch7" />
             </LinearLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#FFFFFFFF" />
 
             <LinearLayout
                 android:clickable="true"
