@@ -27,6 +27,10 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     TextView notificationIntervalResult;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
+    Integer initialSeekBarChoice = 1;
+    String seekBarChoiceTextCandidate0 = "Hver dag";
+    String seekBarChoiceTextCandidate1 = "To gange om dagen";
+    String seekBarChoiceTextCandidate2 = "Hvert minut";
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -51,9 +55,12 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         seekBarNotification.setOnSeekBarChangeListener(this);
 
         //Set initial values
-        if (!switchNotification.isChecked()) {
+        if (!sharedPref.getBoolean("switchNotificationOn", false)) {
             switchAllOff();
         }
+        seekBarNotification.setProgress(sharedPref.getInt("seekBarChoice", 50));
+        notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
+
 
         //End of OnCreateView
         return v;
@@ -82,13 +89,13 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     public void switchOn(CompoundButton buttonView) {
         switch (buttonView.getId()) {
             case R.id.switchNotification:
-                editor.putInt("switchNotification", 1).commit();
+                editor.putBoolean("switchNotificationOn", true).commit();
                 break;
             case R.id.switchSound:
-                editor.putInt("switchSound", 1).commit();
+                editor.putBoolean("switchSoundOn", true).commit();
                 break;
             case R.id.switchVibration:
-                editor.putInt("switchVibration", 1).commit();
+                editor.putBoolean("switchVibrationOn", true).commit();
                 break;
         }
     }
@@ -96,13 +103,13 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     public void switchOff(CompoundButton buttonView) {
         switch (buttonView.getId()) {
             case R.id.switchNotification:
-                editor.putInt("switchNotification", 0).commit();
+                editor.putBoolean("switchNotificationOn", false).commit();
                 break;
             case R.id.switchSound:
-                editor.putInt("switchSound", 0).commit();
+                editor.putBoolean("switchSoundOn", false).commit();
                 break;
             case R.id.switchVibration:
-                editor.putInt("switchVibration", 0).commit();
+                editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
     }
@@ -131,7 +138,8 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         notificationIntervalResult.setText(String.valueOf(progress));
-        int seekBarChoice = 1;
+        int seekBarChoice = sharedPref.getInt("seekBarChoice", initialSeekBarChoice);
+        String seekBarChoiceText = "";
 
         if (progress > 0 && progress < 33) {
             seekBarChoice = 0;
@@ -143,16 +151,23 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         }
         switch (seekBarChoice) {
             case 0:
-                notificationIntervalResult.setText("Hver dag");
+                seekBarChoiceText = seekBarChoiceTextCandidate0;
                 break;
             case 1:
-                notificationIntervalResult.setText("To gange om dagen");
+                seekBarChoiceText = seekBarChoiceTextCandidate1;
                 break;
             case 2:
-                notificationIntervalResult.setText("Hvert minut");
+                seekBarChoiceText = seekBarChoiceTextCandidate2;
                 break;
         }
+        notificationIntervalResult.setText(seekBarChoiceText);
+        seekBarSaver(progress, seekBarChoiceText);
+    }
 
+    public void seekBarSaver(Integer progress, String seekBarChoiceText) {
+        editor.putInt("seekBarChoice", progress)
+                .putString("notificationIntervalResult", seekBarChoiceText)
+                .commit();
     }
 
     @Override

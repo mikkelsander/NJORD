@@ -46,10 +46,10 @@ public class AlarmListener extends BroadcastReceiver {
                 .setOnlyAlertOnce(true);
 
         //Add relevent user preferences
-        if (sharedPref.getInt("switchSound",1234)==1) {
+        if (sharedPref.getBoolean("switchSoundOn", false)) {
             notificationBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
         }
-        if (sharedPref.getInt("switchVibration",1234)==1) {
+        if (sharedPref.getBoolean("switchVibrationOn", false)) {
             notificationBuilder.setVibrate(new long[]{1000L, 500L, 1000L, 500L, 1000L});
         }
 
