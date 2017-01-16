@@ -3,6 +3,7 @@
     package="com.project.ms.njord">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
@@ -11,7 +12,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <application
         android:allowBackup="true"
@@ -30,11 +31,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".activity.TestLungsActivity" />
         <activity android:name=".activity.ResultsActivity" />
+
         <activity
             android:name=".activity.LoginActivity"
-            android:label="@string/title_activity_login" />
+            android:label="@string/title_activity_login" >
+        </activity>
+
+        <activity android:name=".BLE.DeviceControlActivity"/>
+        <activity android:name=".BLE.DeviceScanActivity"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
