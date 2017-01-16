@@ -51,7 +51,6 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         seekBarNotification.setOnSeekBarChangeListener(this);
 
         //Set initial values
-        notificationIntervalResult.setText("");
         if (!switchNotification.isChecked()) {
             switchAllOff();
         }
@@ -111,6 +110,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     public void switchAllOn() {
         switchSound.setEnabled(true);
         switchVibration.setEnabled(true);
+        switchNotification.setChecked(true);
         switchSound.setChecked(true);
         switchVibration.setChecked(true);
         switchOn(switchNotification);
@@ -131,6 +131,27 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         notificationIntervalResult.setText(String.valueOf(progress));
+        int seekBarChoice = 1;
+
+        if (progress > 0 && progress < 33) {
+            seekBarChoice = 0;
+        } else if (progress > 33 && progress < 66) {
+            seekBarChoice = 1;
+        } else {
+            seekBarChoice = 2;
+
+        }
+        switch (seekBarChoice) {
+            case 0:
+                notificationIntervalResult.setText("Hver dag");
+                break;
+            case 1:
+                notificationIntervalResult.setText("To gange om dagen");
+                break;
+            case 2:
+                notificationIntervalResult.setText("Hvert minut");
+                break;
+        }
 
     }
 

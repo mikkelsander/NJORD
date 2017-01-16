@@ -58,7 +58,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    //Generates Dialog asking for Push notification permission
+    //Generates Dialog asking for Push notification permission. If given all permissions are switched on with standard prefs.
     public void showNotificationAlertDialog() {
         editor.putBoolean("firstRun", false).commit();
         new AlertDialog.Builder(this)
@@ -69,6 +69,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+//                        SettingsFragment.switchAllOn();
                         showConfirmNotificationAlertDialog();
                     }
                 }).setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
