@@ -5,10 +5,10 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.entity.DatabaseManager;
+import com.project.ms.njord.fragment.LoginFragment;
 
 /**
  * This is the first activity that is started
