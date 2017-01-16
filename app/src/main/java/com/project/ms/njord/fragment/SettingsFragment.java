@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.MainActivity;
+import com.project.ms.njord.notifications.AlarmStart;
 
 public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
@@ -27,7 +28,6 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     TextView notificationIntervalResult;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-    Integer initialSeekBarChoice = 1;
     String seekBarChoiceTextCandidate0 = "Hver dag";
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
     String seekBarChoiceTextCandidate2 = "Hvert minut";
@@ -52,15 +52,20 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
 
         //Set listeners
         switchNotification.setOnCheckedChangeListener(this);
+        switchSound.setOnCheckedChangeListener(this);
+        switchVibration.setOnCheckedChangeListener(this);
         seekBarNotification.setOnSeekBarChangeListener(this);
 
         //Set initial values
-        if (!sharedPref.getBoolean("switchNotificationOn", false)) {
-            switchAllOff();
-        }
+        switchNotification.setChecked(sharedPref.getBoolean("switchNotificationOn", false));
+        switchSound.setChecked(sharedPref.getBoolean("switchSoundOn", false));
+        switchVibration.setChecked(sharedPref.getBoolean("switchVibrationOn", false));
         seekBarNotification.setProgress(sharedPref.getInt("seekBarChoice", 50));
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
-
+        if (!sharedPref.getBoolean("switchNotificationOn", false)) {
+            switchOff(switchNotification);
+            AlarmStart.startAlarm(getContext());
+        }
 
         //End of OnCreateView
         return v;
@@ -69,24 +74,15 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
-        if (buttonView.getId() == switchNotification.getId()) {
-
-            if (buttonView.isChecked()) {
-                switchAllOn();
-            } else {
-                switchAllOff();
-            }
-
+        if (buttonView.isChecked()) {
+            switchOn(buttonView);
         } else {
-            if (buttonView.isChecked()) {
-                switchOn(buttonView);
-            } else {
-                switchOff(buttonView);
-            }
+            switchOff(buttonView);
         }
     }
 
     public void switchOn(CompoundButton buttonView) {
+        buttonView.setChecked(true);
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", true).commit();
@@ -97,10 +93,19 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
             case R.id.switchVibration:
                 editor.putBoolean("switchVibrationOn", true).commit();
                 break;
+
         }
+        if (buttonView.getId() == switchNotification.getId()) {
+            switchOn(switchSound);
+            switchOn(switchVibration);
+            switchEnable(switchSound);
+            switchEnable(switchVibration);
+        }
+        callAlarmStarter();
     }
 
     public void switchOff(CompoundButton buttonView) {
+        buttonView.setChecked(false);
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
@@ -112,33 +117,27 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
+        if (buttonView.getId() == switchNotification.getId()) {
+            switchOff(switchSound);
+            switchOff(switchVibration);
+            switchDisable(switchSound);
+            switchDisable(switchVibration);
+        }
+        callAlarmStarter();
     }
 
-    public void switchAllOn() {
-        switchSound.setEnabled(true);
-        switchVibration.setEnabled(true);
-        switchNotification.setChecked(true);
-        switchSound.setChecked(true);
-        switchVibration.setChecked(true);
-        switchOn(switchNotification);
-        switchOn(switchSound);
-        switchOn(switchVibration);
+    public void switchEnable(CompoundButton buttonView) {
+        buttonView.setEnabled(true);
     }
 
-    public void switchAllOff() {
-        switchSound.setChecked(false);
-        switchVibration.setChecked(false);
-        switchSound.setEnabled(false);
-        switchVibration.setEnabled(false);
-        switchOff(switchNotification);
-        switchOff(switchSound);
-        switchOff(switchVibration);
+    public void switchDisable(CompoundButton buttonView) {
+        buttonView.setEnabled(false);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         notificationIntervalResult.setText(String.valueOf(progress));
-        int seekBarChoice = sharedPref.getInt("seekBarChoice", initialSeekBarChoice);
+        int seekBarChoice = 1;
         String seekBarChoiceText = "";
 
         if (progress > 0 && progress < 33) {
@@ -168,6 +167,11 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         editor.putInt("seekBarChoice", progress)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
+        callAlarmStarter();
+    }
+
+    public void callAlarmStarter() {
+        AlarmStart.startAlarm(getContext());
     }
 
     @Override
