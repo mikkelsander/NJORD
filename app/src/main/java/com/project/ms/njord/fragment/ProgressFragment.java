@@ -13,6 +13,8 @@ import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 import com.project.ms.njord.R;
+import com.project.ms.njord.entity.Singleton;
+import com.project.ms.njord.entity.TestResult;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,8 @@ public class ProgressFragment extends Fragment {
     ArrayList<String> data = new ArrayList<String>();
     TextView date, title, average;
 
+    ArrayList<TestResult> results = Singleton.instance.getProfile().getTestResults();
+
     public ProgressFragment() {
 
     }
@@ -34,26 +38,24 @@ public class ProgressFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_progress, container, false);
 
-//lav array som indeholder tryk og dato
         GraphView graph = (GraphView) rootView.findViewById(R.id.fragment_progress_graph);
 
-        LineGraphSeries<DataPoint> inhale = new LineGraphSeries<>(new DataPoint[]{
-                new DataPoint(0, 1),
-                new DataPoint(1, 5),
-                new DataPoint(2, 3),
-        });
-
+        //lav array som indeholder tryk og dato
+        DataPoint[] dataInhale = new DataPoint[results.size()];
+        for (int i = 0; i < results.size(); i++) {
+            dataInhale[i] = new DataPoint(i, results.get(i).getInhaleLevel());
+        }
+        LineGraphSeries<DataPoint> inhale = new LineGraphSeries<>(dataInhale);
         graph.addSeries(inhale);
 
-        LineGraphSeries<DataPoint> exhale = new LineGraphSeries<>(new DataPoint[]{
-
-                new DataPoint(0, 3),
-                new DataPoint(1, 4),
-                new DataPoint(2, 2),
-
-        });
-
+        DataPoint[] dataExhale = new DataPoint[results.size()];
+        for (int i = 0; i < results.size(); i++) {
+            dataExhale[i] = new DataPoint(i, results.get(i).getInhaleLevel());
+        }
+        LineGraphSeries<DataPoint> exhale = new LineGraphSeries<>(dataExhale);
         graph.addSeries(exhale);
+
+
 
     /*            series.setOnDataPointTapListener(new OnDataPointTapListener() {
             @Override
@@ -80,7 +82,6 @@ public class ProgressFragment extends Fragment {
         graph.getViewport().setScalableY(true);
         graph.getViewport().setScrollableY(true);
 
-
         // set manual X bounds
         graph.getViewport().setXAxisBoundsManual(false);
         graph.getViewport().setMinX(0);
@@ -95,19 +96,9 @@ public class ProgressFragment extends Fragment {
       //  date.setText(Singleton.instance.getTestResult().getDate());
        // date.setText(TestResult.);
 
-        title = (TextView) rootView.findViewById(R.id.progress_title_textview);
-
-        average = (TextView) rootView.findViewById(R.id.progress_average_textview);
 
         return rootView;
 
-    }
-
-    private void replaceFragment(Fragment someFragment) {
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
-        transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-        transaction.commit();
     }
 
     @Override
