@@ -38,6 +38,8 @@ import android.widget.ListAdapter;
 import android.widget.SimpleExpandableListAdapter;
 import android.widget.TextView;
 
+import com.project.ms.njord.R;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -135,18 +137,18 @@ public class DeviceControlActivity extends Activity {
                         if ((charaProp | BluetoothGattCharacteristic.PROPERTY_READ) > 0) {
                             // If there is an active notification on a characteristic, clear
                             // it first so it doesn't update the data field on the user interface.
-                            if (mNotifyCharacteristic != null) {
-                                mBluetoothLeService.setCharacteristicNotification(
-                                        mNotifyCharacteristic, false);
-                                mNotifyCharacteristic = null;
-                            }
+//                            if (mNotifyCharacteristic != null) {
+//                                mBluetoothLeService.setCharacteristicNotification(
+//                                        mNotifyCharacteristic, false);
+//                                mNotifyCharacteristic = null;
+//                            }
                             mBluetoothLeService.readCharacteristic(characteristic);
                         }
-                        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
-                            mNotifyCharacteristic = characteristic;
-                            mBluetoothLeService.setCharacteristicNotification(
-                                    characteristic, true);
-                        }
+//                        if ((charaProp | BluetoothGattCharacteristic.PROPERTY_NOTIFY) > 0) {
+//                            mNotifyCharacteristic = characteristic;
+//                            mBluetoothLeService.setCharacteristicNotification(
+//                                    characteristic, true);
+//                        }
                         return true;
                     }
                     return false;
@@ -155,7 +157,7 @@ public class DeviceControlActivity extends Activity {
 
     private void clearUI() {
         mGattServicesList.setAdapter((SimpleExpandableListAdapter) null);
-        mDataField.setText(R.string.no_data);
+        mDataField.setText("no data");
     }
 
     @Override
@@ -252,18 +254,24 @@ public class DeviceControlActivity extends Activity {
     // on the UI.
     private void displayGattServices(List<BluetoothGattService> gattServices) {
         if (gattServices == null) return;
+
         String uuid = null;
-        String unknownServiceString = getResources().getString(R.string.unknown_service);
-        String unknownCharaString = getResources().getString(R.string.unknown_characteristic);
+        String unknownServiceString = "unknown service";
+        String unknownCharaString = "unknown characteristic";
+
         ArrayList<HashMap<String, String>> gattServiceData = new ArrayList<HashMap<String, String>>();
+
         ArrayList<ArrayList<HashMap<String, String>>> gattCharacteristicData
                 = new ArrayList<ArrayList<HashMap<String, String>>>();
+
         mGattCharacteristics = new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
 
         // Loops through available GATT Services.
         for (BluetoothGattService gattService : gattServices) {
             HashMap<String, String> currentServiceData = new HashMap<String, String>();
+
             uuid = gattService.getUuid().toString();
+
             currentServiceData.put(
                     LIST_NAME, SampleGattAttributes.lookup(uuid, unknownServiceString));
             currentServiceData.put(LIST_UUID, uuid);

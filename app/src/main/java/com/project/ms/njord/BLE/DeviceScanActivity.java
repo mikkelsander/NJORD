@@ -42,6 +42,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.project.ms.njord.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,13 +64,13 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActionBar().setTitle(R.string.title_devices);
+        getActionBar().setTitle("Available devices");
         mHandler = new Handler();
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
         if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-            Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Bluetooth Low Energy not supporte", Toast.LENGTH_SHORT).show();
             finish();
         }
 
@@ -77,13 +79,6 @@ public class DeviceScanActivity extends ListActivity {
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
-
-        // Checks if Bluetooth is supported on the device.
-        if (mBluetoothAdapter == null) {
-            Toast.makeText(this, R.string.error_bluetooth_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
-            return;
-        }
 
         //get scanner
         mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
@@ -258,7 +253,7 @@ public class DeviceScanActivity extends ListActivity {
             if (deviceName != null && deviceName.length() > 0)
                 viewHolder.deviceName.setText(deviceName);
             else
-                viewHolder.deviceName.setText(R.string.unknown_device);
+                viewHolder.deviceName.setText("unknown device");
             viewHolder.deviceAddress.setText(device.getAddress());
 
             return view;
