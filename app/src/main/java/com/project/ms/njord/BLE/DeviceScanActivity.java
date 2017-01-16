@@ -67,12 +67,12 @@ public class DeviceScanActivity extends ListActivity {
     private ScanSettings mScanSettings;
     private boolean mScanning;
     private Handler mHandler;
-    private ArrayList<BluetoothDevice> deviceList;
-    private ListView deviceListView;
 
+    ///permission request
+    private static final int REQUEST_LOCATION_PERMISSION = 1;
 
-    private static final int REQUEST_LOCATION_PERMISSION = 0;
-    private static final int REQUEST_ENABLE_LOCATION = 2;
+    //enable requests
+    private static final int REQUEST_ENABLE_LOCATION = 1;
     private static final int REQUEST_ENABLE_BT = 2;
 
     // Stops scanning after 10 seconds.
@@ -91,6 +91,8 @@ public class DeviceScanActivity extends ListActivity {
             finish();
         }
 
+        // for android versions >= 6.0 you need to request for permissions at run time
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
             return;
@@ -98,8 +100,8 @@ public class DeviceScanActivity extends ListActivity {
 
 
 
-        // Initializes a Bluetooth adapter.  For API level 18 and above, get a reference to
-        // BluetoothAdapter through BluetoothManager.
+        // Initializes a Bluetooth adapter
+
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
@@ -107,7 +109,6 @@ public class DeviceScanActivity extends ListActivity {
         //get scanner
         mBluetoothLeScanner = mBluetoothAdapter.getBluetoothLeScanner();
 
-        //
         // uuidFilter = new ScanFilter.Builder().BLEscanner(new ParcelUuid(UUID.fromString("00001809-0000-1000-8000-00805f9b34fb"))).BLEscanner();
         //mScanFilters.add(uuidFilter);
         mScanSettings = new ScanSettings.Builder().build();
@@ -189,7 +190,15 @@ public class DeviceScanActivity extends ListActivity {
         // Initializes list view adapter.
         mLeDeviceListAdapter = new LeDeviceListAdapter();
         setListAdapter(mLeDeviceListAdapter);
-        scanLeDevice(true);
+
+        //start scanning when activity is in the foreground
+        try {
+            scanLeDevice(true);
+        }
+        catch(NullPointerException e) {
+            Toast.makeText(  this, "Sorry, couldn't initiate scanner, try again", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
     }
 
 
@@ -284,7 +293,7 @@ public class DeviceScanActivity extends ListActivity {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup) {
             ViewHolder viewHolder;
-            // General ListView optimization code.
+            // View Holder pattern
             if (view == null) {
                 view = mInflator.inflate(R.layout.listitem_device, null);
                 viewHolder = new ViewHolder();

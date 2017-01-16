@@ -40,7 +40,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         if (v == scanBtn){
             Intent i = new Intent(getActivity(), DeviceScanActivity.class);
             startActivity(i);
-            getActivity().finish();
 
         }
     }
