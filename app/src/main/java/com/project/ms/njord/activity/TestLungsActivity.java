@@ -1,5 +1,6 @@
 package com.project.ms.njord.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -30,11 +31,7 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_test_lungs);
         getSupportActionBar().setTitle("Test lungs");
 
-        startBtn = (Button) findViewById(R.id.testLungs_start_button);
-        startBtn.setOnClickListener(this);
 
-        doneBtn = (Button)findViewById(R.id.testLungs_done_button);
-        doneBtn.setOnClickListener(this);
 
         mano = new ManometerFragment();
 
@@ -47,9 +44,14 @@ public class TestLungsActivity extends AppCompatActivity implements View.OnClick
     public void onClick(View v) {
         // Save results and open results screen
         if (v == doneBtn) {
-            mano.saveResult();
-            //Intent i = new Intent(this, ResultsActivity.class);
-            //startActivity(i);
+            /*
+            android.support.v4.app.FragmentTransaction fragmentTransaction =
+                    getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(R.id.fragment_container, new ResultsFragment());
+            fragmentTransaction.commit();
+            */
+            Intent i = new Intent(this, ResultsActivity.class);
+            startActivity(i);
         }
         if (v == startBtn) {
             mano.StartReading(true);
