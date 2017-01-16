@@ -21,20 +21,21 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class AlarmListener extends BroadcastReceiver {
 
-    private NotificationManager notificationManager = null;
+    //Variables
+    NotificationManager notificationManager = null;
     SharedPreferences sharedPref;
+    PendingIntent pendingIntent;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        //Initialize variables
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-
         notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+        pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
-
-
-        Notification notification = new Notification.Builder(context)
+        //Build notification
+        Notification.Builder notificationBuilder = new Notification.Builder(context)
                 .setContentTitle("Så er det tid til at blæse!")
                 .setContentText("Blæs, mester, blæs!")
                 .setSmallIcon(R.drawable.ic_tv_dark)
@@ -42,11 +43,18 @@ public class AlarmListener extends BroadcastReceiver {
                 .setAutoCancel(true)
                 .setCategory(Notification.CATEGORY_ALARM)
                 .setContentIntent(pendingIntent)
-                .setOnlyAlertOnce(true)
-                .setVibrate(new long[]{1000L, 500L, 1000L, 500L, 1000L})
-                .setSound(Settings.System.DEFAULT_NOTIFICATION_URI)
-                .build();
+                .setOnlyAlertOnce(true);
 
+        //Add relevent user preferences
+        if (true) {
+            notificationBuilder.setSound(Settings.System.DEFAULT_NOTIFICATION_URI);
+        }
+        if (true) {
+            notificationBuilder.setVibrate(new long[]{1000L, 500L, 1000L, 500L, 1000L});
+        }
+
+        //Finalize build and notify via notification manager
+        Notification notification = notificationBuilder.build();
         notificationManager.notify(0, notification);
     }
 }

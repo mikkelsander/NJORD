@@ -7,14 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 import android.widget.Switch;
+import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.MainActivity;
 
-public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener {
+public class SettingsFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -22,7 +23,8 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     Switch switchNotification;
     Switch switchSound;
     Switch switchVibration;
-    Button b1;
+    SeekBar seekBarNotification;
+    TextView notificationIntervalResult;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
 
@@ -41,15 +43,20 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         switchNotification = (Switch) v.findViewById(R.id.switchNotification);
         switchSound = (Switch) v.findViewById(R.id.switchSound);
         switchVibration = (Switch) v.findViewById(R.id.switchVibration);
-        b1 = (Button) v.findViewById(R.id.button);
+        seekBarNotification = (SeekBar) v.findViewById(R.id.seekBarNotification);
+        notificationIntervalResult = (TextView) v.findViewById(R.id.notificationIntervalResult);
 
-        //check inital switch status
+        //Set listeners
+        switchNotification.setOnCheckedChangeListener(this);
+        seekBarNotification.setOnSeekBarChangeListener(this);
+
+        //Set initial values
+        notificationIntervalResult.setText("");
         if (!switchNotification.isChecked()) {
             switchAllOff();
         }
 
-        //Listeners
-        switchNotification.setOnCheckedChangeListener(this);
+        //End of OnCreateView
         return v;
     }
 
@@ -119,5 +126,21 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         switchOff(switchNotification);
         switchOff(switchSound);
         switchOff(switchVibration);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        notificationIntervalResult.setText(String.valueOf(progress));
+
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+
     }
 }
