@@ -37,7 +37,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.activity_sign_up, container, false);
+        View v = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
         // Initialize views
         nameView = (EditText) v.findViewById(R.id.signUp_name_editText);
@@ -51,6 +51,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         weightView.setOnFocusChangeListener(this);
         confirmButton = (Button) v.findViewById(R.id.signUp_confirm_button);
         confirmButton.setOnClickListener(this);
+
 
         return v;
 
@@ -109,7 +110,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         Bundle args = new Bundle();
-
         if (v == confirmButton){
             attemptConfirm();
         }
@@ -155,50 +155,58 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         Bundle args = new Bundle();
 
         if (v == birthdayView) {
-            DialogFragment dialog = new DateRequestDialog();
+            if(v.isFocused()) {
+                DialogFragment dialog = new DateRequestDialog();
 
-            args.putString("title", "birthday");
-            args.putString("message", "select birthday");
+                args.putString("title", "birthday");
+                args.putString("message", "select birthday");
 
-            dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
-            dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "date picker");
+                dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
+                dialog.setArguments(args);
+                dialog.show(getActivity().getSupportFragmentManager(), "date picker");
+            }
         }
 
         if(v == genderView) {
-            DialogFragment dialog = new NumberPickerDialog();
+            if(v.isFocused()) {
+                DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "gender");
-            args.putString("message", "select gender");
-            args.putInt("code", CHANGE_GENDER);
+                args.putString("title", "gender");
+                args.putString("message", "select gender");
+                args.putInt("code", CHANGE_GENDER);
 
-            dialog.setTargetFragment(this, CHANGE_GENDER);
-            dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "date dialog");
+                dialog.setTargetFragment(this, CHANGE_GENDER);
+                dialog.setArguments(args);
+                dialog.show(getActivity().getSupportFragmentManager(), "date dialog");
+            }
         }
 
         if (v == heightView) {
-            DialogFragment dialog = new NumberPickerDialog();
+            if(v.isFocused()) {
+                DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "height");
-            args.putString("message", "select height");
-            args.putInt("code", CHANGE_HEIGHT);
+                args.putString("title", "height");
+                args.putString("message", "select height");
+                args.putInt("code", CHANGE_HEIGHT);
 
-            dialog.setTargetFragment(this, CHANGE_HEIGHT);
-            dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "height dialog");
+                dialog.setTargetFragment(this, CHANGE_HEIGHT);
+                dialog.setArguments(args);
+                dialog.show(getActivity().getSupportFragmentManager(), "height dialog");
+            }
         }
 
         if (v == weightView) {
-            DialogFragment dialog = new NumberPickerDialog();
+            if(v.isFocused()) {
+                DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "weight");
-            args.putString("message", "select weight");
-            args.putInt("code", CHANGE_WEIGHT);
+                args.putString("title", "weight");
+                args.putString("message", "select weight");
+                args.putInt("code", CHANGE_WEIGHT);
 
-            dialog.setTargetFragment(this, CHANGE_WEIGHT);
-            dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "weight dialog");
+                dialog.setTargetFragment(this, CHANGE_WEIGHT);
+                dialog.setArguments(args);
+                dialog.show(getActivity().getSupportFragmentManager(), "weight dialog");
+            }
         }
 
     }
