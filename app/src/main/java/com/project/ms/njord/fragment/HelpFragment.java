@@ -18,8 +18,7 @@ import com.project.ms.njord.activity.YouTubeActivity;
  */
 public class HelpFragment extends Fragment implements View.OnClickListener {
 
-
-    Button watch;
+    Button watch1, watch2, watch3, watch4, watch5, watch6, watch7, watch8;
     TextView intro;
 
     public HelpFragment() {
@@ -33,20 +32,29 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_help, container, false);
 
 
-        intro = (TextView) v.findViewById(R.id.fragment_help_info);
-        intro.setText("Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde.\n" +
-                "\n" +
-                "Aerofit er et medicinsk udviklet personligt træningsudstyr, der hjælper sportsfolk, elite og motionsudøvere – både til vands og til lands, med at komme i bedre form og blive bedre til deres idræt. Aerofit virker ved at styrke åndedrætsmuskulaturen således at du får mere ilt til rådighed når du skal yde maximalt. Derved kan du arbejde hårdere og længere.\n" +
-                "\n" +
-                "Samtidig skaber Aerofit også succes for en lang række andre mennesker herunder musikere – sangere og alle typer blæsere samt ikke mindst skuespillere.\n" +
-                "\n" +
-                "Endelig har det vist sig at en række simple øvelser få minutter om dagen hjælper stressramte med at finde balancen igen, herunder få bedre søvn og højere livskvalitet.\n" +
-                "\n" +
-                "Lige nu træner en række af landets bedste idrætsudøvere med Aerofit træningssystem – med stor succes!\n" +
-                "\n");
+        watch1 = (Button) v.findViewById(R.id.help_watch1);
+        watch1.setOnClickListener(this);
 
-        watch = (Button) v.findViewById(R.id.fragment_help_watch);
-        watch.setOnClickListener(this);
+        watch2 = (Button) v.findViewById(R.id.help_watch2);
+        watch2.setOnClickListener(this);
+
+        watch3 = (Button) v.findViewById(R.id.help_watch3);
+        watch3.setOnClickListener(this);
+
+        watch4 = (Button) v.findViewById(R.id.help_watch4);
+        watch4.setOnClickListener(this);
+
+        watch5 = (Button) v.findViewById(R.id.help_watch5);
+        watch5.setOnClickListener(this);
+
+        watch6 = (Button) v.findViewById(R.id.help_watch6);
+        watch6.setOnClickListener(this);
+
+        watch7 = (Button) v.findViewById(R.id.help_watch7);
+        watch7.setOnClickListener(this);
+
+        watch8 = (Button) v.findViewById(R.id.help_watch8);
+        watch8.setOnClickListener(this);
 
         // Inflate the layout for this fragment
         return v;
@@ -54,7 +62,58 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        Intent i = new Intent(getActivity(),YouTubeActivity.class);
-        startActivity(i);
+
+        if (v == watch1) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "El69SuPPFa0");
+            startActivity(i);
+
+        } if (v == watch2) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "4htzPVbYH7U");
+            startActivity(i);
+
+        } if (v == watch3) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "39dlHXa77R0");
+            startActivity(i);
+
+        } if (v == watch4) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "El69SuPPFa0");
+            startActivity(i);
+
+        } if (v == watch5) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "F_pI1Zbz9ds");
+            startActivity(i);
+
+        }if (v == watch6) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "T8gxfAsxe3o");
+            startActivity(i);
+
+        } if (v == watch7) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "1cE5xgssJDY");
+            startActivity(i);
+
+        } if (v == watch8) {
+
+            Intent i = new Intent(getActivity(), YouTubeActivity.class);
+            i.putExtra("Address", "P85Pf0IDMog");
+            startActivity(i);
+        }
     }
+
+
+
+
 }

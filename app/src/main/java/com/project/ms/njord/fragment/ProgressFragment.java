@@ -49,7 +49,7 @@ public class ProgressFragment extends Fragment {
 
                 new DataPoint(0, 3),
                 new DataPoint(1, 4),
-                new DataPoint(1, 3),
+                new DataPoint(2, 2),
 
         });
 
@@ -69,7 +69,8 @@ public class ProgressFragment extends Fragment {
         graph.setTitle("");
 
         //highlights points
-        inhale.isDrawDataPoints();
+        inhale.setDrawDataPoints(true);
+        exhale.setDrawDataPoints(true);
 
         // activate horizontal zooming and scrolling
         graph.getViewport().setScalable(true);
