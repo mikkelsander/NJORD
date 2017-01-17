@@ -91,6 +91,7 @@
     <string name="Youtube_8">Aerofit is for Athletics. I know it, you know it - What are you waiting for?</string>
 
 
-
+    <string name="connected">Connected</string>
+    <string name="disconnected">Disconnected</string>
 
 </resources>

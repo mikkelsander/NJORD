@@ -37,7 +37,7 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
    // SensorManager sensorManager;
 
-    
+
     // UI references
     private Button scanBtn;
 
@@ -59,6 +59,17 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
         //deviceID = (TextView) v.findViewById(R.id.device);
 
+
+        if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+            Toast.makeText(getActivity(), "Bluetooth Low Energy not supported on this device", Toast.LENGTH_SHORT).show();
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+
+        }
+
+
         return v;
     }
 
@@ -69,16 +80,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
             if (isEmulator()) {
                 Toast.makeText(getActivity(), "Emulator detected. Can't run bluetooth", Toast.LENGTH_SHORT).show();
                 return;
-            }
-
-            if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-                Toast.makeText(getActivity(), "Bluetooth Low Energy not supported on this device", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-
             }
 
             else {

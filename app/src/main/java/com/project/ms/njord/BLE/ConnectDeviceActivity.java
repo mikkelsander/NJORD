@@ -27,6 +27,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -47,7 +48,7 @@ import java.util.List;
  * communicates with {@code BluetoothLeService}, which in turn interacts with the
  * Bluetooth LE API.
  */
-public class ConnectDeviceActivity extends Activity {
+public class ConnectDeviceActivity extends AppCompatActivity {
     private final static String TAG = ConnectDeviceActivity.class.getSimpleName();
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
@@ -72,13 +73,14 @@ public class ConnectDeviceActivity extends Activity {
 
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder service) {
+            Log.d("onServiceConnected", "im here");
             mBluetoothLeService = ((BluetoothLeService.LocalBinder) service).getService();
             if (!mBluetoothLeService.initialize()) {
                 Log.e(TAG, "Unable to initialize Bluetooth");
                 finish();
             }
             // Automatically connects to the device upon successful start-up initialization.
-            mBluetoothLeService.connect(mDeviceAddress);
+            // mBluetoothLeService.connect(mDeviceAddress);
         }
 
         @Override
@@ -102,21 +104,25 @@ public class ConnectDeviceActivity extends Activity {
             final String action = intent.getAction();
 
             if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+
                 mConnected = true;
                 updateConnectionState("Connected");
                 invalidateOptionsMenu();
 
             } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+
                 mConnected = false;
                 updateConnectionState("Disconnected");
                 invalidateOptionsMenu();
                 clearUI();
 
             } else if (BluetoothLeService.ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+
                 // Show all the supported services and characteristics on the user interface.
                 displayGattServices(mBluetoothLeService.getSupportedGattServices());
 
             } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+
                 displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
             }
         }
@@ -177,7 +183,6 @@ public class ConnectDeviceActivity extends Activity {
         mConnectionState = (TextView) findViewById(R.id.connection_state);
         mDataField = (TextView) findViewById(R.id.data_value);
 
-
         Intent gattServiceIntent = new Intent(this, BluetoothLeService.class);
         bindService(gattServiceIntent, mServiceConnection, BIND_AUTO_CREATE);
     }
@@ -186,6 +191,7 @@ public class ConnectDeviceActivity extends Activity {
     protected void onResume() {
         super.onResume();
         registerReceiver(mGattUpdateReceiver, makeGattUpdateIntentFilter());
+
         if (mBluetoothLeService != null) {
             final boolean result = mBluetoothLeService.connect(mDeviceAddress);
             Log.d(TAG, "Connect request result=" + result);
