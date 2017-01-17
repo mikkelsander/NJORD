@@ -7,7 +7,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
-import com.project.ms.njord.fragment.SettingsFragment;
+import com.project.ms.njord.fragments.RemindersFragment;
 
 /**
  * Created by simon on 15-01-2017.
@@ -16,14 +16,14 @@ import com.project.ms.njord.fragment.SettingsFragment;
 public class BootListener extends BroadcastReceiver {
     Context context;
     SharedPreferences sharedPreferences;
-    SettingsFragment settingsFragment;
+    RemindersFragment remindersFragment;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         this.context = context;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-        settingsFragment = new SettingsFragment();
+        remindersFragment = new RemindersFragment();
         new AsyncTask() {
 
             @Override
@@ -41,6 +41,6 @@ public class BootListener extends BroadcastReceiver {
     }
 
     private void opdaterkalenderBoot() {
-        settingsFragment.callAlarmStarter();
+        remindersFragment.callAlarmStarter();
     }
 }

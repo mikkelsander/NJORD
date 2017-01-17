@@ -1,4 +1,4 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragment.SettingsFragment;
+import com.project.ms.njord.fragments.RemindersFragment;
 
 public class ResultsActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -20,7 +20,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     TextView inhale, exhale;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-    SettingsFragment settingsFragment;
+    RemindersFragment settingsFragment;
     Bundle bundle;
 
     @Override
@@ -30,7 +30,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
 
         getSupportActionBar().setTitle("Results");
 
-        settingsFragment = new SettingsFragment();
+        settingsFragment = new RemindersFragment();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         editor = sharedPref.edit();
 

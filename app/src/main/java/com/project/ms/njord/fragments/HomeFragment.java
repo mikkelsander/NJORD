@@ -14,7 +14,6 @@ import com.project.ms.njord.simulator.DataSimulator;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button beginTestBtn;
-    private DataSimulator dataSimulator;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -24,15 +23,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         beginTestBtn = (Button) v.findViewById(R.id.home_beginTest_button);
         beginTestBtn.setOnClickListener(this);
 
-        dataSimulator = new DataSimulator();
-
+        setRetainInstance(true);
         return v;
     }
 
     public void onClick(View v) {
         if(v == beginTestBtn){
-            // dataSimulator.generateExhale();
-           //  dataSimulator.generateInhale();
             Intent i = new Intent(getActivity(), TestLungsActivity.class);
             startActivity(i);
         }
