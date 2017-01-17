@@ -5,9 +5,7 @@ import android.app.PendingIntent;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.preference.PreferenceManager;
 
 import static android.content.Context.ALARM_SERVICE;
 
@@ -18,20 +16,13 @@ import static android.content.Context.ALARM_SERVICE;
 public class AlarmStart {
 
     //Variables
-    SharedPreferences sharedPref;
-    int seekBarChoice;
     long startTime;
     long interval;
 
-    public void startAlarm(Context context) {
+    public void startAlarm(Context context, int seekBarChoice) {
 
-//        if (sharedPref.getBoolean("switchNotificationOn", false)) {
 
         //Initialize variables
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-
-        seekBarChoice = sharedPref.getInt("seekBarChoice", 1);
-
         switch (seekBarChoice) {
             case 0:
                 startTime = System.currentTimeMillis();
@@ -55,16 +46,15 @@ public class AlarmStart {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmListener.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setInexactRepeating(AlarmManager.RTC, startTime, interval, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC, startTime, interval, pendingIntent);
 
-//        }
     }
 
     public void alarmKiller(Context context) {
-//        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-//        Intent intent = new Intent(context, AlarmListener.class);
-//        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//        alarmManager.cancel(pendingIntent);
+        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(context, AlarmListener.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        alarmManager.cancel(pendingIntent);
     }
 
 }
