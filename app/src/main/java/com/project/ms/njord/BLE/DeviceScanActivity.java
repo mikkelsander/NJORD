@@ -50,6 +50,7 @@ import android.widget.Toast;
 
 import com.project.ms.njord.Manifest;
 import com.project.ms.njord.R;
+import com.project.ms.njord.activity.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,12 +69,16 @@ public class DeviceScanActivity extends ListActivity {
     private boolean mScanning;
     private Handler mHandler;
 
-    ///permission request
+   /* ///permission request
     private static final int REQUEST_LOCATION_PERMISSION = 1;
 
     //enable requests
     private static final int REQUEST_ENABLE_LOCATION = 1;
+
+    */
+
     private static final int REQUEST_ENABLE_BT = 2;
+
 
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
@@ -83,6 +88,9 @@ public class DeviceScanActivity extends ListActivity {
         super.onCreate(savedInstanceState);
         Log.d("onCreate", "view created " + this.toString());
         mHandler = new Handler();
+
+/*
+
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -98,10 +106,10 @@ public class DeviceScanActivity extends ListActivity {
             return;
         }
 
+*/
 
 
         // Initializes a Bluetooth adapter
-
         final BluetoothManager bluetoothManager =
                 (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
         mBluetoothAdapter = bluetoothManager.getAdapter();
@@ -114,7 +122,7 @@ public class DeviceScanActivity extends ListActivity {
         mScanSettings = new ScanSettings.Builder().build();
     }
 
-    @Override
+  /*  @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == REQUEST_LOCATION_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Intent enableLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
@@ -138,9 +146,7 @@ public class DeviceScanActivity extends ListActivity {
        // super.onActivityResult(requestCode, resultCode, data);
     }
 
-
-
-
+*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,7 +181,6 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("onResume", "...");
         // Ensures Bluetooth is enabled on the device.  If Bluetooth is not currently enabled,
         // fire an intent to display a dialog asking the user to grant permission to enable it.
         if (!mBluetoothAdapter.isEnabled()) {
@@ -205,7 +210,12 @@ public class DeviceScanActivity extends ListActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        scanLeDevice(false);
+        try {
+            scanLeDevice(false);
+        }
+        catch (NullPointerException e) {
+            Log.d("OnPause", "Attempting to pause: no scanner" );
+        }
         mLeDeviceListAdapter.clear();
     }
 
