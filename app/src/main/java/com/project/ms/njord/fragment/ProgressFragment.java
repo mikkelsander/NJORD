@@ -85,11 +85,12 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         graph.getViewport().setMaxY(5);*/
 
 
-        //Setting initial values for textViews
-        inhaleLevel.setText(results.get(results.lastIndexOf(results)).getInhaleLevel());
-        exhaleLevel.setText(results.get(results.lastIndexOf(results)).getExhaleLevel());
-        date.setText(results.get(results.lastIndexOf(results)).getExhaleLevel());
-
+        //Setting initial values for textViews if results has objects
+        if(results.size()>0) {
+            inhaleLevel.setText(results.get(results.size() - 1).getInhaleLevel());
+            exhaleLevel.setText(results.get(results.size() - 1).getExhaleLevel());
+            date.setText(results.get(results.size() - 1).getDate().toString());
+        }
         return v;
 
     }
