@@ -1,11 +1,10 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragment.LoginFragment;
+import com.project.ms.njord.fragments.LoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -15,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (savedInstanceState == null)
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.login_fragment_container, new LoginFragment())
                 .commit();

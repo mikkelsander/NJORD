@@ -1,4 +1,4 @@
-package com.project.ms.njord.entity;
+package com.project.ms.njord.model;
 
 import android.text.TextUtils;
 import android.util.Log;

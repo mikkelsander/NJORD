@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,7 +16,7 @@ import com.project.ms.njord.R;
 import com.project.ms.njord.dialogFragments.DateRequestDialog;
 import com.project.ms.njord.dialogFragments.NumberPickerDialog;
 import com.project.ms.njord.dialogFragments.StringRequestDialog;
-import com.project.ms.njord.entity.Singleton;
+import com.project.ms.njord.model.Singleton;
 
 /**
  * A simple {@link Fragment} subclass.

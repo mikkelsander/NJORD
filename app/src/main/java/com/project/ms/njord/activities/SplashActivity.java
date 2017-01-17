@@ -1,4 +1,4 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,9 +6,8 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.project.ms.njord.entity.Singleton;
-import com.project.ms.njord.entity.DatabaseManager;
-import com.project.ms.njord.fragment.LoginFragment;
+import com.project.ms.njord.model.Singleton;
+import com.project.ms.njord.model.DatabaseManager;
 
 /**
  * This is the first activity that is started

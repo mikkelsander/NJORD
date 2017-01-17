@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 
 import android.content.Intent;
@@ -11,17 +11,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.YouTubeActivity;
+import com.project.ms.njord.activities.YouTubeActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HelpFragment extends Fragment implements View.OnClickListener {
+public class VideoTutorialsFragment extends Fragment implements View.OnClickListener {
 
     Button watch1, watch2, watch3, watch4, watch5, watch6, watch7, watch8;
     TextView intro;
 
-    public HelpFragment() {
+    public VideoTutorialsFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +29,7 @@ public class HelpFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_help, container, false);
+        View v = inflater.inflate(R.layout.fragment_video_tutorials, container, false);
 
 
         watch1 = (Button) v.findViewById(R.id.help_watch1);

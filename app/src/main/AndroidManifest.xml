@@ -9,19 +9,20 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-
-
+    
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_logo"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SplashActivity">
+
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,14 +30,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.TestLungsActivity" />
-        <activity android:name=".activity.ResultsActivity" />
+        <activity android:name=".activities.TestLungsActivity" />
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
 
+        <activity android:name=".activities.YouTubeActivity" />
         <activity android:name=".BLE.ConnectDeviceActivity"/>
         <activity android:name=".BLE.ScanDeviceActivity"/>
 
@@ -48,12 +49,12 @@
             android:name="io.fabric.ApiKey"
             android:value="3a24b7bd45a162466982e94a9a93deaf8442ca76" />
 
-        <activity android:name=".activity.YouTubeActivity" />
         <receiver android:name=".notifications.AlarmListener">
             <intent-filter>
                 <action android:name="com.example.notitest.START_ALARM" />
             </intent-filter>
         </receiver>
+
         <receiver
             android:name=".notifications.BootListener"
             android:enabled="true"
@@ -62,6 +63,7 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+
     </application>
 
 </manifest>

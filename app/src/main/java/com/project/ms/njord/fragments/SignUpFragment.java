@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,10 +16,10 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.MainActivity;
+import com.project.ms.njord.activities.MainActivity;
 import com.project.ms.njord.dialogFragments.DateRequestDialog;
 import com.project.ms.njord.dialogFragments.NumberPickerDialog;
-import com.project.ms.njord.entity.Singleton;
+import com.project.ms.njord.model.Singleton;
 
 import static io.fabric.sdk.android.Fabric.TAG;
 

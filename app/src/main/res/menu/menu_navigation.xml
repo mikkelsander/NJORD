@@ -19,19 +19,19 @@
         <item
             android:id="@+id/nav_device"
             android:icon="@mipmap/ic_device"
-            android:title="Spirometer" />
+            android:title="Device" />
         <item
-            android:id="@+id/nav_settings"
+            android:id="@+id/nav_reminders"
             android:icon="@mipmap/ic_settings"
-            android:title="Preferences" />
+            android:title="Reminders" />
+        <item
+            android:id="@+id/nav_video_tutorials"
+            android:icon="@mipmap/ic_help"
+            android:title="Video Tutorials" />
     </group>
 
     <item android:title="">
         <menu>
-            <item
-                android:id="@+id/nav_help"
-                android:icon="@mipmap/ic_help"
-                android:title="Help" />
             <item
                 android:id="@+id/nav_logOut"
                 android:icon="@mipmap/ic_logout"
