@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.project.ms.njord.R;
-import com.project.ms.njord.activities.ResultsActivity;
 import com.project.ms.njord.model.Singleton;
+import com.project.ms.njord.model.TestResult;
 import com.project.ms.njord.simulator.DataSimulator;
 
 import java.util.ArrayList;
@@ -67,13 +67,18 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         doneBtn = (Button)v.findViewById(R.id.manometer_done_button);
         doneBtn.setOnClickListener(this);
 
-
-
         counter =1;
+
+        setRetainInstance(true);
 
         return v;
     }
 
+
+    @Override
+    public void onPause() {
+    super.onPause();
+    }
 
     /**
      * Starts a new test reading
@@ -154,11 +159,19 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         if (v == doneBtn) {
             saveResult(testDate,inhaleLevel,exhaleLevel);
             Log.d("testdate",testDate.toString());
-            Intent i = new Intent(getActivity(), ResultsActivity.class)
-                    .putExtra("inhale", inhaleLevel)
-                    .putExtra("exhale", exhaleLevel);
-            startActivity(i);
-            getActivity().finish();
+
+            //data to pass to ResultsFragment
+            Bundle args = new Bundle();
+            args.putInt("inhale", inhaleLevel);
+            args.putInt("exhale", exhaleLevel);
+
+            Fragment newFrag = new ResultsFragment();
+            newFrag.setArguments(args);
+
+            getActivity().getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.testLungs_fragment_container, newFrag)
+                    .commit();
+
         }
     }
 }

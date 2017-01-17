@@ -21,9 +21,12 @@ public class TestLungsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test_lungs);
         getSupportActionBar().setTitle("Power Test");
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.testLungs_fragment_container, new ManometerFragment())
-                .commit();
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.testLungs_fragment_container, new ManometerFragment())
+                    .commit();
+        }
+
     }
 
 }
