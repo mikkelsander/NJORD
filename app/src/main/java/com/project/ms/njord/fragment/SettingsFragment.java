@@ -32,7 +32,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
     String seekBarChoiceTextCandidate2 = "Hvert minut";
     AlarmStart alarmStart;
-    Boolean inBootState = false;
+    Boolean inBootState;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -101,7 +101,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
 
         }
-        if (buttonView.getId() == switchNotification.getId() && inBootState != true) {
+        if (buttonView.getId() == switchNotification.getId() && !inBootState) {
             switchOnEverything();
         }
     }
@@ -120,7 +120,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
-        if (buttonView.getId() == switchNotification.getId() && inBootState != true) {
+        if (buttonView.getId() == switchNotification.getId()) {
             switchOffEverything();
         }
     }
@@ -149,7 +149,6 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        notificationIntervalResult.setText(String.valueOf(progress));
         int seekBarChoice = seekBarLogic(progress);
         String seekBarChoiceText = "";
 
@@ -169,7 +168,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     }
 
     public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
-        editor.putInt("progess", progress)
+        editor.putInt("progress", progress)
                 .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
@@ -177,11 +176,13 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     }
 
     public void callAlarmStarter() {
-        alarmStart.startAlarm(getContext());
+
+        alarmStart.startAlarm(getActivity());
     }
 
     public void killAlarmStarter() {
-        alarmStart.alarmKiller(getContext());
+
+        alarmStart.alarmKiller(getActivity());
     }
 
     public int seekBarLogic(int progress) {

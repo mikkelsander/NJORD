@@ -25,23 +25,26 @@ public class AlarmStart {
 
     public void startAlarm(Context context) {
 
+//        if (sharedPref.getBoolean("switchNotificationOn", false)) {
+
         //Initialize variables
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
 
         seekBarChoice = sharedPref.getInt("seekBarChoice", 1);
 
-        switch(seekBarChoice){
+        switch (seekBarChoice) {
             case 0:
-                startTime=System.currentTimeMillis();;
-                interval=86400000;
+                startTime = System.currentTimeMillis();
+                ;
+                interval = 86400000;
                 break;
             case 1:
-                startTime=System.currentTimeMillis();
-                interval=43200000;
+                startTime = System.currentTimeMillis();
+                interval = 43200000;
                 break;
             case 2:
-                startTime=System.currentTimeMillis();
-                interval=60000;
+                startTime = System.currentTimeMillis();
+                interval = 60000;
                 break;
         }
 
@@ -54,13 +57,14 @@ public class AlarmStart {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setInexactRepeating(AlarmManager.RTC, startTime, interval, pendingIntent);
 
+//        }
     }
 
     public void alarmKiller(Context context) {
-        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
-        Intent intent = new Intent(context, AlarmListener.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.cancel(pendingIntent);
+//        AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
+//        Intent intent = new Intent(context, AlarmListener.class);
+//        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//        alarmManager.cancel(pendingIntent);
     }
 
 }

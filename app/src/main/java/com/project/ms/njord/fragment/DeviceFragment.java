@@ -54,8 +54,8 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
      //   }
 
         // Inflate the layout for this fragment
-        scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
-        scanBtn.setOnClickListener(this);
+//        scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
+//        scanBtn.setOnClickListener(this);
 
         //deviceID = (TextView) v.findViewById(R.id.device);
 

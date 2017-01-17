@@ -74,6 +74,7 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        settingsFragment.switchOnEverything();
                         settingsFragment.callAlarmStarter();
                         showConfirmNotificationAlertDialog();
                     }
