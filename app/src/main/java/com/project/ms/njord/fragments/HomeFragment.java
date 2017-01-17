@@ -23,7 +23,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         beginTestBtn = (Button) v.findViewById(R.id.home_beginTest_button);
         beginTestBtn.setOnClickListener(this);
 
-        setRetainInstance(true);
         return v;
     }
 
