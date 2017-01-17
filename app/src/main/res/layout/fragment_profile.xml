@@ -33,10 +33,11 @@
                 android:id="@+id/profile_email_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
+
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="match_parent"
@@ -64,7 +65,7 @@
                 android:id="@+id/profile_name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
@@ -94,7 +95,7 @@
                 android:id="@+id/profile_birthday_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
@@ -125,7 +126,7 @@
                 android:id="@+id/profile_gender_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
@@ -155,7 +156,7 @@
                 android:id="@+id/profile_height_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/blue"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
@@ -187,7 +188,7 @@
                 android:id="@+id/profile_weight_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
+                android:background="@drawable/border"
                 android:layout_margin="2dp">
 
                 <TextView
@@ -217,15 +218,6 @@
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/header_cover_image"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:scaleType="centerCrop"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-        </ImageView>
-
         <RelativeLayout
             android:id="@+id/profile_layout"
             android:layout_width="match_parent"
@@ -236,6 +228,15 @@
             android:layout_alignParentStart="true">
 
         </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/header_cover_image"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:scaleType="centerCrop"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true">
+        </ImageView>
 
 
     </RelativeLayout>
