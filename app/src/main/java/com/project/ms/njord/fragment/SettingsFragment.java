@@ -66,7 +66,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         switchNotification.setChecked(sharedPref.getBoolean("switchNotificationOn", false));
         switchSound.setChecked(sharedPref.getBoolean("switchSoundOn", false));
         switchVibration.setChecked(sharedPref.getBoolean("switchVibrationOn", false));
-        seekBarNotification.setProgress(sharedPref.getInt("seekBarChoice", 50));
+        seekBarNotification.setProgress(sharedPref.getInt("progress", 50));
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
         if (!sharedPref.getBoolean("switchNotificationOn", false)) {
             switchOff(switchNotification);
@@ -101,7 +101,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
 
         }
-        if (buttonView.getId() == switchNotification.getId() && inBootState == true) {
+        if (buttonView.getId() == switchNotification.getId() && inBootState != true) {
             switchOnEverything();
         }
     }
@@ -119,7 +119,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
-        if (buttonView.getId() == switchNotification.getId() && inBootState == true) {
+        if (buttonView.getId() == switchNotification.getId() && inBootState != true) {
             switchOffEverything();
         }
     }
@@ -164,11 +164,12 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
         }
         notificationIntervalResult.setText(seekBarChoiceText);
-        seekBarSaver(seekBarChoice, seekBarChoiceText);
+        seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
     }
 
-    public void seekBarSaver(Integer seekBarChoice, String seekBarChoiceText) {
-        editor.putInt("seekBarChoice", seekBarChoice)
+    public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
+        editor.putInt("progess", progress)
+                .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
         callAlarmStarter();
