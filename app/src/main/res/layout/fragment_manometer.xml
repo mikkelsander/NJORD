@@ -152,7 +152,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.5"
-            tools:layout_editor_absoluteX="209dp"
+            tools:layout_editor_absoluteX="206dp"
             tools:layout_editor_absoluteY="0dp" />
 
     </android.support.constraint.ConstraintLayout>
