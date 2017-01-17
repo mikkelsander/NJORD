@@ -1,31 +1,31 @@
 package com.project.ms.njord.fragment;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.project.ms.njord.BLE.DeviceScanActivity;
+import com.project.ms.njord.BLE.ScanDeviceActivity;
 import com.project.ms.njord.R;
 
 import static com.project.ms.njord.activity.MainActivity.isEmulator;
 
 
 public class DeviceFragment extends Fragment implements View.OnClickListener {
-
-
 
     ///permission request
     private static final int REQUEST_LOCATION_PERMISSION = 1;
@@ -35,6 +35,9 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     private static final int REQUEST_ENABLE_BT = 2;
 
 
+   // SensorManager sensorManager;
+
+    
     // UI references
     private Button scanBtn;
 
@@ -45,6 +48,10 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_device, container, false);
+
+        // sensorManager = (SensorManager) getActivity().getSystemService(Context.SENSOR_SERVICE);
+
+     //   }
 
         // Inflate the layout for this fragment
         scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
@@ -75,7 +82,7 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
             }
 
             else {
-                Intent i = new Intent(getActivity(), DeviceScanActivity.class);
+                Intent i = new Intent(getActivity(), ScanDeviceActivity.class);
                 startActivity(i);
             }
         }
@@ -105,6 +112,5 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
         // super.onActivityResult(requestCode, resultCode, data);
     }
-
 
 }

@@ -40,8 +40,8 @@
             android:label="@string/title_activity_login" >
         </activity>
 
-        <activity android:name=".BLE.DeviceControlActivity"/>
-        <activity android:name=".BLE.DeviceScanActivity"/>
+        <activity android:name=".BLE.ConnectDeviceActivity"/>
+        <activity android:name=".BLE.ScanDeviceActivity"/>
 
         <meta-data
             android:name="io.fabric.ApiKey"
