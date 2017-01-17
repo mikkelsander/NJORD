@@ -26,7 +26,7 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_device, container, false);
 
         // Inflate the layout for this fragment
-        scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
+        //scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
         scanBtn.setOnClickListener(this);
 
         //deviceID = (TextView) v.findViewById(R.id.device);
