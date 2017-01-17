@@ -14,8 +14,9 @@
     <color name="grayWhite">#848484</color>
     <color name="grayWhiteDark">#717171</color>
     <color name="turquoise">#00E5EE</color>
-
-
+    <color name="red">#ee0004</color>
+    <color name="Pantone300cBlue">#005eb8</color>
+    <color name="Pantone354cGreen">#00b140</color>
 
         <color name="light_font">#FBFBFB</color>
         <color name="grey_font">#ff9e9e9e</color>
