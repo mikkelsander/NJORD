@@ -32,6 +32,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
     String seekBarChoiceTextCandidate2 = "Hvert minut";
     AlarmStart alarmStart;
+    Boolean inBootState = false;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -61,6 +62,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         seekBarNotification.setOnSeekBarChangeListener(this);
 
         //Set initial values
+        inBootState = true;
         switchNotification.setChecked(sharedPref.getBoolean("switchNotificationOn", false));
         switchSound.setChecked(sharedPref.getBoolean("switchSoundOn", false));
         switchVibration.setChecked(sharedPref.getBoolean("switchVibrationOn", false));
@@ -68,6 +70,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
         if (!sharedPref.getBoolean("switchNotificationOn", false)) {
             switchOff(switchNotification);
+            inBootState = false;
         }
 
         //End of OnCreateView
@@ -98,7 +101,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
 
         }
-        if (buttonView.getId() == switchNotification.getId()) {
+        if (buttonView.getId() == switchNotification.getId() && inBootState == true) {
             switchOnEverything();
         }
     }
@@ -116,7 +119,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
-        if (buttonView.getId() == switchNotification.getId()) {
+        if (buttonView.getId() == switchNotification.getId() && inBootState == true) {
             switchOffEverything();
         }
     }
