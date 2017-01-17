@@ -1,4 +1,4 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,13 +18,13 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.ms.njord.R;
-import com.project.ms.njord.entity.Singleton;
-import com.project.ms.njord.fragment.DeviceFragment;
-import com.project.ms.njord.fragment.HelpFragment;
-import com.project.ms.njord.fragment.HomeFragment;
-import com.project.ms.njord.fragment.ProfileFragment;
-import com.project.ms.njord.fragment.ProgressFragment;
-import com.project.ms.njord.fragment.SettingsFragment;
+import com.project.ms.njord.model.Singleton;
+import com.project.ms.njord.fragments.DeviceFragment;
+import com.project.ms.njord.fragments.VideoTutorialsFragment;
+import com.project.ms.njord.fragments.HomeFragment;
+import com.project.ms.njord.fragments.ProfileFragment;
+import com.project.ms.njord.fragments.ProgressFragment;
+import com.project.ms.njord.fragments.RemindersFragment;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -134,7 +134,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_settings) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new SettingsFragment())
+            fragmentTransaction.replace(R.id.fragment_container, new RemindersFragment())
                     .addToBackStack(null)
                     .commit();
             getSupportActionBar().setTitle("Preferences");
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_help) {
             android.support.v4.app.FragmentTransaction fragmentTransaction =
                     getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, new HelpFragment());
+            fragmentTransaction.replace(R.id.fragment_container, new VideoTutorialsFragment());
             fragmentTransaction.commit();
             getSupportActionBar().setTitle("Help");
 

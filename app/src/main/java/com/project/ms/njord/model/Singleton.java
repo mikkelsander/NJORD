@@ -1,4 +1,4 @@
-package com.project.ms.njord.entity;
+package com.project.ms.njord.model;
 
 /**
  * Created by Oliver on 14-Nov-16.

@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -12,8 +12,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.ResultsActivity;
-import com.project.ms.njord.entity.Singleton;
+import com.project.ms.njord.activities.ResultsActivity;
+import com.project.ms.njord.model.Singleton;
 import com.project.ms.njord.simulator.DataSimulator;
 
 import java.util.ArrayList;

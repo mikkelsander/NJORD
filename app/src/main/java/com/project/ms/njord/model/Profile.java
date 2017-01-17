@@ -1,7 +1,6 @@
-package com.project.ms.njord.entity;
+package com.project.ms.njord.model;
 
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Observable;

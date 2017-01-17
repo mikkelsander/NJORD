@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.MainActivity;
+import com.project.ms.njord.activities.MainActivity;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 

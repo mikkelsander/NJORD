@@ -1,11 +1,10 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragment.LoginFragment;
+import com.project.ms.njord.fragments.LoginFragment;
 
 public class LoginActivity extends AppCompatActivity {
 

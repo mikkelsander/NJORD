@@ -18,10 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.SplashActivity">
+        <activity android:name=".activities.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,11 +29,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.TestLungsActivity" />
-        <activity android:name=".activity.ResultsActivity" />
+        <activity android:name=".activities.TestLungsActivity" />
+        <activity android:name=".activities.ResultsActivity" />
 
         <activity
-            android:name=".activity.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login" >
         </activity>
 
@@ -48,7 +48,7 @@
             android:name="io.fabric.ApiKey"
             android:value="3a24b7bd45a162466982e94a9a93deaf8442ca76" />
 
-        <activity android:name=".activity.YouTubeActivity" />
+        <activity android:name=".activities.YouTubeActivity" />
         <receiver android:name=".notifications.AlarmListener">
             <intent-filter>
                 <action android:name="com.example.notitest.START_ALARM" />

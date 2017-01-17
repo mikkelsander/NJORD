@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import com.project.ms.njord.R;
-import com.project.ms.njord.activity.TestLungsActivity;
+import com.project.ms.njord.activities.TestLungsActivity;
 import com.project.ms.njord.simulator.DataSimulator;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {

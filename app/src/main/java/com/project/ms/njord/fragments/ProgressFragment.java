@@ -1,4 +1,4 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,8 +15,8 @@ import com.jjoe64.graphview.series.LineGraphSeries;
 import com.jjoe64.graphview.series.OnDataPointTapListener;
 import com.jjoe64.graphview.series.Series;
 import com.project.ms.njord.R;
-import com.project.ms.njord.entity.Singleton;
-import com.project.ms.njord.entity.TestResult;
+import com.project.ms.njord.model.Singleton;
+import com.project.ms.njord.model.TestResult;
 
 import java.util.ArrayList;
 

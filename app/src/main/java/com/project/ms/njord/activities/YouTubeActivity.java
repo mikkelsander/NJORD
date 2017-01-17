@@ -1,4 +1,4 @@
-package com.project.ms.njord.activity;
+package com.project.ms.njord.activities;
 
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;

@@ -1,12 +1,8 @@
-package com.project.ms.njord.fragment;
+package com.project.ms.njord.fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
@@ -22,7 +18,7 @@ import android.widget.Toast;
 import com.project.ms.njord.BLE.ScanDeviceActivity;
 import com.project.ms.njord.R;
 
-import static com.project.ms.njord.activity.MainActivity.isEmulator;
+import static com.project.ms.njord.activities.MainActivity.isEmulator;
 
 
 public class DeviceFragment extends Fragment implements View.OnClickListener {

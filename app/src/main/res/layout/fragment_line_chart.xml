@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="400dp"
-    tools:context="com.project.ms.njord.fragment.LineChartFragment">
+    tools:context="com.project.ms.njord.fragments.LineChartFragment">
 
     <LinearLayout
         android:orientation="vertical"
