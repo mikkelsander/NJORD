@@ -14,12 +14,14 @@ import android.preference.PreferenceManager;
 public class BootListener extends BroadcastReceiver {
     Context context;
     SharedPreferences sharedPreferences;
+    AlarmStart alarmStart;
 
     @Override
     public void onReceive(Context context, Intent intent) {
 
         this.context = context;
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+        alarmStart = new AlarmStart();
         new AsyncTask() {
 
             @Override
@@ -37,6 +39,6 @@ public class BootListener extends BroadcastReceiver {
     }
 
     private void opdaterkalenderBoot() {
-        AlarmStart.startAlarm(context);
+        alarmStart.startAlarm(context);
     }
 }

@@ -21,11 +21,9 @@ import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
-import com.project.ms.njord.fragment.LoginFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
-import com.project.ms.njord.notifications.AlarmStart;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -46,8 +44,6 @@ public class MainActivity extends AppCompatActivity
 
         //TODO: overfør ikke crashrapport ved emulatorcrash
         //Fabric.with(this, new Crashlytics());
-
-        AlarmStart.startAlarm(this);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 

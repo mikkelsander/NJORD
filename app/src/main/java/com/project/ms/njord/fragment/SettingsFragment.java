@@ -31,6 +31,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     String seekBarChoiceTextCandidate0 = "Hver dag";
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
     String seekBarChoiceTextCandidate2 = "Hvert minut";
+    AlarmStart alarmStart;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -40,8 +41,11 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_settings, container, false);
         // Inflate the layout for this fragment
+
+        //Initialize varibles
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = sharedPref.edit();
+        alarmStart = new AlarmStart();
 
         //Cast to views
         switchNotification = (Switch) v.findViewById(R.id.switchNotification);
@@ -64,7 +68,6 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
         if (!sharedPref.getBoolean("switchNotificationOn", false)) {
             switchOff(switchNotification);
-            AlarmStart.startAlarm(getContext());
         }
 
         //End of OnCreateView
@@ -96,12 +99,8 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
 
         }
         if (buttonView.getId() == switchNotification.getId()) {
-            switchOn(switchSound);
-            switchOn(switchVibration);
-            switchEnable(switchSound);
-            switchEnable(switchVibration);
+            switchOnEverything();
         }
-        callAlarmStarter();
     }
 
     public void switchOff(CompoundButton buttonView) {
@@ -118,12 +117,22 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
         }
         if (buttonView.getId() == switchNotification.getId()) {
-            switchOff(switchSound);
-            switchOff(switchVibration);
-            switchDisable(switchSound);
-            switchDisable(switchVibration);
+            switchOffEverything();
         }
-        callAlarmStarter();
+    }
+
+    public void switchOnEverything() {
+        switchOn(switchSound);
+        switchOn(switchVibration);
+        switchEnable(switchSound);
+        switchEnable(switchVibration);
+    }
+
+    public void switchOffEverything() {
+        switchOff(switchSound);
+        switchOff(switchVibration);
+        switchDisable(switchSound);
+        switchDisable(switchVibration);
     }
 
     public void switchEnable(CompoundButton buttonView) {
@@ -137,17 +146,9 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
         notificationIntervalResult.setText(String.valueOf(progress));
-        int seekBarChoice = 1;
+        int seekBarChoice = seekBarLogic(progress);
         String seekBarChoiceText = "";
 
-        if (progress > 0 && progress < 33) {
-            seekBarChoice = 0;
-        } else if (progress > 33 && progress < 66) {
-            seekBarChoice = 1;
-        } else {
-            seekBarChoice = 2;
-
-        }
         switch (seekBarChoice) {
             case 0:
                 seekBarChoiceText = seekBarChoiceTextCandidate0;
@@ -160,18 +161,30 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
                 break;
         }
         notificationIntervalResult.setText(seekBarChoiceText);
-        seekBarSaver(progress, seekBarChoiceText);
+        seekBarSaver(seekBarChoice, seekBarChoiceText);
     }
 
-    public void seekBarSaver(Integer progress, String seekBarChoiceText) {
-        editor.putInt("seekBarChoice", progress)
+    public void seekBarSaver(Integer seekBarChoice, String seekBarChoiceText) {
+        editor.putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
         callAlarmStarter();
     }
 
     public void callAlarmStarter() {
-        AlarmStart.startAlarm(getContext());
+        alarmStart.startAlarm(getContext());
+    }
+
+    public int seekBarLogic(int progress) {
+        int seekBarChoice;
+        if (progress > 0 && progress < 33) {
+            seekBarChoice = 0;
+        } else if (progress > 33 && progress < 66) {
+            seekBarChoice = 1;
+        } else {
+            seekBarChoice = 2;
+        }
+        return seekBarChoice;
     }
 
     @Override
