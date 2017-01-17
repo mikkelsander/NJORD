@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,7 +14,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.MainActivity;
@@ -30,7 +28,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
     // UI references
     private EditText nameView,genderView, heightView, weightView, birthdayView;
-    private Button confirmButton;
+    private Button confirmButton, skipButton;
 
     private final int CHANGE_BIRTHDAY   = 3;
     private final int CHANGE_GENDER     = 4;
@@ -57,6 +55,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         weightView.setOnFocusChangeListener(this);
         confirmButton = (Button) v.findViewById(R.id.signUp_confirm_button);
         confirmButton.setOnClickListener(this);
+        skipButton = (Button) v.findViewById(R.id.signUp_skip_button);
+        skipButton.setOnClickListener(this);
 
         imm = (InputMethodManager)getActivity()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -120,6 +120,11 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         Bundle args = new Bundle();
         if (v == confirmButton){
             attemptConfirm();
+        }
+        if (v == skipButton){
+            Intent i = new Intent(getActivity(), MainActivity.class);
+            startActivity(i);
+            getActivity().finish();
         }
 
     }
