@@ -111,6 +111,7 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
+                killAlarmStarter();
                 break;
             case R.id.switchSound:
                 editor.putBoolean("switchSoundOn", false).commit();
@@ -177,6 +178,10 @@ public class SettingsFragment extends Fragment implements CompoundButton.OnCheck
 
     public void callAlarmStarter() {
         alarmStart.startAlarm(getContext());
+    }
+
+    public void killAlarmStarter() {
+        alarmStart.alarmKiller(getContext());
     }
 
     public int seekBarLogic(int progress) {
