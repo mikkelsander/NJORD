@@ -23,10 +23,10 @@ import java.util.ArrayList;
 public class ProgressFragment extends Fragment implements OnDataPointTapListener {
 
     View v;
-    TextView date, inhaleLevel, exhaleLevel;
+    TextView dateView, inhaleLevel, exhaleLevel;
     GraphView graph;
 
-    ArrayList<TestResult> results = Singleton.instance.getProfile().getTestResults();
+    ArrayList<TestResult> results;
 
     public ProgressFragment() {
 
@@ -36,11 +36,14 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         v = inflater.inflate(R.layout.fragment_progress, container, false);
 
+        results = Singleton.instance.getProfile().getTestResults();
+
         inhaleLevel = (TextView) v.findViewById(R.id.progress_inhale_textView);
         exhaleLevel = (TextView) v.findViewById(R.id.progress_exhale_textView);
-        date = (TextView) v.findViewById(R.id.progress_date_textView);
+        dateView = (TextView) v.findViewById(R.id.progress_date_textView);
 
         graph = (GraphView) v.findViewById(R.id.fragment_progress_graph);
+
 
 
         // Creating arrays the contain data points for the graph
@@ -87,9 +90,15 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
 
         //Setting initial values for textViews if results has objects
         if(results.size()>0) {
-            inhaleLevel.setText(results.get(results.size() - 1).getInhaleLevel());
-            exhaleLevel.setText(results.get(results.size() - 1).getExhaleLevel());
-            date.setText(results.get(results.size() - 1).getDate().toString());
+            int i = results.size()-1 ;
+
+            String in = Integer.toString(results.get(i).getInhaleLevel());
+            String ex = Integer.toString(results.get(i).getExhaleLevel());
+            String date = results.get(i).getDate().toString();
+
+            inhaleLevel.setText(in);
+            exhaleLevel.setText(ex);
+            dateView.setText(date);
         }
         return v;
 

@@ -163,7 +163,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
             dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
             dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "date picker");
+            dialog.show(getActivity().getSupportFragmentManager(), "dateView picker");
         }
 
         if(v == genderLayout) {
@@ -174,7 +174,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
 
             dialog.setTargetFragment(this, CHANGE_GENDER);
             dialog.setArguments(args);
-            dialog.show(getActivity().getSupportFragmentManager(), "date dialog");
+            dialog.show(getActivity().getSupportFragmentManager(), "dateView dialog");
         }
 
         if (v == heightLayout) {
