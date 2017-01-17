@@ -1,5 +1,6 @@
 package com.project.ms.njord.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -8,15 +9,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.project.ms.njord.BLE.DeviceScanActivity;
 import com.project.ms.njord.R;
 
 
 public class DeviceFragment extends Fragment implements View.OnClickListener {
 
     // UI references
-    private Button changeDeviceBtn;
-    private TextView deviceID;
-    private boolean connected = true;
+    private Button scanBtn;
 
     public DeviceFragment() {
         // Required empty public constructor
@@ -27,43 +27,21 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_device, container, false);
 
         // Inflate the layout for this fragment
-        changeDeviceBtn =  (Button) v.findViewById(R.id.device_forget_button);
-        changeDeviceBtn.setOnClickListener(this);
+        scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
+        scanBtn.setOnClickListener(this);
 
-        deviceID = (TextView) v.findViewById(R.id.device_id_textView);
+        //deviceID = (TextView) v.findViewById(R.id.device);
 
         return v;
     }
 
-
     @Override
     public void onClick(View v) {
-        if (v == changeDeviceBtn){
-            if(connected) {
-
-                deviceID.setText("No spirometer connected");
-                changeDeviceBtn.setText("Connect Spirometer");
-                connected = false;
-            }
-            else if(!connected){
-
-                deviceID.setText("abcd-12345");
-                changeDeviceBtn.setText("Forget Spirometer");
-                connected = true;
-            }
+        if (v == scanBtn){
+            Intent i = new Intent(getActivity(), DeviceScanActivity.class);
+            startActivity(i);
 
         }
     }
 
-
-
-    private void searchForDevice() {
-        // TODO: Search for at new device over bluetooth
-        pressentUserWithDviceChoices();
-    }
-
-    private void pressentUserWithDviceChoices() {
-        // TODO: inflate at view that presents the user with near by devices that can be connected to
-
-    }
 }
