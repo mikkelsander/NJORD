@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,50 +23,55 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
     SettingsFragment settingsFragment;
+    Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        settingsFragment = new SettingsFragment();
-
         getSupportActionBar().setTitle("Results");
+
+        settingsFragment = new SettingsFragment();
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sharedPref.edit();
+
+        bundle = getIntent().getExtras();
 
         doneBtn = (Button) findViewById(R.id.activity_results_doneBtn);
         doneBtn.setOnClickListener(this);
 
         inhale = (TextView) findViewById(R.id.activity_results_inhale_avg);
-        inhale.setText("Inhale: 54!");
-
-
+        inhale.setText(Integer.toString(bundle.getInt("inhale")));
         exhale = (TextView) findViewById(R.id.activity_results_exhale_avg);
-        exhale.setText("Exhale: 65!");
-
-        sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        editor = sharedPref.edit();
-
+//        exhale.setText(bundle.getString("exhale").toString());
     }
 
     @Override
     public void onClick(View v) {
         if (v == doneBtn) {
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
-            finish();
 
             //Check if this is the first run of the app, and if so call for dialog
-            if (sharedPref.getBoolean("firstRun", true)) {
-                showNotificationAlertDialog();
-            }
+            //if (sharedPref.getBoolean("firstRun", true)) {
+            showNotificationAlertDialog();
+            //}else{
+            //Intent i = new Intent(this, MainActivity.class);
+            //startActivity(i);
+            //finish();
+            //}
+
+
+
+
 
         }
+
 
     }
 
     //Generates Dialog asking for Push notification permission. If given all permissions are switched on with standard prefs.
     public void showNotificationAlertDialog() {
-        editor.putBoolean("firstRun", false).commit();
+        //editor.putBoolean("firstRun", false).commit();
         new AlertDialog.Builder(this)
                 .setTitle("Notifications")
                 .setMessage("Training on a regular bases is important. AEROFIT would like permission to send you daily reminders." +
@@ -74,18 +80,26 @@ public class ResultsActivity extends AppCompatActivity implements View.OnClickLi
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        settingsFragment.switchOnEverything();
-                        settingsFragment.callAlarmStarter();
-                        showConfirmNotificationAlertDialog();
+                       // settingsFragment.callAlarmStarter();
+                        showConfirmNotificationToast();
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                        finish();
+
                     }
-                }).setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        }).show();
+                })
+                .setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(i);
+                        finish();
+                    }
+                })
+                .show();
     }
 
-    public void showConfirmNotificationAlertDialog() {
+    public void showConfirmNotificationToast() {
         Toast.makeText(this, "Notifications activated", Toast.LENGTH_LONG)
                 .show();
     }
