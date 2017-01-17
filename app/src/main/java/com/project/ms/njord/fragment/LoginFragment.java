@@ -26,8 +26,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.firebase.database.FirebaseDatabase;
 import com.project.ms.njord.R;
 import com.project.ms.njord.activity.MainActivity;
+import com.project.ms.njord.entity.DatabaseManager;
 import com.project.ms.njord.entity.Singleton;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +41,11 @@ import static android.Manifest.permission.READ_CONTACTS;
 
 /**
  * A login screen that offers login via email/password.
+ *
+ * LoaderCallbacks<Cursor>
+ *
  */
-public class LoginFragment extends Fragment implements View.OnClickListener, LoaderCallbacks<Cursor> {
+public class LoginFragment extends Fragment implements View.OnClickListener {
 
     // Id to identity READ_CONTACTS permission request.
     private static final int REQUEST_READ_CONTACTS = 0;
@@ -63,9 +69,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Loa
     private View loginFormView;
     private Button loginButton;
     private Button signUpButton;
-    // Controller references
     private SharedPreferences prefs;
-    Singleton data = Singleton.instance;
 
 
     @Override
@@ -232,7 +236,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Loa
         }
     }
 
-    @Override
+    /*@Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(getActivity(),
                 // Retrieve data rows for the device user's 'profile' contact.
@@ -272,7 +276,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Loa
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
-    }
+    }*/
 
 
     // Start a second thread that attempts to login
@@ -292,6 +296,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Loa
 
             try {
                 // Simulate network access.
+
+
+
                 Thread.sleep(2000);
             } catch (InterruptedException e) {
                 return false;
@@ -350,6 +357,10 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Loa
 
             try {
                 // Simulate network access.
+
+
+
+
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 return false;

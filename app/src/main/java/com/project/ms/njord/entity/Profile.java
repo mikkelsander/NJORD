@@ -11,7 +11,7 @@ import java.util.Observable;
  */
 
 public class Profile extends Observable {
-
+    private String id;
     private String email = "";
     private String password = "";
     private String name = "Guest";
@@ -123,6 +123,12 @@ public class Profile extends Observable {
     public void createTetsResult(Date date, int insp, int exp){
         TestResult result = new TestResult(date, insp, exp);
         testResults.add(result);
+    }
+
+    public String getId() { return this.id; }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 }
