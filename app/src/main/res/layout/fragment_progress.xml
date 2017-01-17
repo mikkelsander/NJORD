@@ -19,8 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <!--Date-->
         <TextView
-            android:id="@+id/progress_date_textview"
+            android:id="@+id/progress_date_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
@@ -32,6 +33,7 @@
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent" />
 
+        <!--labels-->
         <TextView
             android:id="@+id/progress_inlabell_textview"
             android:layout_width="wrap_content"
@@ -41,22 +43,21 @@
             android:gravity="center"
             android:text="Inhale"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/progress_date_textview"
+            app:layout_constraintTop_toBottomOf="@+id/progress_date_textView"
             app:layout_constraintRight_toLeftOf="@+id/guideline7"
             app:layout_constraintHorizontal_bias="0.66" />
 
         <TextView
-            android:id="@+id/progress_inhale_textView"
+            android:text="Exhale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="60dp"
-            android:text="0"
-            app:layout_constraintHorizontal_bias="0.33"
+            android:id="@+id/progress_exlabel_textView"
+            app:layout_constraintTop_toTopOf="@+id/progress_inlabell_textview"
             app:layout_constraintLeft_toLeftOf="@+id/guideline7"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/progress_exhale_textView"
-            app:layout_constraintBottom_toBottomOf="@+id/progress_exhale_textView" />
+            app:layout_constraintHorizontal_bias="0.33" />
 
+        <!-- number levels -->
         <TextView
             android:id="@+id/progress_exhale_textView"
             android:layout_width="wrap_content"
@@ -72,6 +73,19 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp" />
 
+        <TextView
+            android:id="@+id/progress_inhale_textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="60dp"
+            android:text="0"
+            app:layout_constraintHorizontal_bias="0.33"
+            app:layout_constraintLeft_toLeftOf="@+id/guideline7"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/progress_exhale_textView"
+            app:layout_constraintBottom_toBottomOf="@+id/progress_exhale_textView" />
+
+        <!--Guideline-->
         <android.support.constraint.Guideline
             android:id="@+id/guideline7"
             android:layout_width="wrap_content"
@@ -81,15 +95,7 @@
             tools:layout_editor_absoluteX="192dp"
             tools:layout_editor_absoluteY="0dp" />
 
-        <TextView
-            android:text="Exhale"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/progress_exlabel_textView"
-            app:layout_constraintTop_toTopOf="@+id/progress_inlabell_textview"
-            app:layout_constraintLeft_toLeftOf="@+id/guideline7"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintHorizontal_bias="0.33" />
+
     </android.support.constraint.ConstraintLayout>
 
 

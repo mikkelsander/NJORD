@@ -13,7 +13,44 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+
+            <Switch
+                android:text="Notifications"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchNotification" />
+
+            <Switch
+                android:text="Notifcation Sound"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchSound" />
+
+            <Switch
+                android:text="Notifcation Vibration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/switchVibration" />
+
+            <TextView
+                android:text="Hvor ofte vil du gerne påmindes?"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/notificationInterval" />
+
+            <SeekBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/seekBarNotification" />
+
+            <TextView
+                android:text="TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/notificationIntervalResult" />
+
+        </LinearLayout>
     </ScrollView>
 
 </FrameLayout>

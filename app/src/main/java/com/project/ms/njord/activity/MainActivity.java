@@ -22,7 +22,6 @@ import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.fragment.DeviceFragment;
 import com.project.ms.njord.fragment.HelpFragment;
 import com.project.ms.njord.fragment.HomeFragment;
-import com.project.ms.njord.fragment.LoginFragment;
 import com.project.ms.njord.fragment.ProfileFragment;
 import com.project.ms.njord.fragment.ProgressFragment;
 import com.project.ms.njord.fragment.SettingsFragment;
@@ -44,10 +43,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         //TODO: overfør ikke crashrapport ved emulatorcrash
         //Fabric.with(this, new Crashlytics());
-
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 

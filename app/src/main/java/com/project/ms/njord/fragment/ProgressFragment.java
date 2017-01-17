@@ -2,31 +2,29 @@ package com.project.ms.njord.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ExpandableListView;
 import android.widget.TextView;
 
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.GridLabelRenderer;
 import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.DataPointInterface;
 import com.jjoe64.graphview.series.LineGraphSeries;
+import com.jjoe64.graphview.series.OnDataPointTapListener;
+import com.jjoe64.graphview.series.Series;
 import com.project.ms.njord.R;
 import com.project.ms.njord.entity.Singleton;
 import com.project.ms.njord.entity.TestResult;
 
 import java.util.ArrayList;
 
-public class ProgressFragment extends Fragment {
+public class ProgressFragment extends Fragment implements OnDataPointTapListener {
 
-    View rootView;
-    ExpandableListView lv;
-    private String[] groups;
-    private String[][] children;
-    LineGraphSeries<DataPoint> inhale, exhale;
-    ArrayList<String> data = new ArrayList<String>();
-    TextView date, title, average;
+    View v;
+    TextView date, inhaleLevel, exhaleLevel;
+    GraphView graph;
 
     ArrayList<TestResult> results = Singleton.instance.getProfile().getTestResults();
 
@@ -36,53 +34,47 @@ public class ProgressFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_progress, container, false);
+        v = inflater.inflate(R.layout.fragment_progress, container, false);
 
-        GraphView graph = (GraphView) rootView.findViewById(R.id.fragment_progress_graph);
+        inhaleLevel = (TextView) v.findViewById(R.id.progress_inhale_textView);
+        exhaleLevel = (TextView) v.findViewById(R.id.progress_exhale_textView);
+        date = (TextView) v.findViewById(R.id.progress_date_textView);
 
-        //lav array som indeholder tryk og dato
+        graph = (GraphView) v.findViewById(R.id.fragment_progress_graph);
+
+
+        // Creating arrays the contain data points for the graph
         DataPoint[] dataInhale = new DataPoint[results.size()];
         for (int i = 0; i < results.size(); i++) {
             dataInhale[i] = new DataPoint(i, results.get(i).getInhaleLevel());
         }
-        LineGraphSeries<DataPoint> inhale = new LineGraphSeries<>(dataInhale);
-        graph.addSeries(inhale);
-
         DataPoint[] dataExhale = new DataPoint[results.size()];
         for (int i = 0; i < results.size(); i++) {
             dataExhale[i] = new DataPoint(i, results.get(i).getInhaleLevel());
         }
+
+        // Creating two new lines on the graph, one for inhale and one for axhale
+        LineGraphSeries<DataPoint> inhale = new LineGraphSeries<>(dataInhale);
+        graph.addSeries(inhale);
         LineGraphSeries<DataPoint> exhale = new LineGraphSeries<>(dataExhale);
         graph.addSeries(exhale);
 
+        inhale.setOnDataPointTapListener(this);
+        exhale.setOnDataPointTapListener(this);
 
 
-    /*            series.setOnDataPointTapListener(new OnDataPointTapListener() {
-            @Override
-            public void onTap(Series series, DataPointInterface dataPoint) {
-
-
-            //    replaceFragment(new ResultsFragment());
-            }
-        });
-
-        */
-
-        graph.setTitle("");
-
-        //highlights points
+        // highlights points
         inhale.setDrawDataPoints(true);
         exhale.setDrawDataPoints(true);
 
-        // activate horizontal zooming and scrolling
+        // Activate horizontal zooming and scrolling
         graph.getViewport().setScalable(true);
 
-        // activate horizontal scrolling
-        graph.getViewport().setScrollable(true);
-        graph.getViewport().setScalableY(true);
-        graph.getViewport().setScrollableY(true);
+        graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
+        graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE );
 
-        // set manual X bounds
+        /*// set manual X bounds
         graph.getViewport().setXAxisBoundsManual(false);
         graph.getViewport().setMinX(0);
         graph.getViewport().setMaxX(2);
@@ -90,20 +82,29 @@ public class ProgressFragment extends Fragment {
         // set manual Y bounds
         graph.getViewport().setYAxisBoundsManual(false);
         graph.getViewport().setMinY(0);
-        graph.getViewport().setMaxY(5);
-
-        date = (TextView) rootView.findViewById(R.id.progress_date_textview);
-      //  date.setText(Singleton.instance.getTestResult().getDate());
-       // date.setText(TestResult.);
+        graph.getViewport().setMaxY(5);*/
 
 
-        return rootView;
+        //Setting initial values for textViews
+        inhaleLevel.setText(results.get(results.lastIndexOf(results)).getInhaleLevel());
+        exhaleLevel.setText(results.get(results.lastIndexOf(results)).getExhaleLevel());
+        date.setText(results.get(results.lastIndexOf(results)).getExhaleLevel());
+
+        return v;
 
     }
+
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 
-}}
+}
+
+    @Override
+    public void onTap(Series series, DataPointInterface dataPointInterface) {
+
+    }
+}
