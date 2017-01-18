@@ -3,6 +3,7 @@ package com.project.ms.njord.notifications;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 
@@ -88,6 +89,14 @@ public class NotificationLogic {
         buttonView.setEnabled(false);
     }
 
+    public void enableText(View view) {
+        view.setAlpha((float) 1.0);
+    }
+
+    public void disableText(View view) {
+        view.setAlpha((float) 0.5);
+    }
+
     public void enableSeekbar(SeekBar seekBar) {
         seekBar.setEnabled(true);
     }
@@ -95,18 +104,6 @@ public class NotificationLogic {
     public void disableSeekbar(SeekBar seekBar) {
         seekBar.setEnabled(false);
     }
-
-//    public int seekBarChoiceCreator(int progress) {
-//        int seekBarChoice;
-//        if (progress >= 0 && progress < 33) {
-//            seekBarChoice = 0;
-//        } else if (progress > 33 && progress < 66) {
-//            seekBarChoice = 1;
-//        } else {
-//            seekBarChoice = 2;
-//        }
-//        return seekBarChoice;
-//    }
 
     public String seekBarChoiceTextCreator(int progress, String choice0, String choice1, String choice2) {
         String seekBarChoiceTextCandidate0 = choice0;
@@ -130,7 +127,6 @@ public class NotificationLogic {
 
     public void seekBarSaver(Integer progress, String seekBarChoiceText) {
         editor.putInt("progress", progress)
-//                .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
         callAlarmStarter();

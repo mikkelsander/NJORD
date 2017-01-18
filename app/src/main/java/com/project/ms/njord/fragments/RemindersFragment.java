@@ -26,6 +26,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     Switch switchSound;
     Switch switchVibration;
     SeekBar seekBarNotification;
+    TextView notificationInterval;
     TextView notificationIntervalResult;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
@@ -53,6 +54,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         switchSound = (Switch) v.findViewById(R.id.switchSound);
         switchVibration = (Switch) v.findViewById(R.id.switchVibration);
         seekBarNotification = (SeekBar) v.findViewById(R.id.seekBarNotification);
+        notificationInterval = (TextView) v.findViewById(R.id.notificationInterval);
         notificationIntervalResult = (TextView) v.findViewById(R.id.notificationIntervalResult);
 
         //Set listeners
@@ -101,6 +103,8 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         notificationLogic.enableSwitch(switchSound);
         notificationLogic.enableSwitch(switchVibration);
         notificationLogic.enableSeekbar(seekBarNotification);
+        notificationLogic.enableText(notificationInterval);
+        notificationLogic.enableText(notificationIntervalResult);
         notificationLogic.switchOnStateSaver(switchSound);
         notificationLogic.switchOnStateSaver(switchVibration);
 
@@ -112,6 +116,8 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         notificationLogic.disableSwitch(switchSound);
         notificationLogic.disableSwitch(switchVibration);
         notificationLogic.disableSeekbar(seekBarNotification);
+        notificationLogic.disableText(notificationInterval);
+        notificationLogic.disableText(notificationIntervalResult);
         notificationLogic.switchOffStateSaver(switchSound);
         notificationLogic.switchOffStateSaver(switchVibration);
 
