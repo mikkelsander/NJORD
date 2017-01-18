@@ -7,7 +7,7 @@
         <item
             android:id="@+id/nav_aerofit"
             android:icon="@mipmap/ic_home"
-            android:title="Home" />
+            android:title="AEROFIT" />
         <item
             android:id="@+id/nav_progress"
             android:icon="@mipmap/ic_progress"
