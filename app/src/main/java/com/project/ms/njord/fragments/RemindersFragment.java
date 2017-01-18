@@ -64,10 +64,13 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         //Set initial values
         inBootState = true;
         switchNotification.setChecked(sharedPref.getBoolean("switchNotificationOn", false));
+        if (!sharedPref.getBoolean("switchNotificationOn", false)) {
+            masterSwitchOff();
+        }
         inBootState = false;
         switchSound.setChecked(sharedPref.getBoolean("switchSoundOn", false));
         switchVibration.setChecked(sharedPref.getBoolean("switchVibrationOn", false));
-        seekBarNotification.setProgress(sharedPref.getInt("progress", 50));
+        seekBarNotification.setProgress(sharedPref.getInt("progress", 1));
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
 
         //End of OnCreateView
