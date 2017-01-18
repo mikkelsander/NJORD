@@ -96,25 +96,25 @@ public class NotificationLogic {
         seekBar.setEnabled(false);
     }
 
-    public int seekBarChoiceCreator(int progress) {
-        int seekBarChoice;
-        if (progress >= 0 && progress < 33) {
-            seekBarChoice = 0;
-        } else if (progress > 33 && progress < 66) {
-            seekBarChoice = 1;
-        } else {
-            seekBarChoice = 2;
-        }
-        return seekBarChoice;
-    }
+//    public int seekBarChoiceCreator(int progress) {
+//        int seekBarChoice;
+//        if (progress >= 0 && progress < 33) {
+//            seekBarChoice = 0;
+//        } else if (progress > 33 && progress < 66) {
+//            seekBarChoice = 1;
+//        } else {
+//            seekBarChoice = 2;
+//        }
+//        return seekBarChoice;
+//    }
 
-    public String seekBarChoiceTextCreator(int SeekBarChoice, String choice0, String choice1, String choice2) {
+    public String seekBarChoiceTextCreator(int progress, String choice0, String choice1, String choice2) {
         String seekBarChoiceTextCandidate0 = choice0;
         String seekBarChoiceTextCandidate1 = choice1;
         String seekBarChoiceTextCandidate2 = choice2;
         String seekBarChoiceText = "";
 
-        switch (SeekBarChoice) {
+        switch (progress) {
             case 0:
                 seekBarChoiceText = seekBarChoiceTextCandidate0;
                 break;
@@ -128,9 +128,9 @@ public class NotificationLogic {
         return seekBarChoiceText;
     }
 
-    public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
+    public void seekBarSaver(Integer progress, String seekBarChoiceText) {
         editor.putInt("progress", progress)
-                .putInt("seekBarChoice", seekBarChoice)
+//                .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
         callAlarmStarter();
@@ -138,7 +138,7 @@ public class NotificationLogic {
 
 
     public void callAlarmStarter() {
-        alarmStart.startAlarm(context, sharedPref.getInt("seekBarSelection", 1));
+        alarmStart.startAlarm(context, sharedPref.getInt("progress", 1));
 
     }
 

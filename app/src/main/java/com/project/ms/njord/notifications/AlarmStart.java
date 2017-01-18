@@ -22,7 +22,7 @@ public class AlarmStart {
     long interval;
     Calendar calendar;
 
-    public void startAlarm(Context context, int seekBarSelection) {
+    public void startAlarm(Context context, int progress) {
 
         Calendar calendar = Calendar.getInstance();
 
@@ -30,7 +30,7 @@ public class AlarmStart {
         calendar.roll(Calendar.DATE, +1);
 
         //Initialize variables
-        switch (seekBarSelection) {
+        switch (progress) {
             case 0:
                 startTime = calendar.getTimeInMillis();
                 ;
@@ -53,7 +53,7 @@ public class AlarmStart {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmListener.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 86400000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC, startTime, interval, pendingIntent);
 
     }
 

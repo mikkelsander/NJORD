@@ -65,8 +65,11 @@
                 />
 
             <SeekBar
+                style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:max="2"
+                android:progress="1"
                 android:id="@+id/seekBarNotification"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"

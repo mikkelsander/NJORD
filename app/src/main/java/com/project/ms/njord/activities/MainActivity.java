@@ -67,10 +67,10 @@ public class MainActivity extends AppCompatActivity
 
         // if fresh start show fragment home
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new HomeFragment(), "home" )
+                    .replace(R.id.fragment_container, new HomeFragment(), "home")
                     .commit();
         }
 
@@ -92,31 +92,6 @@ public class MainActivity extends AppCompatActivity
 
         Singleton.instance.getProfile().addObserver(this);
         menuUserName.setText(Singleton.instance.getProfile().getName());
-
-        viewPager = (ViewPager) findViewById(R.id.main_viewpager_view);
-        viewPager.setAdapter(new CustomAdapter(getSupportFragmentManager(),getApplicationContext()));
-
-        tabLayout = (TabLayout) findViewById(R.id.main_tablayout_view);
-        tabLayout.setupWithViewPager(viewPager);
-
-        tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-
-            }
-        });
 
     }
 
@@ -213,34 +188,5 @@ public class MainActivity extends AppCompatActivity
                 || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
-    }
-
-    private class CustomAdapter extends FragmentPagerAdapter {
-        private String fragments [] = {"Power", "De-Stress"};
-        public CustomAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
-        super(supportFragmentManager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    return new HomeFragment();
-                case 1:
-                    return new DeStress();
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragments [position];
-        }
     }
 }
