@@ -87,16 +87,11 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == doneBtn) {
-            //Check if this is the first run of the app, and if so call for dialog
-            //if (sharedPref.getBoolean("firstRun", true)) {
             if (!sharedPref.getBoolean("notificationsAdvised", false)) {
                 showNotificationAlertDialog();
+            }else{
+            getActivity().finish();
             }
-            //}else{
-            //Intent i = new Intent(this, MainActivity.class);
-            //startActivity(i);
-            //finish();
-            //}
         }
     }
 
