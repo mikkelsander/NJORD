@@ -116,11 +116,11 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int seekBarChoice = notificationLogic.seekBarChoiceCreator(progress);
-        String seekBarChoiceText = notificationLogic.seekBarChoiceTextCreator(seekBarChoice, seekBarChoiceTextCandidate0, seekBarChoiceTextCandidate1, seekBarChoiceTextCandidate2);
+//        int seekBarChoice = notificationLogic.seekBarChoiceCreator(progress);
+        String seekBarChoiceText = notificationLogic.seekBarChoiceTextCreator(progress, seekBarChoiceTextCandidate0, seekBarChoiceTextCandidate1, seekBarChoiceTextCandidate2);
 
         notificationIntervalResult.setText(seekBarChoiceText);
-        notificationLogic.seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
+        notificationLogic.seekBarSaver(progress, seekBarChoiceText);
     }
 
     @Override
