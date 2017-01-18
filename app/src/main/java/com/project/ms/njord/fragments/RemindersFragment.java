@@ -31,7 +31,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     SharedPreferences.Editor editor;
     String seekBarChoiceTextCandidate0 = "Hver dag";
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
-    String seekBarChoiceTextCandidate2 = "Hvert minut";
+    String seekBarChoiceTextCandidate2 = "To gange i minuttet";
     Boolean inBootState;
 
     public RemindersFragment() {
@@ -98,6 +98,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         notificationLogic.switchOn(switchVibration);
         switchEnable(switchSound);
         switchEnable(switchVibration);
+        seekBarEnable(seekBarNotification);
     }
 
     public void switchOffEverything() {
@@ -105,6 +106,15 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         notificationLogic.switchOff(switchVibration);
         switchDisable(switchSound);
         switchDisable(switchVibration);
+        seekBarDisable(seekBarNotification);
+    }
+
+    public void seekBarEnable(SeekBar seekBar) {
+        seekBarNotification.setEnabled(true);
+    }
+
+    public void seekBarDisable(SeekBar seekBar) {
+        seekBarNotification.setEnabled(false);
     }
 
     public void switchEnable(CompoundButton buttonView) {

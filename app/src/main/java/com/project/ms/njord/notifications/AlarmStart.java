@@ -35,7 +35,7 @@ public class AlarmStart {
                 break;
             case 2:
                 startTime = System.currentTimeMillis();
-                interval = 60000;
+                interval = 30000;
                 break;
         }
 
