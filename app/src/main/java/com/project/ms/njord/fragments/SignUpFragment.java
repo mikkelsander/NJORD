@@ -191,7 +191,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
                 dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
                 dialog.setArguments(args);
-                dialog.show(getActivity().getSupportFragmentManager(), "date picker");
+                dialog.show(getActivity().getSupportFragmentManager(), "dateView picker");
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
 
@@ -208,7 +208,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
                 dialog.setTargetFragment(this, CHANGE_GENDER);
                 dialog.setArguments(args);
-                dialog.show(getActivity().getSupportFragmentManager(), "date dialog");
+                dialog.show(getActivity().getSupportFragmentManager(), "dateView dialog");
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
             }
