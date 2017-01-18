@@ -3,6 +3,7 @@ package com.project.ms.njord.fragments;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,7 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
+import com.project.ms.njord.model.DatabaseManager;
 import com.project.ms.njord.model.Singleton;
 
 /**
@@ -44,6 +46,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             "foo@example.com:hello", "bar@example.com:world"
     };
 
+    private DatabaseManager dbManager;
+
     // Keep track of the login and sign up task, to ensure we can cancel it if requested.
     private UserLoginTask loginTask = null;
     private UserSignUpTask signUpTask = null;
@@ -62,6 +66,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_login, container, false);
 
+        dbManager = Singleton.instance.getDataBaseManager();
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         // Set up the login form.
@@ -270,50 +275,65 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         private final String email;
         private final String password;
+        ProgressDialog pLog = new ProgressDialog(getActivity());
 
         UserLoginTask(String email, String password) {
             this.email = email;
             this.password = password;
         }
 
+        @Override
+        protected void onPreExecute() {
+            pLog.show();
+        }
+
         @Override        // Returns true if the profile is authentic
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
-            try {
-                // Simulate network access.
+                dbManager.syncProfile(email);
 
+                try {
+                    return (Singleton.instance.getProfile().getEmail().equals(email));
+                }
+                    catch(NullPointerException e) {
+                        return false;
+                    }
 
+        }
 
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
+           /* for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
                 if (pieces[0].equals(email)) {
                     // Account exists, return true if the password matches.
                     return pieces[1].equals(password);
                 }
             }
-            return true;
-        }
+            return true; }
+
+            */
+
 
         @Override       // Updtaes the UI after the second thread is done
         protected void onPostExecute(final Boolean success) {
+            pLog.dismiss();
             loginTask = null;
             showProgress(false);
 
             if (success) {      // password and email was correct
                 prefs.edit().putBoolean("isLoggedIn", true).commit();
+                prefs.edit().putString("active_email", email).commit();
+
                 Intent i = new Intent(getActivity(), MainActivity.class);
                 startActivity(i);
                 getActivity().finish();
 
             } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                passwordView.requestFocus();
+                emailView.setError("No user with that email exists");
+                emailView.requestFocus();
+
+                //passwordView.setError(getString(R.string.error_incorrect_password));
+                //passwordView.requestFocus();
             }
         }
 
@@ -329,49 +349,53 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         private final String email;
         private final String password;
+        ProgressDialog pLog = new ProgressDialog(getActivity());
 
         UserSignUpTask(String email, String password) {
             this.email = email;
             this.password = password;
+        }
 
-
+        @Override
+        protected void onPreExecute() {
+            pLog.show();
         }
 
         @Override       // Returns true if profile was created successfully
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
+            dbManager.syncProfile(email);
+
             try {
-                // Simulate network access.
+                return (!Singleton.instance.getProfile().getEmail().equals(email));
 
-
-
-
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                return false;
+            } catch (NullPointerException e) {
+                return true;
             }
 
-            for (String credential : DUMMY_CREDENTIALS) {
+           /* for (String credential : DUMMY_CREDENTIALS) {
                 String[] pieces = credential.split(":");
 
                 // Returns false if the account already exists
                 if (pieces[0].equals(email)) return false;
             }
+            */
 
-            // A new Profile is created
-            Singleton.instance.createProfile(email, password);
-            prefs.edit().putBoolean("isLoggedIn", true).commit();
-            // TODO: register the new profile online
-            return true;
         }
 
         @Override
         protected void onPostExecute(final Boolean success) {
-            loginTask = null;
+            pLog.dismiss();
             showProgress(false);
 
           if (success) {
+
+                // A new Profile is created
+              Singleton.instance.createProfile(email, password);
+              prefs.edit().putBoolean("isLoggedIn", true).commit();
+              prefs.edit().putString("active_email", email).commit();
+
               getFragmentManager().beginTransaction()
                       .replace(R.id.login_fragment_container, new SignUpFragment())
                       .addToBackStack(null)
@@ -380,8 +404,14 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
               signUpTask = null;
 
             } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                passwordView.requestFocus();
+
+                emailView.setError("A user with that email already exists");
+                emailView.requestFocus();
+
+                signUpTask = null;
+
+              //passwordView.setError(getString(R.string.error_incorrect_password));
+                //passwordView.requestFocus();
             }
         }
 

@@ -18,6 +18,7 @@ public class Profile extends Observable {
     private String gender = "";
     private String height = "";
     private String weight = "";
+    private boolean isLoggedIn = false;
     private ArrayList<TestResult> testResults = new ArrayList<>();
 
     public Profile() {
