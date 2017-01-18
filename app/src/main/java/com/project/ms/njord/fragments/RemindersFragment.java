@@ -30,9 +30,9 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     TextView notificationIntervalResult;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-    String seekBarChoiceTextCandidate0 = "Hver dag";
-    String seekBarChoiceTextCandidate1 = "To gange om dagen";
-    String seekBarChoiceTextCandidate2 = "To gange i minuttet";
+    String seekBarChoiceTextCandidate0 = "Every day";
+    String seekBarChoiceTextCandidate1 = "Twice a day";
+    String seekBarChoiceTextCandidate2 = "Two times every minute";
     Boolean inBootState;
 
     public RemindersFragment() {

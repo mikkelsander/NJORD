@@ -52,7 +52,7 @@
                 />
 
             <TextView
-                android:text="Hvor ofte vil du gerne påmindes?"
+                android:text="How often would you like reminders?"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/notificationInterval"
