@@ -8,16 +8,15 @@
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingBottom="16dip"
-        android:paddingTop="12dp"
-        android:paddingLeft="16dip"
-        android:paddingRight="16dip">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp">
 
             <Switch
                 android:text="Notifications"
@@ -26,7 +25,7 @@
                 android:id="@+id/switchNotification"
                 android:paddingBottom="4dp"
                 android:paddingTop="4dp"
-                android:textSize="22dp"
+                android:textSize="18sp"
                 android:layout_marginBottom="16dp"
                 />
 
@@ -37,7 +36,7 @@
                 android:id="@+id/switchSound"
                 android:paddingBottom="4dip"
                 android:paddingTop="4dp"
-                android:textSize="22dp"
+                android:textSize="18sp"
                 android:layout_marginBottom="16dp"
                 />
 
@@ -48,7 +47,7 @@
                 android:id="@+id/switchVibration"
                 android:paddingBottom="8dip"
                 android:paddingTop="4dp"
-                android:textSize="22dp"
+                android:textSize="18sp"
                 android:layout_marginBottom="16dp"
                 />
 
@@ -59,10 +58,11 @@
                 android:id="@+id/notificationInterval"
                 android:paddingTop="8dp"
                 android:paddingBottom="4dp"
-                android:textSize="22dp"
+                android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:textAlignment="center"
-                />
+                android:elevation="1dp"
+                android:alpha="1" />
 
             <SeekBar
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
@@ -85,7 +85,8 @@
                 android:gravity="center_vertical|center_horizontal"
                 android:paddingTop="4dp"
                 android:paddingBottom="4dp"
-                android:textSize="22dp"/>
+                android:textSize="18sp"
+                android:alpha="1" />
 
         </LinearLayout>
     </ScrollView>

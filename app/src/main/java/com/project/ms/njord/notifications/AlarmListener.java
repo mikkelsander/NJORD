@@ -11,7 +11,7 @@ import android.preference.PreferenceManager;
 import android.provider.Settings;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activities.MainActivity;
+import com.project.ms.njord.activities.SplashActivity;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -32,13 +32,13 @@ public class AlarmListener extends BroadcastReceiver {
         //Initialize variables
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
         notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
-        pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, MainActivity.class), 0);
+        pendingIntent = PendingIntent.getActivity(context, 0, new Intent(context, SplashActivity.class), 0);
 
         //Build notification
         Notification.Builder notificationBuilder = new Notification.Builder(context)
                 .setContentTitle("Så er det tid til at blæse!")
                 .setContentText("Blæs, mester, blæs!")
-                .setSmallIcon(R.drawable.ic_tv_dark)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setCategory(Notification.CATEGORY_ALARM)

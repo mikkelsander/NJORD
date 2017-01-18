@@ -1,5 +1,6 @@
 package com.project.ms.njord.fragments;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 public class ProgressFragment extends Fragment implements OnDataPointTapListener {
 
     View v;
-    TextView dateView, inhaleLevel, exhaleLevel;
+    TextView dateView, inhaleLevelView, exhaleLevelView;
     GraphView graph;
 
     ArrayList<TestResult> results;
@@ -38,8 +39,8 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
 
         results = Singleton.instance.getProfile().getTestResults();
 
-        inhaleLevel = (TextView) v.findViewById(R.id.progress_inhale_textView);
-        exhaleLevel = (TextView) v.findViewById(R.id.progress_exhale_textView);
+        inhaleLevelView = (TextView) v.findViewById(R.id.progress_inhale_textView);
+        exhaleLevelView = (TextView) v.findViewById(R.id.progress_exhale_textView);
         dateView = (TextView) v.findViewById(R.id.progress_date_textView);
 
         graph = (GraphView) v.findViewById(R.id.fragment_progress_graph);
@@ -62,6 +63,7 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
 
         inhale.setOnDataPointTapListener(this);
         exhale.setOnDataPointTapListener(this);
+        exhale.setColor(Color.RED);
 
 
         // highlights points
@@ -71,6 +73,7 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         // Activate horizontal zooming and scrolling
         graph.getViewport().setScalable(true);
 
+        // Modifying graph design
         graph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         graph.getGridLabelRenderer().setVerticalLabelsVisible(false);
         graph.getGridLabelRenderer().setGridStyle(GridLabelRenderer.GridStyle.NONE );
@@ -85,7 +88,6 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         graph.getViewport().setMinY(0);
         graph.getViewport().setMaxY(5);*/
 
-
         //Setting initial values for textViews for last test result if results array is not empty
         if(results.size()>0) {
             int index = results.size()-1 ;
@@ -94,8 +96,8 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
             String ex = Integer.toString(results.get(index).getExhaleLevel());
             String date = results.get(index).getDate().toString();
 
-            inhaleLevel.setText(in);
-            exhaleLevel.setText(ex);
+            inhaleLevelView.setText(in);
+            exhaleLevelView.setText(ex);
             dateView.setText(date);
         }
         return v;
@@ -113,6 +115,14 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
 
     @Override
     public void onTap(Series series, DataPointInterface dataPointInterface) {
+        int  index = (int)dataPointInterface.getX();
 
+        String date = results.get(index).getDate().toString();
+        int exhale = results.get(index).getExhaleLevel();
+        int inhale = results.get(index).getInhaleLevel();
+
+        exhaleLevelView.setText(exhale);
+        inhaleLevelView.setText(inhale);
+        dateView.setText(date);
     }
 }

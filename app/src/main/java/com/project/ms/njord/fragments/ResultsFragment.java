@@ -61,7 +61,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .setMessage("Training on a regular bases is important. AEROFIT would like permission to send you daily reminders." +
                         "\n\n" +
                         "You can always change your selection in the menu under Preferences.")
-                .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
+                .setPositiveButton("Agree", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         notificationLogic.notificationsDialogAccepted();
@@ -70,7 +70,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
 
                     }
                 })
-                .setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
+                .setNegativeButton("Decline", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         getActivity().finish();
@@ -87,16 +87,11 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == doneBtn) {
-            //Check if this is the first run of the app, and if so call for dialog
-            //if (sharedPref.getBoolean("firstRun", true)) {
             if (!sharedPref.getBoolean("notificationsAdvised", false)) {
                 showNotificationAlertDialog();
+            }else{
+            getActivity().finish();
             }
-            //}else{
-            //Intent i = new Intent(this, MainActivity.class);
-            //startActivity(i);
-            //finish();
-            //}
         }
     }
 
