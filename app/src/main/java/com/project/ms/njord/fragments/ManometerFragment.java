@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.project.ms.njord.R;
+import com.project.ms.njord.model.Profile;
 import com.project.ms.njord.model.Singleton;
 import com.project.ms.njord.simulator.DataSimulator;
 
@@ -27,6 +28,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     private int exhaleLevel = 0;
     private Date testDate = new Date();
     private ArrayList<Integer> streamOfSpiroData = new ArrayList<>();
+    private Profile profile = Singleton.instance.getProfile();
     int counter = 1;
     boolean isReadingData;
 
@@ -84,6 +86,9 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
      */
     public void startReading(boolean choice){
         isReadingData = true;
+        if(counter==3){
+            //modifyScreeanLook();
+        }
         new AsyncTask<Boolean, Void, Void>() {
             @Override
             protected Void doInBackground(Boolean... params) {
@@ -96,22 +101,43 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
             }
             @Override
             public void onPostExecute(Void param) {
+
+                // Inhale begins
                 if(counter == 1){
                     test1.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test1int = highestReading(streamOfSpiroData);
-                    inhaleLevel = average(test1int, test2int, test3int);
+                    inhaleLevel = average(test1int, 0, 0);
                     counter++;
                 }else if(counter == 2){
                     test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
-                    inhaleLevel = average(test1int, test2int, test3int);
+                    inhaleLevel = average(test1int, test2int, 0);
                     counter++;
                 }else if(counter == 3){
                     test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test3int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, test3int);
+                    counter++;
+                }
+
+                // Exhale begins
+                else if(counter == 4){
+                    test1.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test1int = highestReading(streamOfSpiroData);
+                    exhaleLevel = average(test1int, 0, 0);
+                    counter++;
+                }else if(counter == 5) {
+                    test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test2int = highestReading(streamOfSpiroData);
+                    exhaleLevel = average(test1int, test2int, 0);
+                    counter++;
+                }else if(counter == 6) {
+                    test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test2int = highestReading(streamOfSpiroData);
+                    exhaleLevel = average(test1int, test2int, 0);
                     counter = 1;
                 }
+
                 isReadingData = false;
             }
         }.execute(choice);
@@ -121,7 +147,8 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
      * Saves the test result as a new TestRests object
      */
     public void saveResult(Date date, int insp, int exp){
-        Singleton.instance.getProfile().createTestResult(date, insp, exp);
+        profile.createTestResult(date, insp, exp);
+        Singleton.instance.getDataBaseManager().saveProfile(profile);
     }
 
     /**
