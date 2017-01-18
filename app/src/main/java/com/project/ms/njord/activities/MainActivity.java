@@ -23,13 +23,14 @@ import android.widget.TextView;
 
 import com.crashlytics.android.Crashlytics;
 import com.project.ms.njord.R;
-import com.project.ms.njord.fragments.DeStress;
+import com.project.ms.njord.fragments.DeStressFragment;
 import com.project.ms.njord.fragments.DeviceFragment;
-import com.project.ms.njord.fragments.HomeFragment;
+import com.project.ms.njord.fragments.PowerTestFragment;
 import com.project.ms.njord.fragments.ProfileFragment;
 import com.project.ms.njord.fragments.ProgressFragment;
 import com.project.ms.njord.fragments.RemindersFragment;
 import com.project.ms.njord.fragments.VideoTutorialsFragment;
+import com.project.ms.njord.fragments.ViewPagerFragment;
 import com.project.ms.njord.model.Singleton;
 
 import java.util.Observable;
@@ -67,15 +68,16 @@ public class MainActivity extends AppCompatActivity
 
         // if fresh start show fragment home
 
-        if (savedInstanceState == null) {
+        if(savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new HomeFragment(), "home")
+                    .replace(R.id.fragment_container, new ViewPagerFragment(), "home" )
                     .commit();
         }
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("AEROFIT");
 
         // Initializing Navigation drawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,6 +94,7 @@ public class MainActivity extends AppCompatActivity
 
         Singleton.instance.getProfile().addObserver(this);
         menuUserName.setText(Singleton.instance.getProfile().getName());
+
 
     }
 
@@ -113,13 +116,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_aerofit) {
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new HomeFragment(), "home")
+                    .replace(R.id.fragment_container, new ViewPagerFragment(), "aerofit")
                     .addToBackStack(null)
                     .commit();
 
-            getSupportActionBar().setTitle("Home");
+            getSupportActionBar().setTitle("AEROFIT");
 
         } else if (id == R.id.nav_profile) {
             getSupportFragmentManager().beginTransaction()
@@ -134,14 +137,14 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.fragment_container, new DeviceFragment(), "device")
                     .addToBackStack(null)
                     .commit();
-            getSupportActionBar().setTitle("Spirometer");
+            getSupportActionBar().setTitle("Device");
 
         } else if (id == R.id.nav_reminders) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new RemindersFragment(), "reminders")
                     .addToBackStack(null)
                     .commit();
-            getSupportActionBar().setTitle("Preferences");
+            getSupportActionBar().setTitle("Reminders");
 
         } else if (id == R.id.nav_progress) {
             getSupportFragmentManager().beginTransaction()
@@ -188,5 +191,34 @@ public class MainActivity extends AppCompatActivity
                 || Build.MANUFACTURER.contains("Genymotion")
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
+    }
+
+    private class CustomAdapter extends FragmentPagerAdapter {
+        private String fragments [] = {"Power", "De-Stress"};
+        public CustomAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
+        super(supportFragmentManager);
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position){
+                case 0:
+                    return new PowerTestFragment();
+                case 1:
+                    return new DeStressFragment();
+                default:
+                    return null;
+            }
+        }
+
+        @Override
+        public int getCount() {
+            return fragments.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return fragments [position];
+        }
     }
 }

@@ -17,13 +17,13 @@ import java.io.IOException;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class DeStress extends Fragment implements View.OnClickListener {
+public class DeStressFragment extends Fragment implements View.OnClickListener {
 
 
     final MediaPlayer mp = new MediaPlayer();
     Button danish,english;
 
-    public DeStress() {
+    public DeStressFragment() {
         // Required empty public constructor
     }
 

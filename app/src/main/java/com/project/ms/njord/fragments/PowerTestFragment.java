@@ -11,7 +11,7 @@ import com.project.ms.njord.R;
 import com.project.ms.njord.activities.TestLungsActivity;
 import com.project.ms.njord.simulator.DataSimulator;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class PowerTestFragment extends Fragment implements View.OnClickListener {
 
     private Button beginTestBtn;
 
