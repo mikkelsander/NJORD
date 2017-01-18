@@ -67,9 +67,6 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                        // settingsFragment.callAlarmStarter();
                         showConfirmNotificationToast();
-                        Intent i = new Intent(getActivity(), MainActivity.class);
-                        startActivity(i);
-
                         getActivity().finish();
 
                     }
@@ -77,8 +74,6 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .setNegativeButton("No thanks", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent i = new Intent(getActivity(), MainActivity.class);
-                        startActivity(i);
                         getActivity().finish();
                     }
                 })
