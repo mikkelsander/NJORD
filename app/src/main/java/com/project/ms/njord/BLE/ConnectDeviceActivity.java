@@ -80,7 +80,7 @@ public class ConnectDeviceActivity extends AppCompatActivity {
                 finish();
             }
             // Automatically connects to the device upon successful start-up initialization.
-            // mBluetoothLeService.connect(mDeviceAddress);
+            mBluetoothLeService.connect(mDeviceAddress);
         }
 
         @Override

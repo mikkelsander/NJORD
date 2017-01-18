@@ -44,8 +44,6 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
 
         graph = (GraphView) v.findViewById(R.id.fragment_progress_graph);
 
-
-
         // Creating arrays the contain data points for the graph
         DataPoint[] dataInhale = new DataPoint[results.size()];
         for (int i = 0; i < results.size(); i++) {
@@ -88,13 +86,13 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         graph.getViewport().setMaxY(5);*/
 
 
-        //Setting initial values for textViews if results has objects
+        //Setting initial values for textViews for last test result if results array is not empty
         if(results.size()>0) {
-            int i = results.size()-1 ;
+            int index = results.size()-1 ;
 
-            String in = Integer.toString(results.get(i).getInhaleLevel());
-            String ex = Integer.toString(results.get(i).getExhaleLevel());
-            String date = results.get(i).getDate().toString();
+            String in = Integer.toString(results.get(index).getInhaleLevel());
+            String ex = Integer.toString(results.get(index).getExhaleLevel());
+            String date = results.get(index).getDate().toString();
 
             inhaleLevel.setText(in);
             exhaleLevel.setText(ex);

@@ -9,6 +9,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Observable;
+import java.util.Observer;
+
 public class DatabaseManager {
 
     final private String TAG = "DatabaseManager";
@@ -17,12 +20,13 @@ public class DatabaseManager {
     private DatabaseReference profileRef;
     private String uniqueEmail;
 
-    public DatabaseManager() {
+    public DatabaseManager()  {
         databaseInstance = FirebaseDatabase.getInstance();
         profileRef = databaseInstance.getReference("Profiles");
     }
 
 
+    //public void setObserver
 
     public void saveProfile(Profile profile) {
 
@@ -132,6 +136,13 @@ public class DatabaseManager {
         }
 
     }
+/*
+
+    @Override
+    public void update(Observable o, Object arg) {
+        saveProfile(Singleton.instance.getProfile());
+    }
+*/
 }
 
 

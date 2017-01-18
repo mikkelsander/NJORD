@@ -48,18 +48,19 @@
         android:layout_marginTop="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/imageView"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.15" />
 
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="245dp"
+            android:layout_width="196dp"
+            android:layout_height="120dp"
             app:srcCompat="@android:drawable/ic_secure"
             android:id="@+id/imageView"
             android:layout_marginStart="16dp"
             app:layout_constraintLeft_toLeftOf="parent"
             android:layout_marginEnd="16dp"
             app:layout_constraintRight_toRightOf="parent"
-            tools:layout_editor_absoluteY="83dp" />
+            tools:layout_editor_absoluteY="115dp" />
 
     </android.support.constraint.ConstraintLayout>
 

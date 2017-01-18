@@ -120,7 +120,7 @@ public class Profile extends Observable {
         return testResults;
     }
 
-    public void createTetsResult(Date date, int insp, int exp){
+    public void createTestResult(Date date, int insp, int exp){
         TestResult result = new TestResult(date, insp, exp);
         testResults.add(result);
     }
