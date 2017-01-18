@@ -1,6 +1,5 @@
 package com.project.ms.njord.fragments;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.project.ms.njord.R;
 import com.project.ms.njord.model.Singleton;
-import com.project.ms.njord.model.TestResult;
 import com.project.ms.njord.simulator.DataSimulator;
 
 import java.util.ArrayList;
@@ -122,7 +120,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
      * Saves the test result as a new TestRests object
      */
     public void saveResult(Date date, int insp, int exp){
-        Singleton.instance.getProfile().createTetsResult(date, insp, exp);
+        Singleton.instance.getProfile().createTestResult(date, insp, exp);
     }
 
     /**

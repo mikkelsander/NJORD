@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 
 import com.project.ms.njord.model.Singleton;
 import com.project.ms.njord.model.DatabaseManager;
@@ -21,26 +22,26 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        Singleton.init();
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+            Singleton.init();
 
-        // Launches login activity if not logged in
-        if( !prefs.getBoolean("isLoggedIn", false) ){
-            Intent i = new Intent(this, LoginActivity.class);
-            startActivity(i);
-            finish();
-        } else {
+            // Launches login activity if not logged in
+            if( !prefs.getBoolean("isLoggedIn", false) ){
+                Intent i = new Intent(this, LoginActivity.class);
+                startActivity(i);
+                finish();
+            } else {
 
-            try {
-                Singleton.instance.getDataBaseManager().syncProfile(prefs.getString("active_email", ""));
+                try {
+                    Singleton.instance.getDataBaseManager().syncProfile(prefs.getString("active_email", ""));
+                } catch (NullPointerException e) {
+                    e.printStackTrace();
+                }
+
+                Intent i = new Intent(this, MainActivity.class);
+                startActivity(i);
+                finish();
             }
-             catch(NullPointerException e){
-                 e.printStackTrace();
-             }
-
-            Intent i = new Intent(this, MainActivity.class);
-            startActivity(i);
-            finish();
         }
     }
-}
+

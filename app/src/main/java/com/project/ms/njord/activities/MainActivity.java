@@ -44,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     NavigationView navigationView = null;
     Toolbar toolbar = null;
     String tag;
+    TextView menuUserName;
 
     SharedPreferences prefs;
 
@@ -82,15 +83,10 @@ public class MainActivity extends AppCompatActivity
 
         // Setting the user name in the navigation drawer
         View headerView = navigationView.getHeaderView(0);
-        TextView menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
+        menuUserName = (TextView) headerView.findViewById(R.id.menuHeader_name_textView);
 
-        //
-        if (!(Singleton.instance.getProfile() == null)){
-            menuUserName.setText(Singleton.instance.getProfile().getName());
-        }
-        else {
-            menuUserName.setText("Guest");
-        }
+        Singleton.instance.getProfile().addObserver(this);
+        menuUserName.setText(Singleton.instance.getProfile().getName());
 
     }
 
@@ -161,6 +157,7 @@ public class MainActivity extends AppCompatActivity
             prefs.edit().putString("active_email", "").commit();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
+            finish();
 
         }
 

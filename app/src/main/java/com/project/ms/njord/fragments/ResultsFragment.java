@@ -8,7 +8,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
-import com.project.ms.njord.fragments.RemindersFragment;
 
 public class ResultsFragment extends Fragment implements View.OnClickListener {
 
@@ -25,7 +23,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
     TextView inhale, exhale;
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
-    RemindersFragment settingsFragment;
+    RemindersFragment remindersFragment;
     Bundle bundle;
 
 
@@ -36,7 +34,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
 
         // getActivity().getSupportActionBar().setTitle("Results");
 
-        settingsFragment = new RemindersFragment();
+        remindersFragment = new RemindersFragment();
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPref.edit();
 
@@ -65,7 +63,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // settingsFragment.callAlarmStarter();
+                       // remindersFragment.callAlarmStarter();
                         showConfirmNotificationToast();
                         Intent i = new Intent(getActivity(), MainActivity.class);
                         startActivity(i);
