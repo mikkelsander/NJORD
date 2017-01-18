@@ -19,6 +19,7 @@ import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
 import com.project.ms.njord.dialogFragments.DateRequestDialog;
 import com.project.ms.njord.dialogFragments.NumberPickerDialog;
+import com.project.ms.njord.model.Profile;
 import com.project.ms.njord.model.Singleton;
 
 import static io.fabric.sdk.android.Fabric.TAG;
@@ -29,6 +30,8 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     // UI references
     private EditText nameView,genderView, heightView, weightView, birthdayView;
     private Button confirmButton, skipButton;
+    private Profile profile;
+    boolean confirmed;
 
     private final int CHANGE_BIRTHDAY   = 3;
     private final int CHANGE_GENDER     = 4;
@@ -60,6 +63,10 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
         imm = (InputMethodManager)getActivity()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        profile = Singleton.instance.getProfile();
+
+        confirmed = false;
 
         return v;
 
@@ -115,6 +122,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     }
 */
 
+
     @Override
     public void onClick(View v) {
         Bundle args = new Bundle();
@@ -129,20 +137,27 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
     }
 
+
+
     private void attemptConfirm() {
         // TODO: save all user input
-        if (userInputValid()) {
-            Singleton.instance.getProfile().setName(nameView.getText().toString());
-            Singleton.instance.getProfile().setBirthday(birthdayView.getText().toString());
-            Singleton.instance.getProfile().setGender(genderView.getText().toString());
-            Singleton.instance.getProfile().setHeight(heightView.getText().toString());
-            Singleton.instance.getProfile().setWeight(weightView.getText().toString());
+        if (userInputValid())
+
+            profile.setName(nameView.getText().toString());
+            profile.setBirthday(birthdayView.getText().toString());
+            profile.setGender(genderView.getText().toString());
+            profile.setHeight(heightView.getText().toString());
+            profile.setWeight(weightView.getText().toString());
+
+            Singleton.instance.getDataBaseManager().saveProfile(profile);
+
+            confirmed = true;
 
             Intent i = new Intent(getActivity(), MainActivity.class);
             startActivity(i);
             getActivity().finish();
-        }
     }
+
 
     private boolean userInputValid() {
         // TODO: validate all user input
@@ -176,7 +191,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
                 dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
                 dialog.setArguments(args);
-                dialog.show(getActivity().getSupportFragmentManager(), "date picker");
+                dialog.show(getActivity().getSupportFragmentManager(), "dateView picker");
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
 
@@ -193,7 +208,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
                 dialog.setTargetFragment(this, CHANGE_GENDER);
                 dialog.setArguments(args);
-                dialog.show(getActivity().getSupportFragmentManager(), "date dialog");
+                dialog.show(getActivity().getSupportFragmentManager(), "dateView dialog");
                 imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
             }

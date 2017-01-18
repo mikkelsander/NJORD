@@ -14,59 +14,66 @@ public class DatabaseManager {
     final private String TAG = "DatabaseManager";
 
     private FirebaseDatabase databaseInstance;
-    private DatabaseReference profileDatabase, database;
-    private String profileId;
-    private String dataId;
+    private DatabaseReference profileRef;
+    private String uniqueEmail;
 
     public DatabaseManager() {
         databaseInstance = FirebaseDatabase.getInstance();
-        profileDatabase = databaseInstance.getReference("Profiles");
-        database = databaseInstance.getReference("Singleton");
+        profileRef = databaseInstance.getReference("Profiles");
     }
-
-/*
-    public void saveDataTree (Singleton dataManager) {
-
-        if (TextUtils.isEmpty(dataId)) {
-
-            dataId = database.push().getKey();
-        }
-
-        database.child(dataId).setValue(dataManager);
-
-    }*/
 
 
 
     public void saveProfile(Profile profile) {
 
-        if (TextUtils.isEmpty(profileId)) {
+        if (TextUtils.isEmpty(uniqueEmail)) {
 
-            profileId = profileDatabase.push().getKey();
+            uniqueEmail = profile.getEmail();
+
         }
 
-        profileDatabase.child(profileId).setValue(profile);
+        profileRef.child(uniqueEmail).setValue(profile);
 
     }
 
+/*
 
-    public void setProfileChangeListener() {
+    public void loadProfile(String id) {
+
+        profileRef.child(uniqueEmail).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                Profile profile = dataSnapshot.getValue(Profile.class);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        }) ;
+
+    }
+*/
+
+
+    public void syncProfile(String email) {
         // User data change listener
-        profileDatabase.child(profileId).addValueEventListener(new ValueEventListener() {
+        profileRef.child(email).addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Profile newProfile = dataSnapshot.getValue(Profile.class);
+                Profile profile = dataSnapshot.getValue(Profile.class);
 
                 // Check for null
-                if (newProfile == null) {
+                if (profile == null) {
                     Log.d(TAG, "Profile data is null!");
                     return;
                 }
 
-                Singleton.instance.updateProfile(newProfile);
+                Singleton.instance.updateProfile(profile);
 
-                Log.d(TAG, "Profile data is changed!");
+                Log.d(TAG, "Syncing profile data!");
 
             }
 
@@ -79,41 +86,48 @@ public class DatabaseManager {
     }
 
 
+    public void deleteProfile(String email){
+
+        profileRef.child(email).removeValue();
+    }
+
+
+    //in case in the future we want to only push one of profile attribute to the database
     private void updateProfile(Profile profile) {
         // updating the user via child nodes
 
         if (!TextUtils.isEmpty(profile.getEmail())) {
 
-            profileDatabase.child(profileId).child("email").setValue(profile.getEmail());
+            profileRef.child(uniqueEmail).child("email").setValue(profile.getEmail());
 
         }
 
         if (!TextUtils.isEmpty(profile.getName())) {
 
-            profileDatabase.child(profileId).child("name").setValue(profile.getName());
+            profileRef.child(uniqueEmail).child("name").setValue(profile.getName());
 
         }
 
         if (!TextUtils.isEmpty(profile.getBirthday())) {
 
-            profileDatabase.child(profileId).child("birthday").setValue(profile.getBirthday());
+            profileRef.child(uniqueEmail).child("birthday").setValue(profile.getBirthday());
 
         }
 
         if (!TextUtils.isEmpty(profile.getGender())) {
 
-            profileDatabase.child(profileId).child("gender").setValue(profile.getGender());
+            profileRef.child(uniqueEmail).child("gender").setValue(profile.getGender());
         }
 
         if (!TextUtils.isEmpty(profile.getHeight())) {
 
-            profileDatabase.child(profileId).child("height").setValue(profile.getHeight());
+            profileRef.child(uniqueEmail).child("height").setValue(profile.getHeight());
 
         }
 
         if (!TextUtils.isEmpty(profile.getWeight())) {
 
-            profileDatabase.child(profileId).child("weight").setValue(profile.getWeight());
+            profileRef.child(uniqueEmail).child("weight").setValue(profile.getWeight());
 
         }
 

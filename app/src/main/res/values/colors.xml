@@ -23,6 +23,10 @@
 
     <color name="turquoise">#00E5EE</color>
     <color name="red">#ee0004</color>
+    <color name="redLight">#ff0004</color>
+    <color name="redDark">#db0004</color>
+
+
 
     <color name="Pantone300cBlue">#005eb8</color>
     <color name="Pantone354cGreen">#00b140</color>

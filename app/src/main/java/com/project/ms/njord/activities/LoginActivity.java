@@ -14,6 +14,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        if (savedInstanceState == null)
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.login_fragment_container, new LoginFragment())
                 .commit();

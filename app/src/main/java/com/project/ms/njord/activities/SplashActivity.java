@@ -24,17 +24,20 @@ public class SplashActivity extends AppCompatActivity {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         Singleton.init();
 
-        DatabaseManager dbManager = new DatabaseManager();
-
-
-        // DatabaseManager dbManager = Singleton.instance.getDataBaseManager();
-
         // Launches login activity if not logged in
         if( !prefs.getBoolean("isLoggedIn", false) ){
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
             finish();
-        }else{
+        } else {
+
+            try {
+                Singleton.instance.getDataBaseManager().syncProfile(prefs.getString("active_email", ""));
+            }
+             catch(NullPointerException e){
+                 e.printStackTrace();
+             }
+
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
             finish();

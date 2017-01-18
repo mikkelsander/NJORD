@@ -12,7 +12,7 @@ public class Singleton {
 
     private Singleton(){
         dbManager = new DatabaseManager();
-        createGuestProfile();
+        //createGuestProfile();
     }
 
     public static void init(){
@@ -35,7 +35,7 @@ public class Singleton {
         profile.getTestResults().add(new TestResult());
         profile.getTestResults().add(new TestResult());
         dbManager.saveProfile(profile);
-        dbManager.setProfileChangeListener();
+        dbManager.syncProfile(profile.getEmail());
     }
 
     public Profile getProfile() {return profile;}

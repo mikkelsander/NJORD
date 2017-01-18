@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray_dark"
-    tools:context="com.project.ms.njord.activities.ResultsActivity">
+    tools:context="com.project.ms.njord.fragments.ResultsFragment">
 
     <TextView
         android:text="Your results"

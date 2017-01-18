@@ -16,7 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.project.ms.njord.R;
@@ -30,6 +32,8 @@ import com.project.ms.njord.fragments.RemindersFragment;
 
 import java.util.Observable;
 import java.util.Observer;
+
+import io.fabric.sdk.android.Fabric;
 
 //import com.project.ms.njord.controller.DataSimulator;
 //import com.project.ms.njord.controller.DataSimulator;
@@ -46,8 +50,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //TODO: overfør ikke crashrapport ved emulatorcrash
-        //Fabric.with(this, new Crashlytics());
+        if (!isEmulator()) {
+            Fabric.with(this, new Crashlytics());
+        }
 
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -82,14 +87,12 @@ public class MainActivity extends AppCompatActivity
         //
         if (!(Singleton.instance.getProfile() == null)){
             menuUserName.setText(Singleton.instance.getProfile().getName());
-            Singleton.instance.getProfile().addObserver(this);
         }
         else {
             menuUserName.setText("Guest");
         }
 
     }
-
 
     @Override
     public void onBackPressed() {
@@ -155,6 +158,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logOut){
             prefs.edit().putBoolean("isLoggedIn", false).commit();
+            prefs.edit().putString("active_email", "").commit();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
 
@@ -173,7 +177,6 @@ public class MainActivity extends AppCompatActivity
         menuUserName.setText(Singleton.instance.getProfile().getName());
     }
 
-
     public static boolean isEmulator() {
         return Build.FINGERPRINT.startsWith("generic")
                 || Build.FINGERPRINT.startsWith("unknown")
@@ -184,5 +187,4 @@ public class MainActivity extends AppCompatActivity
                 || (Build.BRAND.startsWith("generic") && Build.DEVICE.startsWith("generic"))
                 || "google_sdk".equals(Build.PRODUCT);
     }
-
 }
