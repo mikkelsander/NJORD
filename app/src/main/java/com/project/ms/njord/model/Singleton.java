@@ -32,8 +32,6 @@ public class Singleton {
 
     public void createProfile(String email, String password){
         profile = new Profile(email, password);
-        profile.getTestResults().add(new TestResult());
-        profile.getTestResults().add(new TestResult());
         dbManager.saveProfile(profile);
         dbManager.syncProfile(profile.getEmail());
     }
