@@ -38,7 +38,7 @@ public class AlarmListener extends BroadcastReceiver {
         Notification.Builder notificationBuilder = new Notification.Builder(context)
                 .setContentTitle("Så er det tid til at blæse!")
                 .setContentText("Blæs, mester, blæs!")
-                .setSmallIcon(R.drawable.ic_tv_dark)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setWhen(System.currentTimeMillis())
                 .setAutoCancel(true)
                 .setCategory(Notification.CATEGORY_ALARM)
