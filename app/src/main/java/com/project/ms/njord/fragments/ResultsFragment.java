@@ -64,7 +64,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        notificationLogic.callAlarmStarter();
+                        notificationLogic.notificationsDialogAccepted();
                         showConfirmNotificationToast();
                         getActivity().finish();
 

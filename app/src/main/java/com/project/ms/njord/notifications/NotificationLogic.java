@@ -9,6 +9,8 @@ import android.widget.SeekBar;
 import com.project.ms.njord.R;
 
 import static com.project.ms.njord.R.id.switchNotification;
+import static com.project.ms.njord.R.id.switchSound;
+import static com.project.ms.njord.R.id.switchVibration;
 
 /**
  * Created by simon on 17-01-2017.
@@ -28,16 +30,24 @@ public class NotificationLogic {
         this.context = context;
     }
 
+    public void notificationsDialogAccepted() {
+        editor.putBoolean("switchNotificationOn", true)
+                .putBoolean("switchSoundOn", true)
+                .putBoolean("switchVibrationOn", true)
+                .commit();
+        callAlarmStarter();
+    }
+
     public void switchOnStateSaver(CompoundButton buttonView) {
 
         switch (buttonView.getId()) {
             case switchNotification:
                 editor.putBoolean("switchNotificationOn", true).commit();
                 break;
-            case R.id.switchSound:
+            case switchSound:
                 editor.putBoolean("switchSoundOn", true).commit();
                 break;
-            case R.id.switchVibration:
+            case switchVibration:
                 editor.putBoolean("switchVibrationOn", true).commit();
                 break;
 
@@ -51,10 +61,10 @@ public class NotificationLogic {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
                 break;
-            case R.id.switchSound:
+            case switchSound:
                 editor.putBoolean("switchSoundOn", false).commit();
                 break;
-            case R.id.switchVibration:
+            case switchVibration:
                 editor.putBoolean("switchVibrationOn", false).commit();
                 break;
         }
