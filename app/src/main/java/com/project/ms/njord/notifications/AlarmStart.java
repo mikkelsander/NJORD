@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
+import java.util.Calendar;
+
 import static android.content.Context.ALARM_SERVICE;
 
 /**
@@ -18,19 +20,24 @@ public class AlarmStart {
     //Variables
     long startTime;
     long interval;
+    Calendar calendar;
 
-    public void startAlarm(Context context, int seekBarChoice) {
+    public void startAlarm(Context context, int seekBarSelection) {
 
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.set(Calendar.HOUR_OF_DAY, 7);
+        calendar.roll(Calendar.DATE, +1);
 
         //Initialize variables
-        switch (seekBarChoice) {
+        switch (seekBarSelection) {
             case 0:
-                startTime = System.currentTimeMillis();
+                startTime = calendar.getTimeInMillis();
                 ;
                 interval = 86400000;
                 break;
             case 1:
-                startTime = System.currentTimeMillis();
+                startTime = calendar.getTimeInMillis();
                 interval = 43200000;
                 break;
             case 2:
@@ -46,7 +53,8 @@ public class AlarmStart {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmListener.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setRepeating(AlarmManager.RTC, startTime, interval, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 86400000, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 60000, 86400000, pendingIntent);
 
     }
 

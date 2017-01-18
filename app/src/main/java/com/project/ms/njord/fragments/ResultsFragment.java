@@ -1,7 +1,6 @@
 package com.project.ms.njord.fragments;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -14,8 +13,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.project.ms.njord.R;
-import com.project.ms.njord.activities.MainActivity;
+import com.project.ms.njord.notifications.NotificationLogic;
 
 public class ResultsFragment extends Fragment implements View.OnClickListener {
 
@@ -25,6 +25,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
     SharedPreferences.Editor editor;
     RemindersFragment remindersFragment;
     Bundle bundle;
+    NotificationLogic notificationLogic;
 
 
     @Nullable
@@ -34,7 +35,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
 
         // getActivity().getSupportActionBar().setTitle("Results");
 
-        remindersFragment = new RemindersFragment();
+        notificationLogic = new NotificationLogic(getActivity());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         editor = sharedPref.edit();
 
@@ -54,7 +55,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
 
     //Generates Dialog asking for Push notification permission. If given all permissions are switched on with standard prefs.
     public void showNotificationAlertDialog() {
-        //editor.putBoolean("firstRun", false).commit();
+        editor.putBoolean("notificationsAdvised", true).commit();
         new AlertDialog.Builder(getActivity())
                 .setTitle("Notifications")
                 .setMessage("Training on a regular bases is important. AEROFIT would like permission to send you daily reminders." +
@@ -63,7 +64,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .setPositiveButton("Activate Notifications", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                       // remindersFragment.callAlarmStarter();
+                        notificationLogic.callAlarmStarter();
                         showConfirmNotificationToast();
                         getActivity().finish();
 
@@ -88,7 +89,9 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
         if (v == doneBtn) {
             //Check if this is the first run of the app, and if so call for dialog
             //if (sharedPref.getBoolean("firstRun", true)) {
-            showNotificationAlertDialog();
+            if (!sharedPref.getBoolean("notificationsAdvised", false)) {
+                showNotificationAlertDialog();
+            }
             //}else{
             //Intent i = new Intent(this, MainActivity.class);
             //startActivity(i);

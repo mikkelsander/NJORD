@@ -39,6 +39,6 @@ public class BootListener extends BroadcastReceiver {
     }
 
     private void opdaterkalenderBoot() {
-        notificationLogic.callAlarmStarter(context);
+        notificationLogic.callAlarmStarter();
     }
 }

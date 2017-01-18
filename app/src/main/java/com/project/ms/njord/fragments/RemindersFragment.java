@@ -64,14 +64,11 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         //Set initial values
         inBootState = true;
         switchNotification.setChecked(sharedPref.getBoolean("switchNotificationOn", false));
+        inBootState = false;
         switchSound.setChecked(sharedPref.getBoolean("switchSoundOn", false));
         switchVibration.setChecked(sharedPref.getBoolean("switchVibrationOn", false));
         seekBarNotification.setProgress(sharedPref.getInt("progress", 50));
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
-        if (!sharedPref.getBoolean("switchNotificationOn", false)) {
-            notificationLogic.switchOff(switchNotification);
-        }
-        inBootState = false;
 
         //End of OnCreateView
         return v;
@@ -81,69 +78,49 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         if (buttonView.isChecked()) {
-            notificationLogic.switchOn(buttonView);
+            notificationLogic.switchOnStateSaver(buttonView);
             if (buttonView.getId() == switchNotification.getId() && !inBootState) {
-                switchOnEverything();
+                editor.putBoolean("notificationsAdvised", true).commit();
+                masterSwitchOn();
             }
         } else {
-            notificationLogic.switchOff(buttonView);
+            notificationLogic.switchOffStateSaver(buttonView);
             if (buttonView.getId() == switchNotification.getId()) {
-                switchOffEverything();
+                masterSwitchOff();
             }
         }
+
     }
 
-    public void switchOnEverything() {
-        notificationLogic.switchOn(switchSound);
-        notificationLogic.switchOn(switchVibration);
-        switchEnable(switchSound);
-        switchEnable(switchVibration);
-        seekBarEnable(seekBarNotification);
+    public void masterSwitchOn() {
+        notificationLogic.switchOnSwitch(switchSound);
+        notificationLogic.switchOnSwitch(switchVibration);
+        notificationLogic.enableSwitch(switchSound);
+        notificationLogic.enableSwitch(switchVibration);
+        notificationLogic.enableSeekbar(seekBarNotification);
+        notificationLogic.switchOnStateSaver(switchSound);
+        notificationLogic.switchOnStateSaver(switchVibration);
+
     }
 
-    public void switchOffEverything() {
-        notificationLogic.switchOff(switchSound);
-        notificationLogic.switchOff(switchVibration);
-        switchDisable(switchSound);
-        switchDisable(switchVibration);
-        seekBarDisable(seekBarNotification);
-    }
+    public void masterSwitchOff() {
+        notificationLogic.switchOffSwitch(switchSound);
+        notificationLogic.switchOffSwitch(switchVibration);
+        notificationLogic.disableSwitch(switchSound);
+        notificationLogic.disableSwitch(switchVibration);
+        notificationLogic.disableSeekbar(seekBarNotification);
+        notificationLogic.switchOffStateSaver(switchSound);
+        notificationLogic.switchOffStateSaver(switchVibration);
 
-    public void seekBarEnable(SeekBar seekBar) {
-        seekBarNotification.setEnabled(true);
-    }
-
-    public void seekBarDisable(SeekBar seekBar) {
-        seekBarNotification.setEnabled(false);
-    }
-
-    public void switchEnable(CompoundButton buttonView) {
-        buttonView.setEnabled(true);
-    }
-
-    public void switchDisable(CompoundButton buttonView) {
-        buttonView.setEnabled(false);
     }
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int seekBarChoice = notificationLogic.seekBarLogic(progress);
-        String seekBarChoiceText = "";
+        int seekBarChoice = notificationLogic.seekBarChoiceCreator(progress);
+        String seekBarChoiceText = notificationLogic.seekBarChoiceTextCreator(seekBarChoice, seekBarChoiceTextCandidate0, seekBarChoiceTextCandidate1, seekBarChoiceTextCandidate2);
 
-        switch (seekBarChoice) {
-            case 0:
-                seekBarChoiceText = seekBarChoiceTextCandidate0;
-                break;
-            case 1:
-                seekBarChoiceText = seekBarChoiceTextCandidate1;
-                break;
-            case 2:
-                seekBarChoiceText = seekBarChoiceTextCandidate2;
-                break;
-        }
         notificationIntervalResult.setText(seekBarChoiceText);
         notificationLogic.seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
-        notificationLogic.callAlarmStarter(getActivity());
     }
 
     @Override

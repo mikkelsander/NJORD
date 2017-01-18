@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import android.widget.CompoundButton;
+import android.widget.SeekBar;
 
 import com.project.ms.njord.R;
 
@@ -27,12 +28,11 @@ public class NotificationLogic {
         this.context = context;
     }
 
-    public void switchOn(CompoundButton buttonView) {
-        buttonView.setChecked(true);
+    public void switchOnStateSaver(CompoundButton buttonView) {
+
         switch (buttonView.getId()) {
             case switchNotification:
                 editor.putBoolean("switchNotificationOn", true).commit();
-                callAlarmStarter(context);
                 break;
             case R.id.switchSound:
                 editor.putBoolean("switchSoundOn", true).commit();
@@ -45,12 +45,11 @@ public class NotificationLogic {
 
     }
 
-    public void switchOff(CompoundButton buttonView) {
-        buttonView.setChecked(false);
+    public void switchOffStateSaver(CompoundButton buttonView) {
+
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
-                killAlarmStarter(context);
                 break;
             case R.id.switchSound:
                 editor.putBoolean("switchSoundOn", false).commit();
@@ -61,7 +60,31 @@ public class NotificationLogic {
         }
     }
 
-    public int seekBarLogic(int progress) {
+    public void switchOnSwitch(CompoundButton buttonView) {
+        buttonView.setChecked(true);
+    }
+
+    public void switchOffSwitch(CompoundButton buttonView) {
+        buttonView.setChecked(false);
+    }
+
+    public void enableSwitch(CompoundButton buttonView) {
+        buttonView.setEnabled(true);
+    }
+
+    public void disableSwitch(CompoundButton buttonView) {
+        buttonView.setEnabled(false);
+    }
+
+    public void enableSeekbar(SeekBar seekBar) {
+        seekBar.setEnabled(true);
+    }
+
+    public void disableSeekbar(SeekBar seekBar) {
+        seekBar.setEnabled(false);
+    }
+
+    public int seekBarChoiceCreator(int progress) {
         int seekBarChoice;
         if (progress >= 0 && progress < 33) {
             seekBarChoice = 0;
@@ -73,6 +96,26 @@ public class NotificationLogic {
         return seekBarChoice;
     }
 
+    public String seekBarChoiceTextCreator(int SeekBarChoice, String choice0, String choice1, String choice2) {
+        String seekBarChoiceTextCandidate0 = choice0;
+        String seekBarChoiceTextCandidate1 = choice1;
+        String seekBarChoiceTextCandidate2 = choice2;
+        String seekBarChoiceText = "";
+
+        switch (SeekBarChoice) {
+            case 0:
+                seekBarChoiceText = seekBarChoiceTextCandidate0;
+                break;
+            case 1:
+                seekBarChoiceText = seekBarChoiceTextCandidate1;
+                break;
+            case 2:
+                seekBarChoiceText = seekBarChoiceTextCandidate2;
+                break;
+        }
+        return seekBarChoiceText;
+    }
+
     public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
         editor.putInt("progress", progress)
                 .putInt("seekBarChoice", seekBarChoice)
@@ -80,13 +123,13 @@ public class NotificationLogic {
                 .commit();
     }
 
-    public void callAlarmStarter(Context context) {
-        if (sharedPref.getBoolean("switchNotificationOn", false)) {
-            alarmStart.startAlarm(context, sharedPref.getInt("seekBarChoice", 1));
-        }
+
+    public void callAlarmStarter() {
+        alarmStart.startAlarm(context, sharedPref.getInt("seekBarSelection", 1));
+
     }
 
-    public void killAlarmStarter(Context context) {
+    public void killAlarmStarter() {
 
         alarmStart.alarmKiller(context);
     }
