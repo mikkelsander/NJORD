@@ -54,7 +54,6 @@ public class AlarmStart {
         Intent intent = new Intent(context, AlarmListener.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis(), 86400000, pendingIntent);
-        alarmManager.setRepeating(AlarmManager.RTC, System.currentTimeMillis() + 60000, 86400000, pendingIntent);
 
     }
 
