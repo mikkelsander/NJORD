@@ -30,6 +30,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     private Date testDate = new Date();
     private ArrayList<Integer> streamOfSpiroData = new ArrayList<>();
     int counter = 1;
+    boolean isReadingData;
 
     View v;
 
@@ -84,7 +85,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
      * Starts a new test reading
      */
     public void startReading(boolean choice){
-
+        isReadingData = true;
         new AsyncTask<Boolean, Void, Void>() {
             @Override
             protected Void doInBackground(Boolean... params) {
@@ -102,18 +103,18 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
                     test1int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, test3int);
                     counter++;
-                }else if(counter==2){
+                }else if(counter == 2){
                     test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, test3int);
                     counter++;
-                }else if(counter==3){
+                }else if(counter == 3){
                     test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test3int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, test3int);
                     counter = 1;
                 }
-
+                isReadingData = false;
             }
         }.execute(choice);
     }
@@ -153,10 +154,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
 
     @Override
     public void onClick(View v) {
-        if(v==startBtn){
+        if(v==startBtn && !isReadingData){
             startReading(true);
         }
-        if (v == doneBtn) {
+        if (v == doneBtn && !isReadingData) {
             saveResult(testDate,inhaleLevel,exhaleLevel);
             Log.d("testdate",testDate.toString());
 
