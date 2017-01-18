@@ -85,9 +85,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
      * Starts a new test reading
      */
     public void startReading(boolean choice){
+        instructions.setText("");
         isReadingData = true;
-        if(counter==3){
-            //modifyScreeanLook();
+        if(counter==4){
+            modifyScreeanLook();
         }
         new AsyncTask<Boolean, Void, Void>() {
             @Override
@@ -108,15 +109,18 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
                     test1int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, 0, 0);
                     counter++;
+                    instructions.setText("Great now do it again");
                 }else if(counter == 2){
                     test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, 0);
+                    instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 3){
                     test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test3int = highestReading(streamOfSpiroData);
                     inhaleLevel = average(test1int, test2int, test3int);
+                    instructions.setText("Great! Now  fill your lungs and exhale as hard as you can");
                     counter++;
                 }
 
@@ -125,22 +129,33 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
                     test1.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test1int = highestReading(streamOfSpiroData);
                     exhaleLevel = average(test1int, 0, 0);
+                    instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 5) {
                     test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
                     exhaleLevel = average(test1int, test2int, 0);
+                    instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 6) {
-                    test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
-                    test2int = highestReading(streamOfSpiroData);
-                    exhaleLevel = average(test1int, test2int, 0);
+                    test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test3int = highestReading(streamOfSpiroData);
+                    exhaleLevel = average(test1int, test2int, test3int);
+                    instructions.setText("All good, press done to finish test");
+                    startBtn.setEnabled(false);
                     counter = 1;
                 }
 
                 isReadingData = false;
             }
         }.execute(choice);
+    }
+
+    private void modifyScreeanLook() {
+        manometer.setImageResource(R.drawable.manometer_red);
+        test1.setText("");
+        test2.setText("");
+        test3.setText("");
     }
 
     /**
