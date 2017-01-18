@@ -14,13 +14,14 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
-import com.project.ms.njord.notifications.AlarmStart;
+import com.project.ms.njord.notifications.NotificationLogic;
 
 public class RemindersFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     //Variables
+    NotificationLogic notificationLogic;
     Switch switchNotification;
     Switch switchSound;
     Switch switchVibration;
@@ -31,7 +32,6 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     String seekBarChoiceTextCandidate0 = "Hver dag";
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
     String seekBarChoiceTextCandidate2 = "Hvert minut";
-    AlarmStart alarmStart;
     Boolean inBootState;
 
     public RemindersFragment() {
@@ -44,9 +44,9 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         // Inflate the layout for this fragment
 
         //Initialize varibles
+        notificationLogic = new NotificationLogic(getActivity());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = sharedPref.edit();
-        alarmStart = new AlarmStart();
 
         //Cast to views
         switchNotification = (Switch) v.findViewById(R.id.switchNotification);
@@ -92,7 +92,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", true).commit();
-                callAlarmStarter();
+                notificationLogic.callAlarmStarter(getActivity());
                 break;
             case R.id.switchSound:
                 editor.putBoolean("switchSoundOn", true).commit();
@@ -112,7 +112,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
-                killAlarmStarter();
+                notificationLogic.killAlarmStarter(getActivity());
                 break;
             case R.id.switchSound:
                 editor.putBoolean("switchSoundOn", false).commit();
@@ -166,7 +166,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         }
         notificationIntervalResult.setText(seekBarChoiceText);
         seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
-        callAlarmStarter();
+        notificationLogic.callAlarmStarter(getActivity());
     }
 
     public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
@@ -174,17 +174,6 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
                 .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
-    }
-
-    public void callAlarmStarter() {
-        if (sharedPref.getBoolean("switchNotificationOn", false)) {
-            alarmStart.startAlarm(getActivity(), sharedPref.getInt("seekBarChoice", 1));
-        }
-    }
-
-    public void killAlarmStarter() {
-
-        alarmStart.alarmKiller(getActivity());
     }
 
     public int seekBarLogic(int progress) {
