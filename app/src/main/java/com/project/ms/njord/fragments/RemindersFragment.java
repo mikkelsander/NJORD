@@ -14,13 +14,14 @@ import android.widget.TextView;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
-import com.project.ms.njord.notifications.AlarmStart;
+import com.project.ms.njord.notifications.NotificationLogic;
 
 public class RemindersFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
     //Variables
+    NotificationLogic notificationLogic;
     Switch switchNotification;
     Switch switchSound;
     Switch switchVibration;
@@ -30,8 +31,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     SharedPreferences.Editor editor;
     String seekBarChoiceTextCandidate0 = "Hver dag";
     String seekBarChoiceTextCandidate1 = "To gange om dagen";
-    String seekBarChoiceTextCandidate2 = "Hvert minut";
-    AlarmStart alarmStart;
+    String seekBarChoiceTextCandidate2 = "To gange i minuttet";
     Boolean inBootState;
 
     public RemindersFragment() {
@@ -44,9 +44,9 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         // Inflate the layout for this fragment
 
         //Initialize varibles
+        notificationLogic = new NotificationLogic(getActivity());
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getContext());
         editor = sharedPref.edit();
-        alarmStart = new AlarmStart();
 
         //Cast to views
         switchNotification = (Switch) v.findViewById(R.id.switchNotification);
@@ -69,7 +69,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
         seekBarNotification.setProgress(sharedPref.getInt("progress", 50));
         notificationIntervalResult.setText(sharedPref.getString("notificationIntervalResult", seekBarChoiceTextCandidate1));
         if (!sharedPref.getBoolean("switchNotificationOn", false)) {
-            switchOff(switchNotification);
+            notificationLogic.switchOff(switchNotification);
         }
         inBootState = false;
 
@@ -81,63 +81,40 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 
         if (buttonView.isChecked()) {
-            switchOn(buttonView);
+            notificationLogic.switchOn(buttonView);
+            if (buttonView.getId() == switchNotification.getId() && !inBootState) {
+                switchOnEverything();
+            }
         } else {
-            switchOff(buttonView);
-        }
-    }
-
-    public void switchOn(CompoundButton buttonView) {
-        buttonView.setChecked(true);
-        switch (buttonView.getId()) {
-            case R.id.switchNotification:
-                editor.putBoolean("switchNotificationOn", true).commit();
-                callAlarmStarter();
-                break;
-            case R.id.switchSound:
-                editor.putBoolean("switchSoundOn", true).commit();
-                break;
-            case R.id.switchVibration:
-                editor.putBoolean("switchVibrationOn", true).commit();
-                break;
-
-        }
-        if (buttonView.getId() == switchNotification.getId() && !inBootState) {
-            switchOnEverything();
-        }
-    }
-
-    public void switchOff(CompoundButton buttonView) {
-        buttonView.setChecked(false);
-        switch (buttonView.getId()) {
-            case R.id.switchNotification:
-                editor.putBoolean("switchNotificationOn", false).commit();
-                killAlarmStarter();
-                break;
-            case R.id.switchSound:
-                editor.putBoolean("switchSoundOn", false).commit();
-                break;
-            case R.id.switchVibration:
-                editor.putBoolean("switchVibrationOn", false).commit();
-                break;
-        }
-        if (buttonView.getId() == switchNotification.getId()) {
-            switchOffEverything();
+            notificationLogic.switchOff(buttonView);
+            if (buttonView.getId() == switchNotification.getId()) {
+                switchOffEverything();
+            }
         }
     }
 
     public void switchOnEverything() {
-        switchOn(switchSound);
-        switchOn(switchVibration);
+        notificationLogic.switchOn(switchSound);
+        notificationLogic.switchOn(switchVibration);
         switchEnable(switchSound);
         switchEnable(switchVibration);
+        seekBarEnable(seekBarNotification);
     }
 
     public void switchOffEverything() {
-        switchOff(switchSound);
-        switchOff(switchVibration);
+        notificationLogic.switchOff(switchSound);
+        notificationLogic.switchOff(switchVibration);
         switchDisable(switchSound);
         switchDisable(switchVibration);
+        seekBarDisable(seekBarNotification);
+    }
+
+    public void seekBarEnable(SeekBar seekBar) {
+        seekBarNotification.setEnabled(true);
+    }
+
+    public void seekBarDisable(SeekBar seekBar) {
+        seekBarNotification.setEnabled(false);
     }
 
     public void switchEnable(CompoundButton buttonView) {
@@ -150,7 +127,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        int seekBarChoice = seekBarLogic(progress);
+        int seekBarChoice = notificationLogic.seekBarLogic(progress);
         String seekBarChoiceText = "";
 
         switch (seekBarChoice) {
@@ -165,38 +142,8 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
                 break;
         }
         notificationIntervalResult.setText(seekBarChoiceText);
-        seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
-        callAlarmStarter();
-    }
-
-    public void seekBarSaver(Integer progress, Integer seekBarChoice, String seekBarChoiceText) {
-        editor.putInt("progress", progress)
-                .putInt("seekBarChoice", seekBarChoice)
-                .putString("notificationIntervalResult", seekBarChoiceText)
-                .commit();
-    }
-
-    public void callAlarmStarter() {
-        if (sharedPref.getBoolean("switchNotificationOn", false)) {
-            alarmStart.startAlarm(getActivity(), sharedPref.getInt("seekBarChoice", 1));
-        }
-    }
-
-    public void killAlarmStarter() {
-
-        alarmStart.alarmKiller(getActivity());
-    }
-
-    public int seekBarLogic(int progress) {
-        int seekBarChoice;
-        if (progress > 0 && progress < 33) {
-            seekBarChoice = 0;
-        } else if (progress > 33 && progress < 66) {
-            seekBarChoice = 1;
-        } else {
-            seekBarChoice = 2;
-        }
-        return seekBarChoice;
+        notificationLogic.seekBarSaver(progress, seekBarChoice, seekBarChoiceText);
+        notificationLogic.callAlarmStarter(getActivity());
     }
 
     @Override
