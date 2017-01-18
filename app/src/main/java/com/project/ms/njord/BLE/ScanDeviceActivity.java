@@ -16,7 +16,6 @@
 
 package com.project.ms.njord.BLE;
 
-import android.app.ListActivity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -30,7 +29,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -85,7 +83,8 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         mHandler = new Handler();
 
 /*
-
+        *** MOVED to device fragment.  But keeping the code here, to make sure we dont forget it
+            in case of refactoring
 
         // Use this check to determine whether BLE is supported on the device.  Then you can
         // selectively disable BLE-related features.
@@ -117,7 +116,13 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         mScanSettings = new ScanSettings.Builder().build();
     }
 
-  /*  @Override
+
+
+  /*
+   *** MOVED to device fragment.  But keeping the code here, to make sure we dont forget it
+            in case of refactoring
+
+  @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         if (requestCode == REQUEST_LOCATION_PERMISSION && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
             Intent enableLocationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);

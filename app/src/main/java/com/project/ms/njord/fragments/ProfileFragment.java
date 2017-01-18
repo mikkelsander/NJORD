@@ -82,7 +82,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == Activity.RESULT_OK) {
-            String userString = data.getExtras().getString("userString", "not found");
+            String userString = data.getExtras().getString("userString", "");
             int userInt = data.getExtras().getInt("userInt");
 
             Log.d(TAG, "userInput: " + userString);

@@ -31,10 +31,12 @@ public class SampleGattAttributes {
         // Sample Services.
         attributes.put("00001809-0000-1000-8000-00805f9b34fb", "Health Thermometer Service");
         attributes.put("0000180a-0000-1000-8000-00805f9b34fb", "Device Information Service");
+        attributes.put("00001800-0000-1000-8000-00805f9b34fb", "Macbook Pro Service");
 
         // Sample Characteristics.
         attributes.put(HEALTH_TEMPERATURE_MEASUREMENT, "Health Temperature Measurement");
         attributes.put("00002a29-0000-1000-8000-00805f9b34fb", "Manufacturer Name String");
+        attributes.put("00002a00-0000-1000-8000-00805f9b34fb", "MacBook Pro Random Characteristic");
     }
 
     public static String lookup(String uuid, String defaultName) {
