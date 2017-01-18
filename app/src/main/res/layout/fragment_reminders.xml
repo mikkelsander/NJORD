@@ -25,7 +25,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/switchNotification"
                 android:paddingBottom="4dp"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:textSize="22dp"
+                android:layout_marginBottom="16dp"
+                />
 
             <Switch
                 android:text="Notifcation Sound"
@@ -33,7 +36,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/switchSound"
                 android:paddingBottom="4dip"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:textSize="22dp"
+                android:layout_marginBottom="16dp"
+                />
 
             <Switch
                 android:text="Notifcation Vibration"
@@ -41,7 +47,10 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/switchVibration"
                 android:paddingBottom="8dip"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:textSize="22dp"
+                android:layout_marginBottom="16dp"
+                />
 
             <TextView
                 android:text="Hvor ofte vil du gerne påmindes?"
@@ -49,14 +58,21 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/notificationInterval"
                 android:paddingTop="8dp"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:textSize="22dp"
+                android:layout_marginBottom="8dp"
+                android:textAlignment="center"
+                />
 
             <SeekBar
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/seekBarNotification"
                 android:paddingBottom="4dp"
-                android:paddingTop="4dp" />
+                android:paddingTop="4dp"
+                android:textSize="22dp"
+                android:layout_marginBottom="16dp"
+                />
 
             <TextView
                 android:text="TextView"
@@ -65,7 +81,8 @@
                 android:id="@+id/notificationIntervalResult"
                 android:gravity="center_vertical|center_horizontal"
                 android:paddingTop="4dp"
-                android:paddingBottom="4dp" />
+                android:paddingBottom="4dp"
+                android:textSize="22dp"/>
 
         </LinearLayout>
     </ScrollView>
