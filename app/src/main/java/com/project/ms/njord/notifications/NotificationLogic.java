@@ -43,6 +43,7 @@ public class NotificationLogic {
         switch (buttonView.getId()) {
             case switchNotification:
                 editor.putBoolean("switchNotificationOn", true).commit();
+                callAlarmStarter();
                 break;
             case switchSound:
                 editor.putBoolean("switchSoundOn", true).commit();
@@ -60,6 +61,7 @@ public class NotificationLogic {
         switch (buttonView.getId()) {
             case R.id.switchNotification:
                 editor.putBoolean("switchNotificationOn", false).commit();
+                killAlarmStarter();
                 break;
             case switchSound:
                 editor.putBoolean("switchSoundOn", false).commit();
@@ -131,6 +133,7 @@ public class NotificationLogic {
                 .putInt("seekBarChoice", seekBarChoice)
                 .putString("notificationIntervalResult", seekBarChoiceText)
                 .commit();
+        callAlarmStarter();
     }
 
 
