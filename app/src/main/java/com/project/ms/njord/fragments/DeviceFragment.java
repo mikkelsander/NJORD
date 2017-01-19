@@ -50,6 +50,8 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     private float mAccel; // acceleration apart from gravity
     private float mAccelCurrent; // current acceleration including gravity
     private float mAccelLast; // last acceleration including gravity
+    private long shakeTimestamp = 0;
+    private final int PAUSE = 1000;
 
     // when user shakes device it will change activity and start scanning
     private final SensorEventListener shakeEvent = new SensorEventListener() {
@@ -64,11 +66,19 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
             mAccel = mAccel * 0.9f + delta; // perform low-cut filter
 
             if(mAccel > 15) {
+                final long now = System.currentTimeMillis();
+                // ignore shake events too close to each other (500ms)
+
+                if (shakeTimestamp + PAUSE > now ) {
+                    return;
+                }
+
                 if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
                     Toast.makeText(getActivity(), "Bluetooth Low Energy not supported on this device", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 else {
+                    shakeTimestamp = now;
                     Intent i = new Intent(getActivity(), ScanDeviceActivity.class);
                     startActivity(i);
                 }
@@ -120,8 +130,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         sensorManager.unregisterListener(shakeEvent);
         super.onPause();
     }
-
-
 
     @Override
     public void onClick(View v) {

@@ -46,7 +46,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/menu_header"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation"
+        app:itemBackground="@drawable/nav_item_drawable"
+        />
 
 
 </android.support.v4.widget.DrawerLayout>

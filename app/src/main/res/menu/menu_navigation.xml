@@ -6,11 +6,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_aerofit"
-            android:icon="@mipmap/ic_home"
+            android:icon="@drawable/ic_action_lightning_bolt"
             android:title="AEROFIT" />
         <item
             android:id="@+id/nav_progress"
-            android:icon="@mipmap/ic_progress"
+            android:icon="@drawable/ic_action_timeline"
             android:title="Progress" />
         <item
             android:id="@+id/nav_profile"
@@ -18,15 +18,15 @@
             android:title="Profile" />
         <item
             android:id="@+id/nav_device"
-            android:icon="@mipmap/ic_device"
+            android:icon="@drawable/ic_action_ble"
             android:title="Device" />
         <item
             android:id="@+id/nav_reminders"
-            android:icon="@mipmap/ic_settings"
+            android:icon="@drawable/ic_action_reminder"
             android:title="Reminders" />
         <item
             android:id="@+id/nav_video_tutorials"
-            android:icon="@mipmap/ic_help"
+            android:icon="@drawable/ic_action_video"
             android:title="Video Tutorials" />
     </group>
 
@@ -34,7 +34,7 @@
         <menu>
             <item
                 android:id="@+id/nav_logOut"
-                android:icon="@mipmap/ic_logout"
+                android:icon="@drawable/log_out_icon"
                 android:title="Log Out" />
         </menu>
     </item>
