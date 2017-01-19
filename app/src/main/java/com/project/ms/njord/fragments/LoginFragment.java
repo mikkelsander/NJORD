@@ -227,67 +227,20 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    /*@Override
-    public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
-        return new CursorLoader(getActivity(),
-                // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
-
-                // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
-
-                // Show primary email addresses first. Note that there won't be
-                // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
-    }
-
-    @Override
-    public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor) {
-        List<String> emails = new ArrayList<>();
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            emails.add(cursor.getString(ProfileQuery.ADDRESS));
-            cursor.moveToNext();
-        }
-    }
-
-    @Override
-    public void onLoaderReset(Loader<Cursor> cursorLoader) {
-
-    }
-
-    private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
-
-        int ADDRESS = 0;
-        int IS_PRIMARY = 1;
-    }*/
-
 
     // Start a second thread that attempts to login
     public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 
         private final String email;
         private final String password;
-        ProgressDialog pLog = new ProgressDialog(getActivity());
 
         UserLoginTask(String email, String password) {
             this.email = email;
             this.password = password;
         }
 
-        @Override
-        protected void onPreExecute() {
-            pLog.show();
-        }
 
-        @Override        // Returns true if the profile is authentic
+        @Override        // Returns true if the email is in the database
         protected Boolean doInBackground(Void... params) {
             // TODO: attempt authentication against a network service.
 
@@ -302,21 +255,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         }
 
-           /* for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(email)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(password);
-                }
-            }
-            return true; }
-
-            */
-
 
         @Override       // Updtaes the UI after the second thread is done
         protected void onPostExecute(final Boolean success) {
-            pLog.dismiss();
             loginTask = null;
             showProgress(false);
 

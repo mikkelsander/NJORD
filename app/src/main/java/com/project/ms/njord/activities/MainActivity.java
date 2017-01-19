@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_logOut){
             prefs.edit().putBoolean("isLoggedIn", false).commit();
-            prefs.edit().putString("active_email", "").commit();
+            prefs.edit().remove("active_email").commit();
             Intent i = new Intent(this, LoginActivity.class);
             startActivity(i);
             finish();
