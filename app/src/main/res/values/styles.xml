@@ -46,6 +46,7 @@
 
 
     <style name="MyDialogTheme" parent="android:Theme.Material.Dialog">
+        <item name="android:editTextStyle"> @style/RobotoEditTextStyle</item>
         <item name="android:datePickerStyle">@style/MyDatePicker</item>
     </style>
 
