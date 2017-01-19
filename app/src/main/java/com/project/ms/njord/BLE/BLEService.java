@@ -38,7 +38,7 @@ import java.util.UUID;
  * Service for managing connection and data communication with a GATT server hosted on a
  * given Bluetooth LE device.
  */
-public class BluetoothLeService extends Service {
+public class BLEService extends Service {
     private final static String TAG = "BluetoothService";
 
     private BluetoothManager mBluetoothManager;
@@ -127,8 +127,8 @@ public class BluetoothLeService extends Service {
 
 
     public class LocalBinder extends Binder {
-        BluetoothLeService getService() {
-            return BluetoothLeService.this;
+        BLEService getService() {
+            return BLEService.this;
         }
     }
 

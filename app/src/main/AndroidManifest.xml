@@ -43,7 +43,7 @@
         <activity android:name=".BLE.ScanDeviceActivity"/>
 
         <service
-            android:name=".BLE.BluetoothLeService"
+            android:name=".BLE.BLEService"
             android:enabled="true" />
 
         <meta-data

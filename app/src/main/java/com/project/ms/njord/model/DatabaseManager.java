@@ -15,9 +15,8 @@ public class DatabaseManager {
 
     final private FirebaseDatabase databaseInstance;
     final private DatabaseReference profileRef;
-    private String uniqueEmail;
 
-    public DatabaseManager()  {
+    public DatabaseManager() {
         databaseInstance = FirebaseDatabase.getInstance();
         profileRef = databaseInstance.getReference("Profiles");
     }
@@ -27,37 +26,9 @@ public class DatabaseManager {
 
     public void saveProfile(Profile profile) {
 
-        if (TextUtils.isEmpty(uniqueEmail)) {
-
-            uniqueEmail = profile.getEmail();
-
-        }
-
-
-
-        profileRef.child(uniqueEmail).setValue(profile);
+        profileRef.child(profile.getEmail()).setValue(profile);
 
     }
-
-/*
-
-    public void loadProfile(String id) {
-
-        profileRef.child(uniqueEmail).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Profile profile = dataSnapshot.getValue(Profile.class);
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        }) ;
-
-    }
-*/
 
 
     public void syncProfile(String email) {
@@ -87,6 +58,7 @@ public class DatabaseManager {
             }
         });
     }
+}
 
 
    /* public void deleteProfile(String email){
@@ -135,14 +107,7 @@ public class DatabaseManager {
         }
 
     }*/
-/*
 
-    @Override
-    public void update(Observable o, Object arg) {
-        saveProfile(Singleton.instance.getProfile());
-    }
-*/
-}
 
 
 
