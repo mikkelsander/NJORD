@@ -19,13 +19,11 @@ import com.project.ms.njord.notifications.NotificationLogic;
 
 public class ResultsFragment extends Fragment implements View.OnClickListener {
 
-    Button doneBtn;
-    TextView inhale, exhale;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-    RemindersFragment remindersFragment;
-    Bundle bundle;
-    NotificationLogic notificationLogic;
+    private  Button doneBtn;
+    private TextView inhale, exhale;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    private  NotificationLogic notificationLogic;
 
 
     @Nullable
@@ -54,7 +52,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
     }
 
     //Generates Dialog asking for Push notification permission. If given all permissions are switched on with standard prefs.
-    public void showNotificationAlertDialog() {
+    private void showNotificationAlertDialog() {
         editor.putBoolean("notificationsAdvised", true).commit();
         new AlertDialog.Builder(getActivity())
                 .setTitle("Notifications")
@@ -79,7 +77,7 @@ public class ResultsFragment extends Fragment implements View.OnClickListener {
                 .show();
     }
 
-    public void showConfirmNotificationToast() {
+    private void showConfirmNotificationToast() {
         Toast.makeText(getActivity(), "Notifications activated", Toast.LENGTH_LONG)
                 .show();
     }

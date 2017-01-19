@@ -22,9 +22,9 @@ import static android.content.Context.NOTIFICATION_SERVICE;
 public class AlarmListener extends BroadcastReceiver {
 
     //Variables
-    NotificationManager notificationManager = null;
-    SharedPreferences sharedPref;
-    PendingIntent pendingIntent;
+    private NotificationManager notificationManager = null;
+    private SharedPreferences sharedPref;
+    private PendingIntent pendingIntent;
 
     @Override
     public void onReceive(Context context, Intent intent) {

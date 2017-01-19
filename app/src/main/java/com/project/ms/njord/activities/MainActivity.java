@@ -44,15 +44,11 @@ import io.fabric.sdk.android.Fabric;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, Observer {
 
-    NavigationView navigationView = null;
-    Toolbar toolbar = null;
-    String tag;
-    TextView menuUserName;
+    private NavigationView navigationView = null;
+    private Toolbar toolbar = null;
+    private TextView menuUserName;
 
     SharedPreferences prefs;
-    TabLayout tabLayout;
-    ViewPager viewPager;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +64,10 @@ public class MainActivity extends AppCompatActivity
 
         // if fresh start show fragment home
 
-        if(savedInstanceState == null) {
+        if (savedInstanceState == null) {
 
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, new ViewPagerFragment(), "home" )
+                    .replace(R.id.fragment_container, new ViewPagerFragment(), "home")
                     .commit();
         }
 
@@ -160,7 +156,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             getSupportActionBar().setTitle("Video tutorials");
 
-        } else if (id == R.id.nav_logOut){
+        } else if (id == R.id.nav_logOut) {
             prefs.edit().putBoolean("isLoggedIn", false).commit();
             prefs.edit().remove("active_email").commit();
             Intent i = new Intent(this, LoginActivity.class);
@@ -193,32 +189,4 @@ public class MainActivity extends AppCompatActivity
                 || "google_sdk".equals(Build.PRODUCT);
     }
 
-    private class CustomAdapter extends FragmentPagerAdapter {
-        private String fragments [] = {"Power", "De-Stress"};
-        public CustomAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
-        super(supportFragmentManager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position){
-                case 0:
-                    return new PowerTestFragment();
-                case 1:
-                    return new DeStressFragment();
-                default:
-                    return null;
-            }
-        }
-
-        @Override
-        public int getCount() {
-            return fragments.length;
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragments [position];
-        }
-    }
 }

@@ -19,10 +19,10 @@ import static com.project.ms.njord.R.id.switchVibration;
 
 public class NotificationLogic {
 
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-    AlarmStart alarmStart;
-    Context context;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    private AlarmStart alarmStart;
+    private Context context;
 
     public NotificationLogic(Context context) {
         sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
@@ -138,7 +138,7 @@ public class NotificationLogic {
 
     }
 
-    public void killAlarmStarter() {
+    private void killAlarmStarter() {
 
         alarmStart.alarmKiller(context);
     }

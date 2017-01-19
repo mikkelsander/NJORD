@@ -11,10 +11,6 @@ import com.project.ms.njord.fragments.ManometerFragment;
 
 public class TestLungsActivity extends AppCompatActivity {
 
-    LineChart chart;
-    LineData lineData;
-    LineDataSet set;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

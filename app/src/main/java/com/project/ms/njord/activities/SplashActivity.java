@@ -1,16 +1,13 @@
 package com.project.ms.njord.activities;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 
 import com.project.ms.njord.model.Singleton;
-import com.project.ms.njord.model.DatabaseManager;
 
 /**
  * This is the first activity that is started
@@ -29,11 +26,6 @@ public class SplashActivity extends AppCompatActivity {
 
 
         new AsyncTask<Void, Void, Boolean>() {
-
-            @Override
-            protected void onPreExecute() {
-                super.onPreExecute();
-            }
 
             @Override
             protected Boolean doInBackground(Void... params) {

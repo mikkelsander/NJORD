@@ -74,7 +74,7 @@
                 android:progress="1"
                 android:id="@+id/seekBarNotification"
                 android:padding="30dp"
-                android:textSize="22dp"
+                android:textSize="22sp"
                 android:layout_margin="-30dp"
                 />
 

@@ -19,9 +19,9 @@ import com.project.ms.njord.R;
  */
 public class ViewPagerFragment extends Fragment {
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
-    ViewPagerAdapter adapter;
+    private ViewPager viewPager;
+    private TabLayout tabLayout;
+    private  ViewPagerAdapter adapter;
 
     public ViewPagerFragment() {
         // Required empty public constructor
@@ -68,7 +68,7 @@ public class ViewPagerFragment extends Fragment {
 
     private class ViewPagerAdapter extends FragmentPagerAdapter {
 
-        private String fragments [] = {"Power", "De-Stress"};
+        final private String fragments [] = {"Power", "De-Stress"};
 
         public ViewPagerAdapter(FragmentManager supportFragmentManager, Context applicationContext) {
             super(supportFragmentManager);

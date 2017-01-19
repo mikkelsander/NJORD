@@ -9,15 +9,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public class DatabaseManager {
 
     final private String TAG = "DatabaseManager";
 
-    private FirebaseDatabase databaseInstance;
-    private DatabaseReference profileRef;
+    final private FirebaseDatabase databaseInstance;
+    final private DatabaseReference profileRef;
     private String uniqueEmail;
 
     public DatabaseManager()  {
@@ -90,14 +87,14 @@ public class DatabaseManager {
     }
 
 
-    public void deleteProfile(String email){
+   /* public void deleteProfile(String email){
 
         profileRef.child(email).removeValue();
     }
 
-
+*/
     //in case in the future we want to only push one of profile attribute to the database
-    private void updateProfile(Profile profile) {
+   /* private void updateProfile(Profile profile) {
         // updating the user via child nodes
 
         if (!TextUtils.isEmpty(profile.getEmail())) {
@@ -135,7 +132,7 @@ public class DatabaseManager {
 
         }
 
-    }
+    }*/
 /*
 
     @Override

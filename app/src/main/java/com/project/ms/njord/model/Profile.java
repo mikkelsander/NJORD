@@ -18,12 +18,11 @@ public class Profile extends Observable {
     private String gender = "";
     private String height = "";
     private String weight = "";
-    private boolean isLoggedIn = false;
     private ArrayList<TestResult> testResults = new ArrayList<>();
 
     public Profile() {
         // Required empty constructor
-    };
+    }
 
     public Profile(String email, String password){
         this.email=email;
@@ -123,12 +122,6 @@ public class Profile extends Observable {
     public void createTestResult(Date date, int insp, int exp){
         TestResult result = new TestResult(date, insp, exp);
         testResults.add(result);
-    }
-
-    public String getId() { return this.id; }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
 }

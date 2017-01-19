@@ -18,9 +18,9 @@ import static android.content.Context.ALARM_SERVICE;
 public class AlarmStart {
 
     //Variables
-    long startTime;
-    long interval;
-    Calendar calendar;
+    private long startTime;
+    private long interval;
+    //private Calendar calendar;
 
     public void startAlarm(Context context, int progress) {
 
@@ -33,13 +33,14 @@ public class AlarmStart {
         switch (progress) {
             case 0:
                 startTime = calendar.getTimeInMillis();
-                ;
                 interval = 86400000;
                 break;
+
             case 1:
                 startTime = calendar.getTimeInMillis();
                 interval = 43200000;
                 break;
+
             case 2:
                 startTime = System.currentTimeMillis();
                 interval = 30000;

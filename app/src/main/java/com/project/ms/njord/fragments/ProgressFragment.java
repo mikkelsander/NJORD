@@ -23,11 +23,11 @@ import java.util.ArrayList;
 
 public class ProgressFragment extends Fragment implements OnDataPointTapListener {
 
-    View v;
-    TextView dateView, inhaleLevelView, exhaleLevelView;
-    GraphView graph;
+    private View v;
+    private  TextView dateView, inhaleLevelView, exhaleLevelView;
+    private  GraphView graph;
 
-    ArrayList<TestResult> results;
+    private  ArrayList<TestResult> results;
 
     public ProgressFragment() {
 
@@ -105,13 +105,6 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
     }
 
 
-
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-
-
-}
 
     @Override
     public void onTap(Series series, DataPointInterface dataPointInterface) {

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.TestLungsActivity;
-import com.project.ms.njord.simulator.DataSimulator;
 
 public class PowerTestFragment extends Fragment implements View.OnClickListener {
 

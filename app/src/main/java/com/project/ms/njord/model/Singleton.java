@@ -7,7 +7,7 @@ package com.project.ms.njord.model;
 public class Singleton {
 
     public static Singleton instance;
-    private DatabaseManager dbManager;
+    final private DatabaseManager dbManager;
     private Profile profile;
 
     private Singleton(){
@@ -26,7 +26,7 @@ public class Singleton {
     }
 
 
-    public void createGuestProfile() {
+    private void createGuestProfile() {
         profile = new Profile();
     }
 

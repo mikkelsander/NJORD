@@ -39,14 +39,14 @@ import java.util.UUID;
  * given Bluetooth LE device.
  */
 public class BluetoothLeService extends Service {
-    private final static String TAG = BluetoothLeService.class.getSimpleName();
+    private final static String TAG = "BluetoothService";
 
     private BluetoothManager mBluetoothManager;
     private BluetoothAdapter mBluetoothAdapter;
     private String mBluetoothDeviceAddress;
     private BluetoothGatt mBluetoothGatt;
     private BluetoothGattService mGattService;
-    List<BluetoothGattService> mGattServices;
+    private List<BluetoothGattService> mGattServices;
     private int mConnectionState = STATE_DISCONNECTED;
 
     private static final int STATE_DISCONNECTED = 0;
@@ -236,7 +236,7 @@ public class BluetoothLeService extends Service {
      * After using a given BLE device, the app must call this method to ensure resources are
      * released properly.
      */
-    public void close() {
+    private void close() {
         if (mBluetoothGatt == null) {
             return;
         }

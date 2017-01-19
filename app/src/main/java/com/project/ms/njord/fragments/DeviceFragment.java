@@ -33,7 +33,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
     //enable requests
     private static final int REQUEST_ENABLE_LOCATION = 1;
-    private static final int REQUEST_ENABLE_BT = 2;
 
     // UI references
     private Button scanBtn;
@@ -75,7 +74,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
                 if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
                     Toast.makeText(getActivity(), "Bluetooth Low Energy not supported on this device", Toast.LENGTH_SHORT).show();
-                    return;
                 }
                 else {
                     shakeTimestamp = now;
@@ -142,7 +140,6 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
             if (!getActivity().getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
                 Toast.makeText(getActivity(), "Bluetooth Low Energy not supported on this device", Toast.LENGTH_SHORT).show();
-                return;
             }
 
             else {
@@ -165,8 +162,7 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == REQUEST_ENABLE_LOCATION && resultCode == Activity.RESULT_CANCELED) {
-            getActivity().getSupportFragmentManager().beginTransaction().remove(this);
-            return;
+            getActivity().getSupportFragmentManager().beginTransaction().remove(this).commit();
         }
 
     }

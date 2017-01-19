@@ -51,13 +51,13 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
     private LeDeviceListAdapter mLeDeviceListAdapter;
     private BluetoothAdapter mBluetoothAdapter;
     private BluetoothLeScanner mBluetoothLeScanner;
-    private ScanFilter uuidFilter;
+   // private ScanFilter uuidFilter;
     private List<ScanFilter> mScanFilters = new ArrayList<ScanFilter>();
     private ScanSettings mScanSettings;
     private boolean mScanning;
     private Handler mHandler;
 
-    ListView listView;
+    private ListView listView;
 
    /* ///permission request
     private static final int REQUEST_LOCATION_PERMISSION = 1;
@@ -232,7 +232,6 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         // User chose not to enable Bluetooth.
         if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
             finish();
-            return;
         }
 
     }

@@ -23,10 +23,10 @@ import com.project.ms.njord.model.Singleton;
  */
 public class ProfileFragment extends Fragment implements View.OnClickListener{
 
-    final String TAG = "ProfileFragment";
+    private final String TAG = "ProfileFragment";
 
-    TextView nameView, birthdayView, emailView, heightView, weightView, genderView;
-    LinearLayout nameLayout, birthdayLayout, emailLayout, genderLayout, heightLayout, weightLayout;
+    private TextView nameView, birthdayView, emailView, heightView, weightView, genderView;
+    private  LinearLayout nameLayout, birthdayLayout, emailLayout, genderLayout, heightLayout, weightLayout;
 
     private final int CHANGE_EMAIL      = 1;
     private final int CHANGE_NAME       = 2;

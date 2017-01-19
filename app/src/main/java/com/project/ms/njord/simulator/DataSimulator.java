@@ -52,7 +52,7 @@ public class DataSimulator extends Observable{
         return this.exhalePressure;
     }
 
-    public void changeMe() {
+    private void changeMe() {
         setChanged();
         notifyObservers(this);
     }

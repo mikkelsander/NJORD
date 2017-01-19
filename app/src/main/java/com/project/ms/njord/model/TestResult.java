@@ -10,7 +10,6 @@ public class TestResult {
 
     private Date date;
     private int inhaleLevel, exhaleLevel;
-    private int[] dataPoints;
 
     public TestResult(){
 

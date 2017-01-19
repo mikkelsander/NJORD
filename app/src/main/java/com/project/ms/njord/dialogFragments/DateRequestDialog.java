@@ -6,11 +6,8 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.util.Log;
 import android.widget.DatePicker;
-import android.widget.TextView;
 
-import com.project.ms.njord.R;
 
 import java.util.Calendar;
 
@@ -18,14 +15,13 @@ import java.util.Calendar;
 public class DateRequestDialog extends DialogFragment implements
         android.app.DatePickerDialog.OnDateSetListener {
 
-    final String TAG = "DatePicker";
-
     public DateRequestDialog() {
 
     }
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+
         // Use the current date as the default date in the picker
         final Calendar c = Calendar.getInstance();
         int year = c.get(Calendar.YEAR);

@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:text="0"
-            android:textSize="100dp"
+            android:textSize="100sp"
             app:layout_constraintLeft_toLeftOf="@+id/manometer_test2_textView"
             app:layout_constraintRight_toRightOf="@+id/manometer_test2_textView"
             app:layout_constraintTop_toBottomOf="@+id/manometer_test2_textView" />

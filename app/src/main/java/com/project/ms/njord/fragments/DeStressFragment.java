@@ -18,10 +18,10 @@ import com.project.ms.njord.R;
  */
 public class DeStressFragment extends Fragment implements View.OnClickListener {
 
-    Button danish, english;
-    MediaPlayer danishPlayer;
-    MediaPlayer englishPlayer;
-    ImageView playEnglishImage, playDanishImage, pauseDanishImage, pauseEnglishImage;
+    private Button danish, english;
+    private MediaPlayer danishPlayer;
+    private MediaPlayer englishPlayer;
+    private ImageView playEnglishImage, playDanishImage, pauseDanishImage, pauseEnglishImage;
 
     public DeStressFragment() {
         // Required empty public constructor
@@ -50,12 +50,6 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
 
 
         return v;
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
     }
 
 

@@ -331,11 +331,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             showProgress(false);
 
           if (success) {
-
-                // A new Profile is created
-              Singleton.instance.createProfile(email, password);
-              prefs.edit().putBoolean("isLoggedIn", true).commit();
-              prefs.edit().putString("active_email", email).commit();
+              Bundle args = new Bundle();
+              args.putString("email", email);
+              args.putString("passwrod", password);
 
               getFragmentManager().beginTransaction()
                       .replace(R.id.login_fragment_container, new SignUpFragment())

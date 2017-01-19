@@ -18,8 +18,7 @@ import com.project.ms.njord.activities.YouTubeActivity;
  */
 public class VideoTutorialsFragment extends Fragment implements View.OnClickListener {
 
-    Button watch1, watch2, watch3, watch4, watch5, watch6, watch7, watch8;
-    TextView intro;
+    private Button watch1, watch2, watch3, watch4, watch5, watch6, watch7, watch8;
 
     public VideoTutorialsFragment() {
         // Required empty public constructor

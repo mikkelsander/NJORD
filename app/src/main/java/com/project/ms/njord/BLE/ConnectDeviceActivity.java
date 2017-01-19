@@ -16,7 +16,6 @@
 
 package com.project.ms.njord.BLE;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothGattCharacteristic;
 import android.bluetooth.BluetoothGattService;
 import android.content.BroadcastReceiver;
@@ -64,9 +63,6 @@ public class ConnectDeviceActivity extends AppCompatActivity {
             new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
     private boolean mConnected = false;
     private BluetoothGattCharacteristic mNotifyCharacteristic;
-
-    private final String LIST_NAME = "NAME";
-    private final String LIST_UUID = "UUID";
 
     // Code to manage Service lifecycle.
     private final ServiceConnection mServiceConnection = new ServiceConnection() {
@@ -275,6 +271,9 @@ public class ConnectDeviceActivity extends AppCompatActivity {
         mGattCharacteristics = new ArrayList<ArrayList<BluetoothGattCharacteristic>>();
 
         // Loops through available GATT Services.
+        String LIST_NAME = "NAME";
+        String LIST_UUID = "UUID";
+
         for (BluetoothGattService gattService : gattServices) {
             HashMap<String, String> currentServiceData = new HashMap<String, String>();
 

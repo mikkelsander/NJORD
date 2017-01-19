@@ -26,7 +26,7 @@ public class YouTubeActivity extends YouTubeBaseActivity
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.activity_youtube);
      //   ConstraintLayout constraintLayout = (ConstraintLayout) findViewById(R.id.activity_youtube);
-        ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube,null);
+        ConstraintLayout layout = (ConstraintLayout) getLayoutInflater().inflate(R.layout.activity_youtube, null);
         setContentView(layout);
 
         YouTubePlayerView playerView = new YouTubePlayerView(this);

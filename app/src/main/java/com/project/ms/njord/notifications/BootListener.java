@@ -12,9 +12,9 @@ import android.preference.PreferenceManager;
  */
 
 public class BootListener extends BroadcastReceiver {
-    Context context;
-    SharedPreferences sharedPreferences;
-    NotificationLogic notificationLogic;
+    private Context context;
+    private SharedPreferences sharedPreferences;
+    private NotificationLogic notificationLogic;
 
     @Override
     public void onReceive(Context context, Intent intent) {

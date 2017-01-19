@@ -2,7 +2,6 @@ package com.project.ms.njord.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -30,18 +29,18 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     private Date testDate = new Date();
     private ArrayList<Integer> streamOfSpiroData = new ArrayList<>();
     private Profile profile = Singleton.instance.getProfile();
-    int counter = 1;
-    boolean isReadingData;
+    private int counter = 1;
+    private boolean isReadingData;
 
-    View v;
-    int test1int, test2int, test3int;
+    private View v;
+    private  int test1int, test2int, test3int;
 
     //UI references
-    TextView lungLevelLive;
-    TextView test1,test2, test3, test4, test5, test6;
-    TextView instructions;
-    ImageView manometer;
-    Button doneBtn, startBtn;
+    private TextView lungLevelLive;
+    private TextView test1,test2, test3, test4, test5, test6;
+    private  TextView instructions;
+    private ImageView manometer;
+    private Button doneBtn, startBtn;
 
     public ManometerFragment() {
         // Required empty public constructor
@@ -76,16 +75,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         return v;
     }
 
-
-    @Override
-    public void onPause() {
-    super.onPause();
-    }
-
     /**
      * Starts a new test reading
      */
-    public void startReading(boolean choice){
+    private void startReading(){
         instructions.setText("");
         isReadingData = true;
         if(counter==4){
@@ -156,7 +149,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
 
                 isReadingData = false;
             }
-        }.execute(choice);
+        }.execute();
     }
 
     private void modifyScreeanLook() {
@@ -166,7 +159,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     /**
      * Saves the test result as a new TestRests object
      */
-    public void saveResult(Date date, int insp, int exp){
+    private void saveResult(Date date, int insp, int exp){
         profile.createTestResult(date, insp, exp);
         Singleton.instance.getDataBaseManager().saveProfile(profile);
     }
@@ -179,8 +172,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     }
 
     private int highestReading(ArrayList<Integer> list){
-        int i = Collections.max(list);
-        return i;
+        return Collections.max(list);
     }
 
     @Override
@@ -205,7 +197,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     @Override
     public void onClick(View v) {
         if(v==startBtn && !isReadingData){
-            startReading(true);
+            startReading();
         }
         if (v == doneBtn && !isReadingData) {
             saveResult(testDate,inhaleLevel,exhaleLevel);

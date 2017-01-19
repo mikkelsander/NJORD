@@ -18,22 +18,20 @@ import com.project.ms.njord.notifications.NotificationLogic;
 
 public class RemindersFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
 
-    private static final String TAG = MainActivity.class.getSimpleName();
-
     //Variables
-    NotificationLogic notificationLogic;
-    Switch switchNotification;
-    Switch switchSound;
-    Switch switchVibration;
-    SeekBar seekBarNotification;
-    TextView notificationInterval;
-    TextView notificationIntervalResult;
-    SharedPreferences sharedPref;
-    SharedPreferences.Editor editor;
-    String seekBarChoiceTextCandidate0 = "Every day";
-    String seekBarChoiceTextCandidate1 = "Twice a day";
-    String seekBarChoiceTextCandidate2 = "Two times every minute";
-    Boolean inBootState;
+    private  NotificationLogic notificationLogic;
+    private  Switch switchNotification;
+    private  Switch switchSound;
+    private Switch switchVibration;
+    private SeekBar seekBarNotification;
+    private TextView notificationInterval;
+    private TextView notificationIntervalResult;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+    final private String seekBarChoiceTextCandidate0 = "Every day";
+    final private String seekBarChoiceTextCandidate1 = "Twice a day";
+    final private  String seekBarChoiceTextCandidate2 = "Two times every minute";
+    private  Boolean inBootState;
 
     public RemindersFragment() {
         // Required empty public constructor
@@ -97,7 +95,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
 
     }
 
-    public void masterSwitchOn() {
+    private void masterSwitchOn() {
         notificationLogic.switchOnSwitch(switchSound);
         notificationLogic.switchOnSwitch(switchVibration);
         notificationLogic.enableSwitch(switchSound);
@@ -110,7 +108,7 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
 
     }
 
-    public void masterSwitchOff() {
+    private void masterSwitchOff() {
         notificationLogic.switchOffSwitch(switchSound);
         notificationLogic.switchOffSwitch(switchVibration);
         notificationLogic.disableSwitch(switchSound);

@@ -3,7 +3,9 @@ package com.project.ms.njord.fragments;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.project.ms.njord.R;
 import com.project.ms.njord.activities.MainActivity;
@@ -31,15 +34,16 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     private EditText nameView,genderView, heightView, weightView, birthdayView;
     private Button confirmButton, skipButton;
     private Profile profile;
-    boolean confirmed;
+    private SharedPreferences prefs;
 
     private final int CHANGE_BIRTHDAY   = 3;
     private final int CHANGE_GENDER     = 4;
     private final int CHANGE_HEIGHT     = 5;
     private final int CHANGE_WEIGHT     = 6;
-    InputMethodManager imm;
+    private InputMethodManager imm;
 
-
+    String email;
+    String password;
 
 
     @Override
@@ -64,9 +68,12 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         imm = (InputMethodManager)getActivity()
                 .getSystemService(Context.INPUT_METHOD_SERVICE);
 
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
         profile = Singleton.instance.getProfile();
 
-        confirmed = false;
+        email = getArguments().getString("email", "change me");
+        password = getArguments().getString("password", "1234");
 
         return v;
 
@@ -99,76 +106,59 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         }
     }
 
-    // creating skip button in the action bar
-  /*  @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.skip_button, menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
-
-    // handles what happens when skip button is pressed
-
-   // @Override
-  /*  public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        // Closes SignUpFragment and starts MainActivity
-        if (id == R.id.skip_button) {
-            Intent i = new Intent(this,MainActivity.class);
-            startActivity(i);
-            finish();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-*/
-
-
     @Override
     public void onClick(View v) {
-        Bundle args = new Bundle();
         if (v == confirmButton){
-            attemptConfirm();
+            confirm();
         }
         if (v == skipButton){
+            Singleton.instance.createProfile(email, password);
+            prefs.edit().putBoolean("isLoggedIn", true).commit();
+            prefs.edit().putString("active_email", profile.getEmail()).commit();
             Intent i = new Intent(getActivity(), MainActivity.class);
             startActivity(i);
             getActivity().finish();
+
         }
 
     }
 
 
 
-    private void attemptConfirm() {
+    private void confirm() {
         // TODO: save all user input
-        if (userInputValid())
 
-            profile.setName(nameView.getText().toString());
-            profile.setBirthday(birthdayView.getText().toString());
-            profile.setGender(genderView.getText().toString());
-            profile.setHeight(heightView.getText().toString());
-            profile.setWeight(weightView.getText().toString());
+        Singleton.instance.createProfile(email, password);
 
-            Singleton.instance.getDataBaseManager().saveProfile(profile);
+        profile.setName(nameView.getText().toString());
+        profile.setBirthday(birthdayView.getText().toString());
+        profile.setGender(genderView.getText().toString());
+        profile.setHeight(heightView.getText().toString());
+        profile.setWeight(weightView.getText().toString());
 
-            confirmed = true;
+        Singleton.instance.getDataBaseManager().saveProfile(profile);
 
-            Intent i = new Intent(getActivity(), MainActivity.class);
-            startActivity(i);
-            getActivity().finish();
+        prefs.edit().putBoolean("isLoggedIn", true).commit();
+        prefs.edit().putString("active_email", profile.getEmail()).commit();
+
+        Toast.makeText(getActivity(), "saving data", Toast.LENGTH_SHORT ).show();
+
+        Intent i = new Intent(getActivity(), MainActivity.class);
+        startActivity(i);
+        getActivity().finish();
+
     }
 
 
-    private boolean userInputValid() {
+    /*private boolean userInputValid() {
         // TODO: validate all user input
 
         if(heightView.getText().toString().equals("")) return false;
         if(weightView.getText().toString().equals("")) return false;
 
-
         return true;
     }
-
+*/
     public void onItemSelected(AdapterView<?> parent, View view,
                                int pos, long id) {
     }
