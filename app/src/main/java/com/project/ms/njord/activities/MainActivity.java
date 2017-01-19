@@ -17,6 +17,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
+        Log.d("mainLoading","main loadig");
         if (!isEmulator()) {
             Fabric.with(this, new Crashlytics());
         }
@@ -91,7 +92,7 @@ public class MainActivity extends AppCompatActivity
         Singleton.instance.getProfile().addObserver(this);
         menuUserName.setText(Singleton.instance.getProfile().getName());
 
-
+        Log.d("mainLoading","main loading done");
     }
 
     @Override

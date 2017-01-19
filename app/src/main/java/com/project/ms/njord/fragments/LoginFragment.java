@@ -43,7 +43,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
     private UserSignUpTask signUpTask = null;
 
     // UI references.
-    private AutoCompleteTextView emailView;
+    private EditText emailView;
     private EditText passwordView;
     private View progressView;
     private View loginFormView;
@@ -60,7 +60,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         // Set up the login form.
-        emailView = (AutoCompleteTextView) v.findViewById(R.id.email);
+        emailView = (EditText) v.findViewById(R.id.email);
 
         // Initializing views
         loginFormView = v.findViewById(R.id.login_form);
