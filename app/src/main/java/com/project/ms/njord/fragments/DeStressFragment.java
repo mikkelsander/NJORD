@@ -13,16 +13,14 @@ import android.widget.ImageView;
 
 import com.project.ms.njord.R;
 
-import static com.project.ms.njord.R.id.imageView;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class DeStressFragment extends Fragment implements View.OnClickListener {
 
     Button danish, english;
-    MediaPlayer danishSound;
-    MediaPlayer englishSound;
+    MediaPlayer danishPlayer;
+    MediaPlayer englishPlayer;
     ImageView playEnglishImage, playDanishImage, pauseDanishImage, pauseEnglishImage;
 
     public DeStressFragment() {
@@ -41,31 +39,38 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
         danish.setOnClickListener(this);
         english.setOnClickListener(this);
 
-        playEnglishImage = (ImageView)v.findViewById(R.id.destress_englishPlay_image);
-        playDanishImage = (ImageView)v.findViewById(R.id.destress_danishPlay_image);
-        pauseEnglishImage = (ImageView)v.findViewById(R.id.destress_englishPause_image);
-        pauseDanishImage = (ImageView)v.findViewById(R.id.destress_danishPause_image);
+        playEnglishImage = (ImageView) v.findViewById(R.id.destress_englishPlay_image);
+        playDanishImage = (ImageView) v.findViewById(R.id.destress_danishPlay_image);
+        pauseEnglishImage = (ImageView) v.findViewById(R.id.destress_englishPause_image);
+        pauseDanishImage = (ImageView) v.findViewById(R.id.destress_danishPause_image);
 
 
-        danishSound = MediaPlayer.create(getActivity(), R.raw.aerofitdansk);
-        englishSound = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
+        danishPlayer = MediaPlayer.create(getActivity(), R.raw.aerofitdansk);
+        englishPlayer = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
 
 
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+    }
+
+
     public void onClick(View v) {
 
         if (v == danish) {
 
-            if (!danishSound.isPlaying() && !englishSound.isPlaying()) {
+            if (!danishPlayer.isPlaying() && !englishPlayer.isPlaying()) {
                 Log.d("sound", "playing sound Danish");
-                danishSound.start();
+                danishPlayer.start();
                 playDanishImage.setVisibility(View.INVISIBLE);
                 pauseDanishImage.setVisibility(View.VISIBLE);
-            } else if (danishSound.isPlaying()) {
+            } else if (danishPlayer.isPlaying()) {
                 Log.d("sound", "pausing sound Danish");
-                danishSound.pause();
+                danishPlayer.pause();
                 playDanishImage.setVisibility(View.VISIBLE);
                 pauseDanishImage.setVisibility(View.INVISIBLE);
             }
@@ -73,14 +78,14 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
 
         if (v == english) {
 
-            if (!englishSound.isPlaying() && !danishSound.isPlaying()) {
+            if (!englishPlayer.isPlaying() && !danishPlayer.isPlaying()) {
                 Log.d("sound", "playing sound Enlish");
-                englishSound.start();
+                englishPlayer.start();
                 playEnglishImage.setVisibility(View.INVISIBLE);
                 pauseEnglishImage.setVisibility(View.VISIBLE);
-            } else if (englishSound.isPlaying()){
+            } else if (englishPlayer.isPlaying()) {
                 Log.d("sound", "pausing sound English");
-                englishSound.pause();
+                englishPlayer.pause();
                 playEnglishImage.setVisibility(View.VISIBLE);
                 pauseEnglishImage.setVisibility(View.INVISIBLE);
             }
@@ -89,4 +94,17 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
 
     }
 
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (danishPlayer.isPlaying()) {
+            danishPlayer.pause();
+            playDanishImage.setVisibility(View.INVISIBLE);
+        }
+        if (englishPlayer.isPlaying()) {
+            englishPlayer.pause();
+            playEnglishImage.setVisibility(View.VISIBLE);
+        }
+    }
 }

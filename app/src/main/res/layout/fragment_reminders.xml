@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/notificationInterval"
                 android:paddingTop="8dp"
-                android:paddingBottom="4dp"
+                android:paddingBottom="10dp"
                 android:textSize="18sp"
                 android:layout_marginBottom="8dp"
                 android:textAlignment="center"
@@ -69,18 +69,18 @@
             <SeekBar
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:max="2"
                 android:progress="1"
                 android:id="@+id/seekBarNotification"
-                android:paddingBottom="4dp"
-                android:paddingTop="4dp"
+                android:padding="30dp"
                 android:textSize="22dp"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="-30dp"
                 />
 
             <TextView
                 android:text="TextView"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/notificationIntervalResult"

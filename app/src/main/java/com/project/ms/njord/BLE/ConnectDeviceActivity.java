@@ -49,7 +49,7 @@ import java.util.List;
  * Bluetooth LE API.
  */
 public class ConnectDeviceActivity extends AppCompatActivity {
-    private final static String TAG = ConnectDeviceActivity.class.getSimpleName();
+    private final static String TAG = "connectActivity";
 
     public static final String EXTRAS_DEVICE_NAME = "DEVICE_NAME";
     public static final String EXTRAS_DEVICE_ADDRESS = "DEVICE_ADDRESS";
@@ -176,7 +176,9 @@ public class ConnectDeviceActivity extends AppCompatActivity {
         mDeviceName = intent.getStringExtra(EXTRAS_DEVICE_NAME);
         mDeviceAddress = intent.getStringExtra(EXTRAS_DEVICE_ADDRESS);
 
-        // Sets up UI references.
+        getSupportActionBar().setTitle("Connect");
+
+        // Sets up UI references
         ((TextView) findViewById(R.id.device_address)).setText(mDeviceAddress);
         mGattServicesList = (ExpandableListView) findViewById(R.id.gatt_services_list);
         mGattServicesList.setOnChildClickListener(servicesListClickListner);

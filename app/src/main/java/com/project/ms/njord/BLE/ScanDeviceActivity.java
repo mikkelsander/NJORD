@@ -81,6 +81,8 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scan_device);
 
+        getSupportActionBar().setTitle("Scan");
+
         listView = (ListView) findViewById(R.id.list);
         listView.setOnItemClickListener(this);
 
