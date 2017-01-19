@@ -3,7 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    >
 
     <com.jjoe64.graphview.GraphView
         android:id="@+id/fragment_progress_graph"
@@ -11,7 +13,7 @@
         android:layout_weight="1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/gray_dark"/>
+        />
 
     <android.support.constraint.ConstraintLayout
         tools:layout_editor_absoluteY="8dp"

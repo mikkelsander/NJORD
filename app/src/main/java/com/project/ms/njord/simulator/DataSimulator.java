@@ -17,8 +17,8 @@ public class DataSimulator extends Observable{
         long startTime = System.currentTimeMillis();
 
 
-        while (System.currentTimeMillis() < startTime + 7000) {
-            exhalePressure = (int) ((Math.random() * 0.1 + 1) * 60);
+        while (System.currentTimeMillis() < startTime + 3000) {
+            exhalePressure = (int) ((Math.random() * 0.1 + 1) * 70);
             changeMe();
             Log.d("simPressure", "exp: " + Integer.toString(exhalePressure));
             try {
@@ -32,8 +32,8 @@ public class DataSimulator extends Observable{
     public void generateInhale() {
         Log.d("simPressure", "generate inhale started");
         long startTime = System.currentTimeMillis();
-        while (System.currentTimeMillis() < startTime + 7000) {
-            inhalePressure = (int) ((Math.random() * 0.1 + 1) * -60);
+        while (System.currentTimeMillis() < startTime + 3000) {
+            inhalePressure = (int) ((Math.random() * 0.1 + 1) * 60);
             changeMe();
             Log.d("simPressure", "insp: " + Integer.toString(inhalePressure));
             try {

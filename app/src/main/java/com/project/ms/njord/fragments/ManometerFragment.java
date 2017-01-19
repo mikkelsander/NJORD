@@ -2,6 +2,7 @@ package com.project.ms.njord.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,14 +34,11 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     boolean isReadingData;
 
     View v;
-
     int test1int, test2int, test3int;
 
     //UI references
     TextView lungLevelLive;
-    TextView test1;
-    TextView test2;
-    TextView test3;
+    TextView test1,test2, test3, test4, test5, test6;
     TextView instructions;
     ImageView manometer;
     Button doneBtn, startBtn;
@@ -60,6 +58,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         test1 = (TextView)v.findViewById(R.id.manometer_test1_textView);
         test2 = (TextView)v.findViewById(R.id.manometer_test2_textView);
         test3 = (TextView)v.findViewById(R.id.manometer_test3_textView);
+        test4 = (TextView)v.findViewById(R.id.manometer_test4_textView);
+        test5 = (TextView)v.findViewById(R.id.manometer_test5_textView);
+        test6 = (TextView)v.findViewById(R.id.manometer_test6_textView);
+
         manometer = (ImageView)v.findViewById(R.id.manometer_imageView);
 
         startBtn = (Button) v.findViewById(R.id.manometer_start_button);
@@ -69,7 +71,6 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         doneBtn.setOnClickListener(this);
 
         counter =1;
-
         setRetainInstance(true);
 
         return v;
@@ -93,10 +94,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         new AsyncTask<Boolean, Void, Void>() {
             @Override
             protected Void doInBackground(Boolean... params) {
-                if(params[0]){
-                    simData.generateExhale();
-                }else{
+                if(counter<4){
                     simData.generateInhale();
+                }else{
+                    simData.generateExhale();
                 }
                 return null;
             }
@@ -107,18 +108,21 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
                 if(counter == 1){
                     test1.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test1int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     inhaleLevel = average(test1int, 0, 0);
                     counter++;
                     instructions.setText("Great now do it again");
                 }else if(counter == 2){
                     test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     inhaleLevel = average(test1int, test2int, 0);
                     instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 3){
                     test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test3int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     inhaleLevel = average(test1int, test2int, test3int);
                     instructions.setText("Great! Now  fill your lungs and exhale as hard as you can");
                     counter++;
@@ -126,24 +130,28 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
 
                 // Exhale begins
                 else if(counter == 4){
-                    test1.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test4.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test1int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     exhaleLevel = average(test1int, 0, 0);
                     instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 5) {
-                    test2.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test5.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test2int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     exhaleLevel = average(test1int, test2int, 0);
                     instructions.setText("Great now do it again");
                     counter++;
                 }else if(counter == 6) {
-                    test3.setText(Integer.toString(highestReading(streamOfSpiroData)));
+                    test6.setText(Integer.toString(highestReading(streamOfSpiroData)));
                     test3int = highestReading(streamOfSpiroData);
+                    streamOfSpiroData.clear();
                     exhaleLevel = average(test1int, test2int, test3int);
                     instructions.setText("All good, press done to finish test");
                     startBtn.setEnabled(false);
-                    counter = 1;
+
+
                 }
 
                 isReadingData = false;
@@ -153,9 +161,6 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
 
     private void modifyScreeanLook() {
         manometer.setImageResource(R.drawable.manometer_red);
-        test1.setText("");
-        test2.setText("");
-        test3.setText("");
     }
 
     /**
@@ -183,10 +188,15 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         final Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                int data = simData.getExhalePressure();
+                int data;
+
+                if(counter<4){
+                    data = simData.getInhalePressure();
+                }else data = simData.getExhalePressure();
+
                 lungLevelLive.setText(Integer.toString(data));
                 streamOfSpiroData.add(data);
-                manometer.getLayoutParams().height = (simData.getExhalePressure()*10);
+                manometer.getLayoutParams().height = (data*10);
             }
         };
         getActivity().runOnUiThread(runnable);

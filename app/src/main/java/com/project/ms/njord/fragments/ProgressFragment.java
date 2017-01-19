@@ -52,7 +52,7 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         }
         DataPoint[] dataExhale = new DataPoint[results.size()];
         for (int i = 0; i < results.size(); i++) {
-            dataExhale[i] = new DataPoint(i, results.get(i).getInhaleLevel());
+            dataExhale[i] = new DataPoint(i, results.get(i).getExhaleLevel());
         }
 
         // Creating two new lines on the graph, one for inhale and one for axhale
@@ -118,8 +118,8 @@ public class ProgressFragment extends Fragment implements OnDataPointTapListener
         int  index = (int)dataPointInterface.getX();
 
         String date = results.get(index).getDate().toString();
-        int exhale = results.get(index).getExhaleLevel();
-        int inhale = results.get(index).getInhaleLevel();
+        String exhale = Integer.toString(results.get(index).getExhaleLevel());
+        String inhale = Integer.toString(results.get(index).getInhaleLevel());
 
         exhaleLevelView.setText(exhale);
         inhaleLevelView.setText(inhale);
