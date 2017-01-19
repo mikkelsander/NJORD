@@ -2,6 +2,7 @@ package com.project.ms.njord.fragments;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -33,7 +34,6 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     boolean isReadingData;
 
     View v;
-
     int test1int, test2int, test3int;
 
     //UI references
@@ -71,7 +71,6 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         doneBtn.setOnClickListener(this);
 
         counter =1;
-
         setRetainInstance(true);
 
         return v;
