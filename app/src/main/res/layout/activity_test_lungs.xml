@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     tools:context="com.project.ms.njord.activities.TestLungsActivity"
     android:background="@color/gray_dark"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:screenOrientation="portrait"
+    >
 
 
     <FrameLayout
