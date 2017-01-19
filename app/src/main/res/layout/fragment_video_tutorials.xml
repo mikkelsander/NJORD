@@ -79,7 +79,7 @@
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Aerofit er et medicinsk udviklet personligt træningsudstyr, der hjælper sportsfolk, elite og motionsudøvere – både til vands og til lands."
                         android:id="@+id/help_description_textView2" />
 
                 </LinearLayout>
@@ -120,7 +120,7 @@
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Aerofit virker ved at styrke åndedrætsmuskulaturen således at du får mere ilt til rådighed når du skal yde maximalt"
                         android:id="@+id/help_description_textView3" />
 
                 </LinearLayout>
@@ -160,7 +160,7 @@
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Samtidig skaber Aerofit også succes for en lang række andre mennesker herunder musikere"
                         android:id="@+id/help_description_textView4" />
 
                 </LinearLayout>
@@ -195,12 +195,12 @@
 
                     <TextView
                         style="@style/youtubeTitle"
-                        android:text="Aerofit"
+                        android:text="Aerofit exception"
                         android:id="@+id/help_title_textview5" />
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Endelig har det vist sig at en række simple øvelser få minutter om dagen hjælper stressramte "
                         android:id="@+id/help_description_textView5" />
 
                 </LinearLayout>
@@ -235,12 +235,12 @@
 
                     <TextView
                         style="@style/youtubeTitle"
-                        android:text="Aerofit"
+                        android:text="Aerofit Rocks"
                         android:id="@+id/help_title_textview6" />
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Lige nu træner en række af landets bedste idrætsudøvere med Aerofit træningssystem"
                         android:id="@+id/help_description_textView6" />
 
                 </LinearLayout>
@@ -275,12 +275,12 @@
 
                     <TextView
                         style="@style/youtubeTitle"
-                        android:text="Aerofit"
+                        android:text="Aerofit but"
                         android:id="@+id/help_title_textview7" />
 
                     <TextView
                         style="@style/youtubeDescription"
-                        android:text="Aerofit er udstyr til åndedrætstræning. Aerofit er udviklet, så du kan styrke og forbedre dit åndedræt på den mest effektive måde."
+                        android:text="Aerofit har gjort at jeg efter en skadespause efter Hawaii Ironman "
                         android:id="@+id/help_description_textView7" />
 
                 </LinearLayout>
@@ -315,7 +315,7 @@
 
                     <TextView
                         style="@style/youtubeTitle"
-                        android:text="Aerofit"
+                        android:text="Aerofit ME!"
                         android:id="@+id/help_title_textview8" />
 
                     <TextView

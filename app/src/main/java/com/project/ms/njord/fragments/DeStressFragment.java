@@ -31,7 +31,6 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
         View rootView = inflater.inflate(R.layout.fragment_de_stress, container, false);
 
         danish = (Button) rootView.findViewById(R.id.destress_danish_button);
-
         english = (Button) rootView.findViewById(R.id.destress_english_button);
 
         final MediaPlayer sound = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
