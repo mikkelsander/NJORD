@@ -17,8 +17,9 @@ import com.project.ms.njord.R;
  */
 public class DeStressFragment extends Fragment implements View.OnClickListener {
 
-
-    Button danish,english;
+    Button danish, english;
+    MediaPlayer danishSound;
+    MediaPlayer englishSound;
 
     public DeStressFragment() {
         // Required empty public constructor
@@ -28,31 +29,46 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_de_stress, container, false);
+        View v = inflater.inflate(R.layout.fragment_de_stress, container, false);
 
-        danish = (Button) rootView.findViewById(R.id.destress_danish_button);
-        english = (Button) rootView.findViewById(R.id.destress_english_button);
+        danish = (Button) v.findViewById(R.id.destress_danish_button);
+        english = (Button) v.findViewById(R.id.destress_english_button);
 
-        final MediaPlayer sound = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
+        danish.setOnClickListener(this);
+        english.setOnClickListener(this);
 
-        danish.setOnClickListener(new View.OnClickListener(){
+        danishSound = MediaPlayer.create(getActivity(), R.raw.aerofitdansk);
+        englishSound = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
 
-            @Override
-            public void onClick(View v){
-                sound.setLooping(true);
-                Log.d("sound", "playing sound");
-                sound.start();
-            }
-        });
 
-        return rootView;
-
+        return v;
     }
 
-    @Override
     public void onClick(View v) {
 
+        if (v == danish) {
+
+            if (!danishSound.isPlaying() && !englishSound.isPlaying()) {
+                Log.d("sound", "playing sound");
+                danishSound.start();
+            } else if (danishSound.isPlaying()) {
+                Log.d("sound", "stopping sound");
+                danishSound.pause();
+            }
+        }
+
+        if (v == english) {
+
+            if (!englishSound.isPlaying() && !danishSound.isPlaying()) {
+                Log.d("sound", "playing sound");
+                englishSound.start();
+            } else if (englishSound.isPlaying()){
+                Log.d("sound", "stopping sound");
+                englishSound.pause();
+            }
+        }
 
 
     }
+
 }

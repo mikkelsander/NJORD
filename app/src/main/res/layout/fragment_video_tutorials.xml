@@ -16,8 +16,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="15dp">
 
-
-
             <LinearLayout
                 android:clickable="true"
                 android:elevation="4dp"
