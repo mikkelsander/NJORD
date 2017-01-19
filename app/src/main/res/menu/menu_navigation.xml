@@ -6,7 +6,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_aerofit"
-            android:icon="@mipmap/ic_home"
+            android:icon="@drawable/ic_action_home"
             android:title="AEROFIT"
             />
         <item
@@ -15,7 +15,7 @@
             android:title="Progress" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@mipmap/ic_profile"
+            android:icon="@drawable/ic_action_profile"
             android:title="Profile" />
         <item
             android:id="@+id/nav_device"

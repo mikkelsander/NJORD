@@ -16,6 +16,7 @@
 
 package com.project.ms.njord.BLE;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -72,6 +73,9 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
     // Stops scanning after 10 seconds.
     private static final long SCAN_PERIOD = 10000;
 
+
+    // mads's MAC-address for testing purposes
+    private final String MADS_MAC_ADDRESS = "5D:C3:56:28:45:C6";
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -201,8 +205,9 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
             scanLeDevice(true);
         }
         catch(NullPointerException e) {
-            Toast.makeText(  this, "Sorry, couldn't initiate scanner, try again", Toast.LENGTH_SHORT).show();
+            Toast.makeText(  this, "Sorry, couldn't initiate scanner, try again. Is Bluetooth enabled?", Toast.LENGTH_SHORT).show();
             e.printStackTrace();
+            finish();
         }
     }
 
@@ -219,19 +224,16 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         mLeDeviceListAdapter.clear();
     }
 
-/*    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        final BluetoothDevice device = mLeDeviceListAdapter.getDevice(position);
-        if (device == null) return;
-        final Intent intent = new Intent(this, ConnectDeviceActivity.class);
-        intent.putExtra(ConnectDeviceActivity.EXTRAS_DEVICE_NAME, device.getName());
-        intent.putExtra(ConnectDeviceActivity.EXTRAS_DEVICE_ADDRESS, device.getAddress());
-        if (mScanning) {
-            mBluetoothLeScanner.stopScan(mLeScanCallback);
-            mScanning = false;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // User chose not to enable Bluetooth.
+        if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
+            finish();
+            return;
         }
-        startActivity(intent);
-    }*/
+
+    }
 
     private void scanLeDevice(final boolean enable) {
         if (enable) {
@@ -240,8 +242,12 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
                 @Override
                 public void run() {
                     mScanning = false;
-                    mBluetoothLeScanner.stopScan(mLeScanCallback);
-
+                    try {
+                        mBluetoothLeScanner.stopScan(mLeScanCallback);
+                    }
+                    catch (NullPointerException e) {
+                        e.printStackTrace();
+                    }
                     invalidateOptionsMenu();
                 }
             }, SCAN_PERIOD);
@@ -273,7 +279,7 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
         }
 
         public void addDevice(BluetoothDevice device) {
-            if(!mLeDevices.contains(device)) {
+            if (!mLeDevices.contains(device)) {
                 mLeDevices.add(device);
             }
         }
@@ -322,15 +328,24 @@ public class ScanDeviceActivity extends AppCompatActivity implements AdapterView
             BluetoothDevice device = mLeDevices.get(i);
             String deviceName = device.getName();
 
-            if (deviceName != null && deviceName.length() > 0)
+            if (deviceName != null && deviceName.length() > 0) {
                 viewHolder.deviceName.setText(deviceName);
-            else
+            }
+                // for testing
+            else if (device.getAddress().equals(MADS_MAC_ADDRESS)) {
+                viewHolder.deviceName.setText("Mads' Macbook Pro");
+            }
+
+            else {
                 viewHolder.deviceName.setText("unknown device");
+            }
+
             viewHolder.deviceAddress.setText(device.getAddress());
 
             return view;
         }
     }
+
 
     private ScanCallback mLeScanCallback = new ScanCallback() {
         @Override

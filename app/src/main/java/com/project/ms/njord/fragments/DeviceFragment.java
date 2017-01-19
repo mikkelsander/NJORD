@@ -104,14 +104,8 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
         mAccelLast = SensorManager.GRAVITY_EARTH;
 
-        // Inflate the layout for this fragment
         scanBtn =  (Button) v.findViewById(R.id.device_scan_btn);
         scanBtn.setOnClickListener(this);
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-        }
 
 
         return v;
@@ -121,12 +115,18 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && ContextCompat.checkSelfPermission(getActivity(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+        }
+
         sensorManager.registerListener(shakeEvent, sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
 
     }
 
     @Override
     public void onPause() {
+        super.onPause();
         sensorManager.unregisterListener(shakeEvent);
         super.onPause();
     }
@@ -163,18 +163,12 @@ public class DeviceFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // User chose not to enable Bluetooth.
-        if (requestCode == REQUEST_ENABLE_BT && resultCode == Activity.RESULT_CANCELED) {
-            getActivity().getSupportFragmentManager().beginTransaction().remove(this);
-            return;
-        }
 
         if (requestCode == REQUEST_ENABLE_LOCATION && resultCode == Activity.RESULT_CANCELED) {
             getActivity().getSupportFragmentManager().beginTransaction().remove(this);
             return;
         }
 
-        // super.onActivityResult(requestCode, resultCode, data);
     }
 
 
