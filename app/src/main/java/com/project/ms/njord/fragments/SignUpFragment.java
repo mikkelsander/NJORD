@@ -186,7 +186,7 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
             if(v.isFocused()) {
                 DialogFragment dialog = new DateRequestDialog();
 
-                args.putString("title", "birthday");
+                args.putString("title", "Date of birth");
                 args.putString("message", "select birthday");
 
                 dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
