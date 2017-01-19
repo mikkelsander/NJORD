@@ -33,7 +33,7 @@ public class NotificationLogic {
 
     public void notificationsDialogAccepted() {
         editor.putBoolean("switchNotificationOn", true)
-                .putBoolean("switchSoundOn", true)
+                .putBoolean("switchSoundOn", false)
                 .putBoolean("switchVibrationOn", true)
                 .commit();
         callAlarmStarter();

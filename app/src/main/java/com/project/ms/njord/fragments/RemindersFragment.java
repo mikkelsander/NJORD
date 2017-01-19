@@ -13,7 +13,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.project.ms.njord.R;
-import com.project.ms.njord.activities.MainActivity;
 import com.project.ms.njord.notifications.NotificationLogic;
 
 public class RemindersFragment extends Fragment implements CompoundButton.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener {
@@ -123,7 +122,6 @@ public class RemindersFragment extends Fragment implements CompoundButton.OnChec
 
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-//        int seekBarChoice = notificationLogic.seekBarChoiceCreator(progress);
         String seekBarChoiceText = notificationLogic.seekBarChoiceTextCreator(progress, seekBarChoiceTextCandidate0, seekBarChoiceTextCandidate1, seekBarChoiceTextCandidate2);
 
         notificationIntervalResult.setText(seekBarChoiceText);
