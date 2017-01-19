@@ -30,7 +30,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.TestLungsActivity" />
+        <activity android:name=".activities.TestLungsActivity"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".activities.LoginActivity"
