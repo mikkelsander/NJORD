@@ -6,8 +6,9 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_aerofit"
-            android:icon="@drawable/ic_action_lightning_bolt"
-            android:title="AEROFIT" />
+            android:icon="@mipmap/ic_home"
+            android:title="AEROFIT"
+            />
         <item
             android:id="@+id/nav_progress"
             android:icon="@drawable/ic_action_timeline"

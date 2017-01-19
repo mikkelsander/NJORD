@@ -1,6 +1,7 @@
 package com.project.ms.njord.dialogFragments;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,8 +32,11 @@ public class DateRequestDialog extends DialogFragment implements
         int month = c.get(Calendar.MONTH);
         int day = c.get(Calendar.DAY_OF_MONTH);
 
+        String title = getArguments().getString("title", "");
 
-        return new android.app.DatePickerDialog(getActivity(), this, year, month, day);
+        DatePickerDialog datePicker = new android.app.DatePickerDialog(getActivity(), this, year, month, day);
+        datePicker.setTitle(title);
+        return datePicker;
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
