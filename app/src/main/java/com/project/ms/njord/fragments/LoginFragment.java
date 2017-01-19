@@ -35,16 +35,6 @@ import com.project.ms.njord.model.Singleton;
  */
 public class LoginFragment extends Fragment implements View.OnClickListener {
 
-    // Id to identity READ_CONTACTS permission request.
-    private static final int REQUEST_READ_CONTACTS = 0;
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
 
     private DatabaseManager dbManager;
 
@@ -233,12 +223,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         private final String email;
         private final String password;
+        ProgressDialog pLog = new ProgressDialog(getActivity());
 
         UserLoginTask(String email, String password) {
             this.email = email;
             this.password = password;
         }
 
+        @Override
+        protected void onPreExecute() {
+            pLog.setMessage("verifying...");
+            pLog.show();
+        }
 
         @Override        // Returns true if the email is in the database
         protected Boolean doInBackground(Void... params) {
@@ -258,6 +254,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override       // Updtaes the UI after the second thread is done
         protected void onPostExecute(final Boolean success) {
+            pLog.dismiss();
             loginTask = null;
             showProgress(false);
 
@@ -280,6 +277,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onCancelled() {
+            pLog.dismiss();
             loginTask = null;
             showProgress(false);
         }
@@ -299,6 +297,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onPreExecute() {
+
+            pLog.setMessage("verifying...");
             pLog.show();
         }
 
@@ -358,6 +358,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
 
         @Override
         protected void onCancelled() {
+            pLog.dismiss();
             loginTask = null;
             showProgress(false);
         }

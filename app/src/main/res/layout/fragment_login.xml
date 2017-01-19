@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@color/gray_dark"
+    android:background="?android:colorBackground"
     tools:context="com.project.ms.njord.fragments.LoginFragment" >
 
     <!-- Login progress -->
