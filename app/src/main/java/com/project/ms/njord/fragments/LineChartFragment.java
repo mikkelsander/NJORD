@@ -21,6 +21,12 @@ import com.project.ms.njord.R;
 import java.util.ArrayList;
 import java.util.List;
 
+
+//This class is currently not integrated into the app.
+// Need to optimize rendering of the graph before its viable
+
+
+
 /**
  * A simple {@link Fragment} subclass.
  */

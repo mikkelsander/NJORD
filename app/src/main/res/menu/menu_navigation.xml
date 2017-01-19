@@ -6,15 +6,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_aerofit"
-            android:icon="@drawable/ic_action_lightning_bolt"
-            android:title="AEROFIT" />
+            android:icon="@drawable/ic_action_home"
+            android:title="AEROFIT"
+            />
         <item
             android:id="@+id/nav_progress"
             android:icon="@drawable/ic_action_timeline"
             android:title="Progress" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@mipmap/ic_profile"
+            android:icon="@drawable/ic_action_profile"
             android:title="Profile" />
         <item
             android:id="@+id/nav_device"
@@ -22,7 +23,7 @@
             android:title="Device" />
         <item
             android:id="@+id/nav_reminders"
-            android:icon="@drawable/ic_action_reminder"
+            android:icon="@drawable/ic_action_reminders"
             android:title="Reminders" />
         <item
             android:id="@+id/nav_video_tutorials"

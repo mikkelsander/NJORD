@@ -12,7 +12,7 @@ public class Singleton {
 
     private Singleton(){
         dbManager = new DatabaseManager();
-        profile = new Profile();
+        createGuestProfile();
     }
 
     public static void init(){

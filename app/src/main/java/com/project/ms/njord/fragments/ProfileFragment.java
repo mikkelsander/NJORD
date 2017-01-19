@@ -139,7 +139,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v == emailLayout) {
             DialogFragment dialog = new StringRequestDialog();
 
-            args.putString("title", "Email");
+            args.putString("title", "Edit email");
 
             dialog.setTargetFragment(this, CHANGE_EMAIL);
             dialog.setArguments(args);
@@ -149,7 +149,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if(v == nameLayout) {
                DialogFragment dialog = new StringRequestDialog();
 
-               args.putString("title", "Name");
+               args.putString("title", "Edit name");
 
                dialog.setTargetFragment(this, CHANGE_NAME);
                dialog.setArguments(args);
@@ -159,7 +159,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v == birthdayLayout) {
             DialogFragment dialog = new DateRequestDialog();
 
-            args.putString("title", "Birthday");
+            args.putString("title", "Edit birthday");
 
             dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
             dialog.setArguments(args);
@@ -169,7 +169,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if(v == genderLayout) {
             DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "Gender");
+            args.putString("title", "Edit gender");
             args.putInt("code", CHANGE_GENDER);
 
             dialog.setTargetFragment(this, CHANGE_GENDER);
@@ -180,7 +180,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v == heightLayout) {
             DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "Height");
+            args.putString("title", "Edit height");
             args.putInt("code", CHANGE_HEIGHT);
 
             dialog.setTargetFragment(this, CHANGE_HEIGHT);
@@ -191,7 +191,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v == weightLayout) {
             DialogFragment dialog = new NumberPickerDialog();
 
-            args.putString("title", "Weight");
+            args.putString("title", "Edit height");
             args.putInt("code", CHANGE_WEIGHT);
 
             dialog.setTargetFragment(this, CHANGE_WEIGHT);

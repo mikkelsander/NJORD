@@ -11,7 +11,7 @@ import java.util.Observable;
 
 public class Profile extends Observable {
     private String id;
-    private String email = "";
+    private String email = "guest@guest";
     private String password = "";
     private String name = "Guest";
     private String birthday = "";
