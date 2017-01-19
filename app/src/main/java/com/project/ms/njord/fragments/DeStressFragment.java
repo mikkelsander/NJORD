@@ -9,8 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.project.ms.njord.R;
+
+import static com.project.ms.njord.R.id.imageView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,6 +23,7 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
     Button danish, english;
     MediaPlayer danishSound;
     MediaPlayer englishSound;
+    ImageView playEnglishImage, playDanishImage, pauseDanishImage, pauseEnglishImage;
 
     public DeStressFragment() {
         // Required empty public constructor
@@ -37,6 +41,12 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
         danish.setOnClickListener(this);
         english.setOnClickListener(this);
 
+        playEnglishImage = (ImageView)v.findViewById(R.id.destress_englishPlay_image);
+        playDanishImage = (ImageView)v.findViewById(R.id.destress_danishPlay_image);
+        pauseEnglishImage = (ImageView)v.findViewById(R.id.destress_englishPause_image);
+        pauseDanishImage = (ImageView)v.findViewById(R.id.destress_danishPause_image);
+
+
         danishSound = MediaPlayer.create(getActivity(), R.raw.aerofitdansk);
         englishSound = MediaPlayer.create(getActivity(), R.raw.aerofiteng);
 
@@ -49,22 +59,30 @@ public class DeStressFragment extends Fragment implements View.OnClickListener {
         if (v == danish) {
 
             if (!danishSound.isPlaying() && !englishSound.isPlaying()) {
-                Log.d("sound", "playing sound");
+                Log.d("sound", "playing sound Danish");
                 danishSound.start();
+                playDanishImage.setVisibility(View.INVISIBLE);
+                pauseDanishImage.setVisibility(View.VISIBLE);
             } else if (danishSound.isPlaying()) {
-                Log.d("sound", "stopping sound");
+                Log.d("sound", "pausing sound Danish");
                 danishSound.pause();
+                playDanishImage.setVisibility(View.VISIBLE);
+                pauseDanishImage.setVisibility(View.INVISIBLE);
             }
         }
 
         if (v == english) {
 
             if (!englishSound.isPlaying() && !danishSound.isPlaying()) {
-                Log.d("sound", "playing sound");
+                Log.d("sound", "playing sound Enlish");
                 englishSound.start();
+                playEnglishImage.setVisibility(View.INVISIBLE);
+                pauseEnglishImage.setVisibility(View.VISIBLE);
             } else if (englishSound.isPlaying()){
-                Log.d("sound", "stopping sound");
+                Log.d("sound", "pausing sound English");
                 englishSound.pause();
+                playEnglishImage.setVisibility(View.VISIBLE);
+                pauseEnglishImage.setVisibility(View.INVISIBLE);
             }
         }
 
