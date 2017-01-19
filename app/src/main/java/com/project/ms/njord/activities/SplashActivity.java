@@ -6,7 +6,10 @@ import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 
+import com.project.ms.njord.R;
 import com.project.ms.njord.model.Singleton;
 
 /**

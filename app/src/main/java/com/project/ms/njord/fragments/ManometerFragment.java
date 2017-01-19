@@ -30,7 +30,8 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
     private ArrayList<Integer> streamOfSpiroData = new ArrayList<>();
     private Profile profile = Singleton.instance.getProfile();
     private int counter = 1;
-    private boolean isReadingData;
+    boolean isReadingData;
+    private AsyncTask task;
 
     private View v;
     private  int test1int, test2int, test3int;
@@ -84,7 +85,7 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
         if(counter==4){
             modifyScreeanLook();
         }
-        new AsyncTask<Boolean, Void, Void>() {
+        task = new AsyncTask<Boolean, Void, Void>() {
             @Override
             protected Void doInBackground(Boolean... params) {
                 if(counter<4){
@@ -217,4 +218,10 @@ public class ManometerFragment extends Fragment implements Observer, View.OnClic
 
         }
     }
+    @Override
+    public void onStop() {
+        if(isReadingData) task.cancel(true);
+        super.onStop();
+    }
+
 }
