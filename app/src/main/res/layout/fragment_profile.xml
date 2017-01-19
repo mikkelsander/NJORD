@@ -149,7 +149,7 @@
                     />
 
                 <TextView
-                    android:textSize="1sp"
+                    android:textSize="18sp"
                     android:id="@+id/profile_gender_textView"
                     android:layout_width="0dp"
                     android:layout_weight="2"

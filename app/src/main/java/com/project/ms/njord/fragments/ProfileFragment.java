@@ -159,7 +159,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v == birthdayLayout) {
             DialogFragment dialog = new DateRequestDialog();
 
-            args.putString("title", "Edit birthday");
+            args.putString("title", "Edit date of birth");
 
             dialog.setTargetFragment(this, CHANGE_BIRTHDAY);
             dialog.setArguments(args);

@@ -331,12 +331,16 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
             showProgress(false);
 
           if (success) {
+
               Bundle args = new Bundle();
               args.putString("email", email);
-              args.putString("passwrod", password);
+              args.putString("password", password);
+
+              Fragment newFrag = new SignUpFragment();
+              newFrag.setArguments(args);
 
               getFragmentManager().beginTransaction()
-                      .replace(R.id.login_fragment_container, new SignUpFragment())
+                      .replace(R.id.login_fragment_container, newFrag)
                       .addToBackStack(null)
                       .commit();
 

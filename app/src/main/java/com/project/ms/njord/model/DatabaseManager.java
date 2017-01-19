@@ -33,6 +33,8 @@ public class DatabaseManager {
 
         }
 
+
+
         profileRef.child(uniqueEmail).setValue(profile);
 
     }

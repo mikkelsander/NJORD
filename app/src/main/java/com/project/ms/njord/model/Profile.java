@@ -10,7 +10,6 @@ import java.util.Observable;
  */
 
 public class Profile extends Observable {
-    private String id;
     private String email = "guest@guest";
     private String password = "";
     private String name = "Guest";
@@ -27,11 +26,11 @@ public class Profile extends Observable {
     public Profile(String email, String password){
         this.email=email;
         this.password=password;
-        this.name = "";
+        this.name= "";
     }
 
     public Profile(String email, String password, String name, String birthday, String gender,
-                   String height, String weight, ArrayList<TestResult> testResults) {
+                   String height, String weight) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -39,7 +38,7 @@ public class Profile extends Observable {
         this.height = height;
         this.weight = weight;
         this.gender = gender;
-        this.testResults = testResults;
+        this.testResults = new ArrayList<TestResult>();
     }
 
 

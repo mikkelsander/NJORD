@@ -1,5 +1,7 @@
 package com.project.ms.njord.model;
 
+import java.util.ArrayList;
+
 /**
  * Created by Oliver on 14-Nov-16.
  */
@@ -31,10 +33,17 @@ public class Singleton {
     }
 
     public void createProfile(String email, String password){
-        profile = new Profile(email, password);
+        this.profile = new Profile(email, password);
         dbManager.saveProfile(profile);
         dbManager.syncProfile(profile.getEmail());
     }
+
+    public void createProfile (String email, String password, String name, String birthday, String gender,
+                   String height, String weight) {
+
+       this.profile = new Profile(email, password, name, birthday, gender, height, weight);
+    }
+
 
     public Profile getProfile() {return profile;}
     public DatabaseManager getDataBaseManager() {return dbManager;}

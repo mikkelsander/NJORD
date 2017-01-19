@@ -33,7 +33,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
     // UI references
     private EditText nameView,genderView, heightView, weightView, birthdayView;
     private Button confirmButton, skipButton;
-    private Profile profile;
     private SharedPreferences prefs;
 
     private final int CHANGE_BIRTHDAY   = 3;
@@ -70,7 +69,6 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        profile = Singleton.instance.getProfile();
 
         email = getArguments().getString("email", "change me");
         password = getArguments().getString("password", "1234");
@@ -113,8 +111,9 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
         }
         if (v == skipButton){
             Singleton.instance.createProfile(email, password);
+
             prefs.edit().putBoolean("isLoggedIn", true).commit();
-            prefs.edit().putString("active_email", profile.getEmail()).commit();
+            prefs.edit().putString("active_email", email).commit();
             Intent i = new Intent(getActivity(), MainActivity.class);
             startActivity(i);
             getActivity().finish();
@@ -123,23 +122,19 @@ public class SignUpFragment extends Fragment implements View.OnClickListener,
 
     }
 
-
-
     private void confirm() {
         // TODO: save all user input
 
-        Singleton.instance.createProfile(email, password);
+        String name = nameView.getText().toString();
+        String birthday = birthdayView.getText().toString();
+        String gender = genderView.getText().toString();
+        String height = heightView.getText().toString();
+        String weight = weightView.getText().toString();
 
-        profile.setName(nameView.getText().toString());
-        profile.setBirthday(birthdayView.getText().toString());
-        profile.setGender(genderView.getText().toString());
-        profile.setHeight(heightView.getText().toString());
-        profile.setWeight(weightView.getText().toString());
-
-        Singleton.instance.getDataBaseManager().saveProfile(profile);
+        Singleton.instance.createProfile(email, password, name, birthday, gender, height, weight);
 
         prefs.edit().putBoolean("isLoggedIn", true).commit();
-        prefs.edit().putString("active_email", profile.getEmail()).commit();
+        prefs.edit().putString("active_email", email).commit();
 
         Toast.makeText(getActivity(), "saving data", Toast.LENGTH_SHORT ).show();
 

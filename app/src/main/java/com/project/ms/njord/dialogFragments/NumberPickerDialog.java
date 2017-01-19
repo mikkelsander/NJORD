@@ -32,7 +32,6 @@ public class NumberPickerDialog extends DialogFragment {
 
         Bundle args = getArguments();
         String title = args.getString("title", "");
-        String message = args.getString("message", "");
 
         final int code = args.getInt("code");
 
@@ -62,7 +61,6 @@ public class NumberPickerDialog extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle(title)
-                .setMessage(message)
                 .setView(pickerView)
                 .setPositiveButton("save", new DialogInterface.OnClickListener() {
                     @Override

@@ -26,12 +26,10 @@ public class StringRequestDialog extends DialogFragment {
 
         Bundle args = getArguments();
         String title = args.getString("title", "");
-        String message = args.getString("message", "");
         final EditText e = new EditText(getActivity());
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle(title)
-                .setMessage(message)
                 .setView(e)
                 .setPositiveButton("save", new DialogInterface.OnClickListener() {
                     @Override
