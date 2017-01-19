@@ -65,7 +65,7 @@
         android:layout_width="80dp"
         android:layout_height="60dp"
         app:srcCompat="@drawable/cast_ic_notification_play"
-        android:id="@+id/imageView5"
+        android:id="@+id/destress_englishPlay_image"
         app:layout_constraintBottom_toBottomOf="@+id/destress_english_button"
         app:layout_constraintTop_toTopOf="@+id/destress_english_button"
         app:layout_constraintLeft_toLeftOf="@+id/destress_english_button"
@@ -74,11 +74,35 @@
     <ImageView
         android:layout_width="80dp"
         android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_media_pause"
+        android:id="@+id/destress_englishPause_image"
+        app:layout_constraintBottom_toBottomOf="@+id/destress_english_button"
+        app:layout_constraintTop_toTopOf="@+id/destress_english_button"
+        app:layout_constraintLeft_toLeftOf="@+id/destress_english_button"
+        app:layout_constraintRight_toRightOf="@+id/destress_english_button"
+        android:visibility="invisible"/>
+
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="60dp"
         app:srcCompat="@drawable/cast_ic_notification_play"
-        android:id="@+id/imageView7"
+        android:id="@+id/destress_danishPlay_image"
         app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:layout_constraintBottom_toBottomOf="@+id/destress_danish_button"
         app:layout_constraintRight_toRightOf="@+id/destress_danish_button"
         app:layout_constraintLeft_toLeftOf="@+id/destress_danish_button" />
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_media_pause"
+        android:id="@+id/destress_danishPause_image"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
+        app:layout_constraintBottom_toBottomOf="@+id/destress_danish_button"
+        app:layout_constraintRight_toRightOf="@+id/destress_danish_button"
+        app:layout_constraintLeft_toLeftOf="@+id/destress_danish_button"
+        android:visibility="invisible"/>
+
 
 </android.support.constraint.ConstraintLayout>
